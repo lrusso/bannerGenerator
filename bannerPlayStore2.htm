@@ -8,7 +8,7 @@
 			body{margin:0;padding:0;background-color:grey}
 			canvas{display:none;text-rendering:optimizeLegibility}
 			div{position:absolute;left:0;right:0;top:0;bottom:0;width:1024px;height:520px;margin:auto auto;background-color:silver}
-			input[type=text]{height:20px;width:100px;font-family:Arial;font-size:13px;margin:0;padding:0;box-sizing:content-box}
+			input[type=text]{height:20px;width:90px;font-family:Arial;font-size:13px;margin:0;padding:0;box-sizing:content-box}
 			input[type=file]{height:20px;font-family:Arial;font-size:13px;margin:0;padding:0;box-sizing:content-box}
 		</style>
 	</head>
@@ -20,6 +20,7 @@
 			<input type="text" id="line1" placeholder="Line 1">
 			<input type="text" id="line2" placeholder="Line 2">
 			<input type="text" id="line3" placeholder="Line 3">
+			<input type="text" id="imgSize" placeholder="Image size" value="400">
 			<input type="file" id="screenshot">
 			<img width="1024" height="500" id="finalResult" alt="banner" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4wQQEjQ35agTNQAAAAxJREFUCNdjOH78OAAErgJW23qXwQAAAABJRU5ErkJggg==">
 		</div>
@@ -63,7 +64,7 @@
 				context.drawImage(image1, 0, 0, 1024, 500);
 
 				// DRAWING THE PLAY STORE LOGO
-				context.drawImage(image2, 120, 350, 289, 100);
+				context.drawImage(image2, 100, 350, 289, 100);
 
 				try
 					{
@@ -83,11 +84,11 @@
 								var width  = image3.width;
 								var height = image3.height;
 								var ratio = width/height;
-								width = 400;
-								height = 400/ratio;
+								width = document.getElementById("imgSize").value;
+								height = document.getElementById("imgSize").value/ratio;
 
 								// DRAWING THE SCREENSHOT
-								context.drawImage(image3, 530, 500/2-400/2, width, height);
+								context.drawImage(image3, (1024 * 0.70) - width / 2, 500/2-height/2, width, height);
 
 								// KEEP DRAWING THE BANNER WITH THE SCREENSHOT
 								updateRest(context);
@@ -145,6 +146,7 @@
 			document.getElementById("line1").addEventListener("input", function (evt){update()});
 			document.getElementById("line2").addEventListener("input", function (evt){update()});
 			document.getElementById("line3").addEventListener("input", function (evt){update()});
+			document.getElementById("imgSize").addEventListener("input", function (evt){update()});
 			document.getElementById("screenshot").addEventListener("change", function (evt){update()});
 		</script>
 	</body>
