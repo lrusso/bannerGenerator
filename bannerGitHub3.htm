@@ -70,6 +70,37 @@
 				// DRAWING THE BACKGROUND
 				context.drawImage(image1, 0, 0, 350, 212);
 
+				// DRAWING THE BULLETS
+				var R = 4;
+				context.beginPath();
+				context.lineWidth = 3;
+				context.fillStyle ="white";
+				context.arc(28, 72, R, 0, 2 * Math.PI, false);
+				context.fill();
+				context.arc(28, 102, R, 0, 2 * Math.PI, false);
+				context.fill();
+				context.arc(28, 132, R, 0, 2 * Math.PI, false);
+				context.fill();
+
+				// SETTING THE FONT STYLE
+				context.font = "17px Arial";
+				context.fillStyle = "white";
+
+				// DRAWING THE TITLE
+				context.fillText(title.value, 20, 40);
+
+				// SETTING THE FONT STYLE
+				context.font = "13px Arial";
+
+				// DRAWING THE TEXT DESCRIPTION 1
+				context.fillText(line1.value, 40, 76);
+
+				// DRAWING THE TEXT DESCRIPTION 2
+				context.fillText(line2.value, 40, 106);
+
+				// DRAWING THE TEXT DESCRIPTION 3
+				context.fillText(line3.value, 40, 136);
+
 				// DRAWING THE GITHUB LOGO
 				context.drawImage(image2, 50, 160, 100, 35);
 
@@ -100,56 +131,23 @@
 								// DRAWING THE SCREENSHOT
 								context.drawImage(image4, 205, 77, width, height);
 
-								// KEEP DRAWING THE BANNER WITH THE SCREENSHOT
-								updateRest(context);
+								// EXPORTING THE PICTURE AS PNG
+								document.getElementById("finalResult").src = canvas.toDataURL("data/png");
 								};
 							};
 						filereader.readAsArrayBuffer(document.getElementById("screenshot").files[0]);
 						}
 						else
 						{
-						// KEEP DRAWING THE BANNER WITHOUT THE SCREENSHOT
-						updateRest(context);
+						// EXPORTING THE PICTURE AS PNG
+						document.getElementById("finalResult").src = canvas.toDataURL("data/png");
 						}
 					}
 					catch(err)
 					{
-					// KEEP DRAWING THE BANNER WITHOUT THE SCREENSHOT
-					updateRest(context);
+					// EXPORTING THE PICTURE AS PNG
+					document.getElementById("finalResult").src = canvas.toDataURL("data/png");
 					}
-				}
-
-			function updateRest(context)
-				{
-				// DRAWING THE BULLETS
-				var R = 4;
-				context.beginPath();
-				context.lineWidth = 3;
-				context.fillStyle ="white";
-				context.arc(28, 72, R, 0, 2 * Math.PI, false);
-				context.fill();
-				context.arc(28, 102, R, 0, 2 * Math.PI, false);
-				context.fill();
-				context.arc(28, 132, R, 0, 2 * Math.PI, false);
-				context.fill();
-
-				// DRAWING THE TITLE
-				context.font = "17px Arial";
-				context.fillStyle = "white";
-				context.fillText(title.value, 20, 40);
-
-				// DRAWING THE TEXT DESCRIPTION 1
-				context.font = "13px Arial";
-				context.fillText(line1.value, 40, 76);
-
-				// DRAWING THE TEXT DESCRIPTION 2
-				context.fillText(line2.value, 40, 106);
-
-				// DRAWING THE TEXT DESCRIPTION 3
-				context.fillText(line3.value, 40, 136);
-
-				// EXPORTING THE PICTURE AS PNG
-				document.getElementById("finalResult").src = canvas.toDataURL("data/png");
 				}
 
 			document.getElementById("title").addEventListener("input", function (evt){update()});

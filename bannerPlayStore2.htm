@@ -64,6 +64,37 @@
 				// DRAWING THE BACKGROUND
 				context.drawImage(image1, 0, 0, 1024, 500);
 
+				// DRAWING THE BULLETS
+				var R = 10;
+				context.beginPath();
+				context.lineWidth = 3;
+				context.fillStyle ="white";
+				context.arc(100, 151, R, 0, 2 * Math.PI, false);
+				context.fill();
+				context.arc(100, 211, R, 0, 2 * Math.PI, false);
+				context.fill();
+				context.arc(100, 271, R, 0, 2 * Math.PI, false);
+				context.fill();
+
+				// SETTING THE FONT STYLE
+				context.font = "35px Arial";
+				context.fillStyle = "white";
+
+				// DRAWING THE TITLE
+				context.fillText(title.value, 75, 80);
+
+				// SETTING THE FONT STYLE
+				context.font = "27px Arial";
+
+				// DRAWING THE TEXT DESCRIPTION 1
+				context.fillText(line1.value, 140, 160);
+
+				// DRAWING THE TEXT DESCRIPTION 2
+				context.fillText(line2.value, 140, 220);
+
+				// DRAWING THE TEXT DESCRIPTION 3
+				context.fillText(line3.value, 140, 280);
+
 				// DRAWING THE PLAY STORE LOGO
 				context.drawImage(image2, 100, 350, 289, 100);
 
@@ -91,56 +122,23 @@
 								// DRAWING THE SCREENSHOT
 								context.drawImage(image3, (1024 * 0.70) - width / 2, 500/2-height/2, width, height);
 
-								// KEEP DRAWING THE BANNER WITH THE SCREENSHOT
-								updateRest(context);
+								// EXPORTING THE PICTURE AS PNG
+								document.getElementById("finalResult").src = canvas.toDataURL("data/png");
 								};
 							};
 						filereader.readAsArrayBuffer(document.getElementById("screenshot").files[0]);
 						}
 						else
 						{
-						// KEEP DRAWING THE BANNER WITHOUT THE SCREENSHOT
-						updateRest(context);
+						// EXPORTING THE PICTURE AS PNG
+						document.getElementById("finalResult").src = canvas.toDataURL("data/png");
 						}
 					}
 					catch(err)
 					{
-					// KEEP DRAWING THE BANNER WITHOUT THE SCREENSHOT
-					updateRest(context);
+					// EXPORTING THE PICTURE AS PNG
+					document.getElementById("finalResult").src = canvas.toDataURL("data/png");
 					}
-				}
-
-			function updateRest(context)
-				{
-				// DRAWING THE BULLETS
-				var R = 10;
-				context.beginPath();
-				context.lineWidth = 3;
-				context.fillStyle ="white";
-				context.arc(100, 151, R, 0, 2 * Math.PI, false);
-				context.fill();
-				context.arc(100, 211, R, 0, 2 * Math.PI, false);
-				context.fill();
-				context.arc(100, 271, R, 0, 2 * Math.PI, false);
-				context.fill();
-
-				// DRAWING THE TITLE
-				context.font = "35px Arial";
-				context.fillStyle = "white";
-				context.fillText(title.value, 75, 80);
-
-				// DRAWING THE TEXT DESCRIPTION 1
-				context.font = "27px Arial";
-				context.fillText(line1.value, 140, 160);
-
-				// DRAWING THE TEXT DESCRIPTION 2
-				context.fillText(line2.value, 140, 220);
-
-				// DRAWING THE TEXT DESCRIPTION 3
-				context.fillText(line3.value, 140, 280);
-
-				// EXPORTING THE PICTURE AS PNG
-				document.getElementById("finalResult").src = canvas.toDataURL("data/png");
 				}
 
 			document.getElementById("title").addEventListener("input", function (evt){update()});
