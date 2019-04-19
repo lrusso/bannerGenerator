@@ -83,51 +83,6 @@
 				// DRAWING THE BACKGROUND
 				context.drawImage(image1, 0, 0, 794, 1123);
 
-				try
-					{
-					var filereader = new FileReader();
-					var extension = document.getElementById("screenshot").files[0].name.split(".").pop().toLowerCase();
-					if (extension=="jpg" | extension=="jpeg" | extension=="png")
-						{
-						filereader.readAsDataURL(document.getElementById("screenshot").files[0]);
-						filereader.onload = function()
-							{
-							// GETTING THE SCREENSHOT
-							var image2 = new Image;
-							image2.src = filereader.result;
-							image2.onload = function()
-								{
-								// RESIZING THE SCREENSHOT
-								var width  = image2.width;
-								var height = image2.height;
-								var ratio = width/height;
-								width = 246;
-								height = 246/ratio;
-
-								// DRAWING THE SCREENSHOT
-								context.drawImage(image2, 355, 327, width, height);
-
-								// KEEP DRAWING THE BANNER WITH THE SCREENSHOT
-								updateRest(context);
-								};
-							};
-						filereader.readAsArrayBuffer(document.getElementById("screenshot").files[0]);
-						}
-						else
-						{
-						// KEEP DRAWING THE BANNER WITHOUT THE SCREENSHOT
-						updateRest(context);
-						}
-					}
-					catch(err)
-					{
-					// KEEP DRAWING THE BANNER WITHOUT THE SCREENSHOT
-					updateRest(context);
-					}
-				}
-
-			function updateRest(context)
-				{
 				// SETTING THE FONT STYLE
 				context.font = "bold 47px Spartan";
 				context.fillStyle = "#00465f";
@@ -170,8 +125,47 @@
 				// DRAWING THE EMAIL ADDRESS
 				context.fillText(email.value.split("").join(String.fromCharCode(8202)), 70, 1085);
 
-				// EXPORTING THE PICTURE AS PNG
-				document.getElementById("finalResult").src = canvas.toDataURL("data/png");
+				try
+					{
+					var filereader = new FileReader();
+					var extension = document.getElementById("screenshot").files[0].name.split(".").pop().toLowerCase();
+					if (extension=="jpg" | extension=="jpeg" | extension=="png")
+						{
+						filereader.readAsDataURL(document.getElementById("screenshot").files[0]);
+						filereader.onload = function()
+							{
+							// GETTING THE SCREENSHOT
+							var image2 = new Image;
+							image2.src = filereader.result;
+							image2.onload = function()
+								{
+								// RESIZING THE SCREENSHOT
+								var width  = image2.width;
+								var height = image2.height;
+								var ratio = width/height;
+								width = 246;
+								height = 246/ratio;
+
+								// DRAWING THE SCREENSHOT
+								context.drawImage(image2, 355, 327, width, height);
+
+								// EXPORTING THE PICTURE AS PNG
+								document.getElementById("finalResult").src = canvas.toDataURL("data/png");
+								};
+							};
+						filereader.readAsArrayBuffer(document.getElementById("screenshot").files[0]);
+						}
+						else
+						{
+						// EXPORTING THE PICTURE AS PNG
+						document.getElementById("finalResult").src = canvas.toDataURL("data/png");
+						}
+					}
+					catch(err)
+					{
+					// EXPORTING THE PICTURE AS PNG
+					document.getElementById("finalResult").src = canvas.toDataURL("data/png");
+					}
 				}
 
 			document.getElementById("title").addEventListener("input", function (evt){update()});
