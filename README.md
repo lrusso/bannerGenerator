@@ -4,6 +4,7 @@ Business Card and Play Store & GitHub Banner Generator
 | BANNER 1  | DETAILS  |
 | :------------ |:---------------:|
 | https://lrusso.github.io/bannerGenerator/bannerApp.htm | App Generic Banner | 
+| https://lrusso.github.io/bannerGenerator/bannerBusinessCard.htm | Business Card |
 | https://lrusso.github.io/bannerGenerator/bannerGitHub1.htm | GitHub Banner 1 | 
 | https://lrusso.github.io/bannerGenerator/bannerGitHub2.htm | GitHub Banner 2 | 
 | https://lrusso.github.io/bannerGenerator/bannerGitHub3.htm | GitHub Banner 3 Mini | 
