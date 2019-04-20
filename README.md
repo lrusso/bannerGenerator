@@ -1,5 +1,5 @@
 # Banner Generator
-Play Store and GitHub Banner Generator
+Business Card and Play Store & GitHub Banner Generator
 
 | BANNER 1  | DETAILS  |
 | :------------ |:---------------:|
