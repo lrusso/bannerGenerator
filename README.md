@@ -1,5 +1,5 @@
 # Banner Generator
-Business Card and Play Store & GitHub Banner Generator
+Business Card, Radio Interview and Play Store & GitHub Banner Generator
 
 | URL  | DETAILS  |
 | :------------ |:---------------:|
