@@ -123,9 +123,9 @@
 								{
 								// RESIZING AND DRAWING THE SCREENSHOT
 								var ratio = image4.width/image4.height;
-								width = 407;
-								height = 407/ratio;
-								var scale = 407 * 1 / image4.width;
+								var width = 407;
+								var height = 407/ratio;
+								var scale = width * 1 / image4.width;
 								var imagenResized = downScaleImage(image4, scale);
 								context.drawImage(imagenResized, 530, 137, width, height);
 
