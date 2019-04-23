@@ -16,4 +16,5 @@ Business Card, Radio Interview and Play Store & GitHub Banner Generator
 | https://lrusso.github.io/bannerGenerator/bannerPlayStore4.htm | Play Store Banner 4 Mini | 
 | https://lrusso.github.io/bannerGenerator/bannerPlayStore5.htm | Play Store Banner 5 Vertical + Title | 
 | https://lrusso.github.io/bannerGenerator/bannerPlayStore6.htm | Play Store Banner 6 Horizontal + Title | 
+| https://lrusso.github.io/bannerGenerator/bannerPlayStore6.htm | Play Store Banner 7 Vertical + About | 
 | https://lrusso.github.io/bannerGenerator/bannerRadio.htm | Radio Interview | 
