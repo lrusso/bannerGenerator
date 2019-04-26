@@ -100,29 +100,55 @@
 				context.font = "40px Arial";
 				context.fillStyle = "#104e8b";
 
-				// DRAWING THE PHONE NUMBER
-				var valueX6 = context.measureText("Tel: " + phone.value).width;
-				valueX6 = 1312 - valueX6 - 130;
-				context.fillText("Tel: " + phone.value, valueX6, 625);
+				var userLanguage = window.navigator.userLanguage || window.navigator.language;
 
-				// DRAWING THE WEB ADDRESS
-				var valueX7 = context.measureText("Web: " + web.value).width;
-				valueX7 = 1312 - valueX7 - 130;
-				context.fillText("Web: " + web.value, valueX7, 675);
+				if (userLanguage.substring(0,2)=="es") // IN ORDER TO SHOW SPANISH LABELS INTO THE BUSINESS CARD
+					{
+					// DRAWING THE PHONE NUMBER
+					var valueX6 = context.measureText("Tel" + String.fromCharCode(233) + "fono: " + phone.value).width;
+					valueX6 = 1312 - valueX6 - 130;
+					context.fillText("Tel" + String.fromCharCode(233) + "fono: " + phone.value, valueX6, 625);
 
-				// DRAWING THE EMAIL ADDRESS
-				var valueX8 = context.measureText("Email: " + email.value).width;
-				valueX8 = 1312 - valueX8 - 130;
-				context.fillText("Email: " + email.value, valueX8, 725);
+					// DRAWING THE WEB ADDRESS
+					var valueX7 = context.measureText("Web: " + web.value).width;
+					valueX7 = 1312 - valueX7 - 130;
+					context.fillText("Web: " + web.value, valueX7, 675);
+
+					// DRAWING THE EMAIL ADDRESS
+					var valueX8 = context.measureText("Correo: " + email.value).width;
+					valueX8 = 1312 - valueX8 - 130;
+					context.fillText("Correo: " + email.value, valueX8, 725);
+					}
+					else
+					{
+					// DRAWING THE PHONE NUMBER
+					var valueX6 = context.measureText("Phone: " + phone.value).width;
+					valueX6 = 1312 - valueX6 - 130;
+					context.fillText("Phone: " + phone.value, valueX6, 625);
+
+					// DRAWING THE WEB ADDRESS
+					var valueX7 = context.measureText("Web: " + web.value).width;
+					valueX7 = 1312 - valueX7 - 130;
+					context.fillText("Web: " + web.value, valueX7, 675);
+
+					// DRAWING THE EMAIL ADDRESS
+					var valueX8 = context.measureText("E-Mail: " + email.value).width;
+					valueX8 = 1312 - valueX8 - 130;
+					context.fillText("E-Mail: " + email.value, valueX8, 725);
+					}
 
 				// EXPORTING THE PICTURE AS PNG
 				document.getElementById("finalResult").src = canvas.toDataURL("data/png");
 				}
 
 			document.getElementById("nametitle").addEventListener("input", function (evt){update()});
+			document.getElementById("slogan").addEventListener("input", function (evt){update()});
 			document.getElementById("line1").addEventListener("input", function (evt){update()});
 			document.getElementById("line2").addEventListener("input", function (evt){update()});
 			document.getElementById("line3").addEventListener("input", function (evt){update()});
+			document.getElementById("phone").addEventListener("input", function (evt){update()});
+			document.getElementById("web").addEventListener("input", function (evt){update()});
+			document.getElementById("email").addEventListener("input", function (evt){update()});
 			document.getElementById("screenshot").addEventListener("change", function (evt){update()});
 		</script>
 	</body>
