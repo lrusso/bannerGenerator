@@ -6,6 +6,10 @@ Business Card, Radio Interview and Play Store & GitHub Banner Generator
 | https://lrusso.github.io/bannerGenerator/bannerApp.htm | App Generic Banner | 
 | https://lrusso.github.io/bannerGenerator/bannerBusinessCard.htm | Business Card |
 | https://lrusso.github.io/bannerGenerator/bannerCover.htm | Multi Device Cover |
+| https://lrusso.github.io/bannerGenerator/bannerGIF1.htm | GIF Play Store 1 |
+| https://lrusso.github.io/bannerGenerator/bannerGIF2.htm | GIF Play Store 2 |
+| https://lrusso.github.io/bannerGenerator/bannerGIF3.htm | GIF GitHub 1 |
+| https://lrusso.github.io/bannerGenerator/bannerGIF4.htm | GIF GitHub 2 |
 | https://lrusso.github.io/bannerGenerator/bannerGitHub1.htm | GitHub Banner 1 | 
 | https://lrusso.github.io/bannerGenerator/bannerGitHub2.htm | GitHub Banner 2 | 
 | https://lrusso.github.io/bannerGenerator/bannerGitHub3.htm | GitHub Banner 3 Mini | 
