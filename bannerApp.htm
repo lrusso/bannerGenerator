@@ -140,9 +140,16 @@
 							image2.onload = function()
 								{
 								// RESIZING AND DRAWING THE SCREENSHOT
-								var scale = 246 * 1 / image2.width;
-								var imagenResized = downScaleImage(image2, scale);
-								context.drawImage(imagenResized, 355, 327, 246, 246);
+								try
+									{
+									var scale = 246 * 1 / image2.width;
+									var imagenResized = downScaleImage(image2, scale);
+									context.drawImage(imagenResized, 355, 327, 246, 246);
+									}
+									catch(err)
+									{
+									context.drawImage(image2, 355, 327, 246, 246);
+									}
 
 								// EXPORTING THE PICTURE AS PNG
 								document.getElementById("finalResult").src = canvas.toDataURL("data/png");

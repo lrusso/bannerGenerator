@@ -89,9 +89,16 @@
 							image5.onload = function()
 								{
 								// RESIZING AND DRAWING THE SCREENSHOT
-								var scale = 493 * 1 / image5.width;
-								var imagenResized = downScaleImage(image5, scale);
-								context.drawImage(imagenResized, 76, 19, 493, 313);
+								try
+									{
+									var scale = 493 * 1 / image5.width;
+									var imagenResized = downScaleImage(image5, scale);
+									context.drawImage(imagenResized, 76, 19, 493, 313);
+									}
+									catch(err)
+									{
+									context.drawImage(image5, 76, 19, 493, 313);
+									}
 
 								drawTablet(context);
 								};
@@ -131,9 +138,16 @@
 							image6.onload = function()
 								{
 								// RESIZING AND DRAWING THE SCREENSHOT
-								var scale = 160 * 1 / image6.width;
-								var imagenResized = downScaleImage(image6, scale);
-								context.drawImage(imagenResized, 464, 76, 160, 270);
+								try
+									{
+									var scale = 160 * 1 / image6.width;
+									var imagenResized = downScaleImage(image6, scale);
+									context.drawImage(imagenResized, 464, 76, 160, 270);
+									}
+									catch(err)
+									{
+									context.drawImage(image6, 464, 76, 160, 270);
+									}
 
 								drawSmartphone(context);
 								};
@@ -173,9 +187,16 @@
 							image7.onload = function()
 								{
 								// RESIZING AND DRAWING THE SCREENSHOT
-								var scale = 116 * 1 / image7.width;
-								var imagenResized = downScaleImage(image7, scale);
-								context.drawImage(imagenResized, 424, 145, 116, 205);
+								try
+									{
+									var scale = 116 * 1 / image7.width;
+									var imagenResized = downScaleImage(image7, scale);
+									context.drawImage(imagenResized, 424, 145, 116, 205);
+									}
+									catch(err)
+									{
+									context.drawImage(image7, 424, 145, 116, 205);
+									}
 
 								// EXPORTING THE PICTURE AS PNG
 								document.getElementById("finalResult").src = canvas.toDataURL("data/png");

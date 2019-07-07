@@ -128,9 +128,17 @@
 								var ratio = image4.width/image4.height;
 								var width = 119;
 								var height = 119/ratio;
-								var scale = width * 1 / image4.width;
-								var imagenResized = downScaleImage(image4, scale);
-								context.drawImage(imagenResized, 205, 76, width, height);
+
+								try
+									{
+									var scale = width * 1 / image4.width;
+									var imagenResized = downScaleImage(image4, scale);
+									context.drawImage(imagenResized, 205, 76, width, height);
+									}
+									catch(err)
+									{
+									context.drawImage(image4, 205, 76, width, height);
+									}
 
 								// EXPORTING THE PICTURE AS PNG
 								document.getElementById("finalResult").src = canvas.toDataURL("data/png");

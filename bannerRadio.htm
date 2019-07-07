@@ -91,9 +91,16 @@
 							image2.onload = function()
 								{
 								// RESIZING AND DRAWING THE ICON
-								var scale = 130 * 1 / image2.width;
-								var imagenResized = downScaleImage(image2, scale);
-								context.drawImage(imagenResized, 50, 400, 130, 130);
+								try
+									{
+									var scale = 130 * 1 / image2.width;
+									var imagenResized = downScaleImage(image2, scale);
+									context.drawImage(imagenResized, 50, 400, 130, 130);
+									}
+									catch(err)
+									{
+									context.drawImage(image2, 50, 400, 130, 130);
+									}
 
 								// EXPORTING THE ICON PICTURE AS PNG
 								document.getElementById("finalResult").src = canvas.toDataURL("data/png");
