@@ -9,19 +9,33 @@
 			canvas{display:none;text-rendering:optimizeLegibility}
 			div{position:absolute;left:0;right:0;top:0;width:1024px;margin:0 auto;background-color:silver}
 			input[type=text]{height:30px;width:90px;font-family:Arial;font-size:13px;margin:0;padding:0;box-sizing:border-box}
-			input[type=file]{height:30px;font-family:Arial;font-size:13px;line-height:30px;vertical-align:top;margin:0;padding:0;box-sizing:border-box}
+			input[type=file]{height:30px;font-family:Arial;font-size:13px;line-height:30px;vertical-align:top;margin:0;padding:0;box-sizing:border-box;}
+			input[type=button]{height:30px;font-family:Arial;font-size:13px;line-height:30px;vertical-align:top;margin:0;padding:0;box-sizing:border-box}
 			img{display:block;vertical-align:bottom;margin:0 auto}
+			span{display:block;width:330px;font-family:Arial;font-size:13px;line-height:30px;text-align:left;margin:0 auto;margin-top:10px;margin-bottom:10px}
 		</style>
 	</head>
 	<body>
-		<canvas width="350" height="212" id="myCanvas"></canvas>
+		<script>
+			// gif.js 0.2.0 - https://github.com/jnordberg/gif.js
+			(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.GIF=f()}})(function(){var define,module,exports;return function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s}({1:[function(require,module,exports){function EventEmitter(){this._events=this._events||{};this._maxListeners=this._maxListeners||undefined}module.exports=EventEmitter;EventEmitter.EventEmitter=EventEmitter;EventEmitter.prototype._events=undefined;EventEmitter.prototype._maxListeners=undefined;EventEmitter.defaultMaxListeners=10;EventEmitter.prototype.setMaxListeners=function(n){if(!isNumber(n)||n<0||isNaN(n))throw TypeError("n must be a positive number");this._maxListeners=n;return this};EventEmitter.prototype.emit=function(type){var er,handler,len,args,i,listeners;if(!this._events)this._events={};if(type==="error"){if(!this._events.error||isObject(this._events.error)&&!this._events.error.length){er=arguments[1];if(er instanceof Error){throw er}else{var err=new Error('Uncaught, unspecified "error" event. ('+er+")");err.context=er;throw err}}}handler=this._events[type];if(isUndefined(handler))return false;if(isFunction(handler)){switch(arguments.length){case 1:handler.call(this);break;case 2:handler.call(this,arguments[1]);break;case 3:handler.call(this,arguments[1],arguments[2]);break;default:args=Array.prototype.slice.call(arguments,1);handler.apply(this,args)}}else if(isObject(handler)){args=Array.prototype.slice.call(arguments,1);listeners=handler.slice();len=listeners.length;for(i=0;i<len;i++)listeners[i].apply(this,args)}return true};EventEmitter.prototype.addListener=function(type,listener){var m;if(!isFunction(listener))throw TypeError("listener must be a function");if(!this._events)this._events={};if(this._events.newListener)this.emit("newListener",type,isFunction(listener.listener)?listener.listener:listener);if(!this._events[type])this._events[type]=listener;else if(isObject(this._events[type]))this._events[type].push(listener);else this._events[type]=[this._events[type],listener];if(isObject(this._events[type])&&!this._events[type].warned){if(!isUndefined(this._maxListeners)){m=this._maxListeners}else{m=EventEmitter.defaultMaxListeners}if(m&&m>0&&this._events[type].length>m){this._events[type].warned=true;console.error("(node) warning: possible EventEmitter memory "+"leak detected. %d listeners added. "+"Use emitter.setMaxListeners() to increase limit.",this._events[type].length);if(typeof console.trace==="function"){console.trace()}}}return this};EventEmitter.prototype.on=EventEmitter.prototype.addListener;EventEmitter.prototype.once=function(type,listener){if(!isFunction(listener))throw TypeError("listener must be a function");var fired=false;function g(){this.removeListener(type,g);if(!fired){fired=true;listener.apply(this,arguments)}}g.listener=listener;this.on(type,g);return this};EventEmitter.prototype.removeListener=function(type,listener){var list,position,length,i;if(!isFunction(listener))throw TypeError("listener must be a function");if(!this._events||!this._events[type])return this;list=this._events[type];length=list.length;position=-1;if(list===listener||isFunction(list.listener)&&list.listener===listener){delete this._events[type];if(this._events.removeListener)this.emit("removeListener",type,listener)}else if(isObject(list)){for(i=length;i-- >0;){if(list[i]===listener||list[i].listener&&list[i].listener===listener){position=i;break}}if(position<0)return this;if(list.length===1){list.length=0;delete this._events[type]}else{list.splice(position,1)}if(this._events.removeListener)this.emit("removeListener",type,listener)}return this};EventEmitter.prototype.removeAllListeners=function(type){var key,listeners;if(!this._events)return this;if(!this._events.removeListener){if(arguments.length===0)this._events={};else if(this._events[type])delete this._events[type];return this}if(arguments.length===0){for(key in this._events){if(key==="removeListener")continue;this.removeAllListeners(key)}this.removeAllListeners("removeListener");this._events={};return this}listeners=this._events[type];if(isFunction(listeners)){this.removeListener(type,listeners)}else if(listeners){while(listeners.length)this.removeListener(type,listeners[listeners.length-1])}delete this._events[type];return this};EventEmitter.prototype.listeners=function(type){var ret;if(!this._events||!this._events[type])ret=[];else if(isFunction(this._events[type]))ret=[this._events[type]];else ret=this._events[type].slice();return ret};EventEmitter.prototype.listenerCount=function(type){if(this._events){var evlistener=this._events[type];if(isFunction(evlistener))return 1;else if(evlistener)return evlistener.length}return 0};EventEmitter.listenerCount=function(emitter,type){return emitter.listenerCount(type)};function isFunction(arg){return typeof arg==="function"}function isNumber(arg){return typeof arg==="number"}function isObject(arg){return typeof arg==="object"&&arg!==null}function isUndefined(arg){return arg===void 0}},{}],2:[function(require,module,exports){var UA,browser,mode,platform,ua;ua=navigator.userAgent.toLowerCase();platform=navigator.platform.toLowerCase();UA=ua.match(/(opera|ie|firefox|chrome|version)[\s\/:]([\w\d\.]+)?.*?(safari|version[\s\/:]([\w\d\.]+)|$)/)||[null,"unknown",0];mode=UA[1]==="ie"&&document.documentMode;browser={name:UA[1]==="version"?UA[3]:UA[1],version:mode||parseFloat(UA[1]==="opera"&&UA[4]?UA[4]:UA[2]),platform:{name:ua.match(/ip(?:ad|od|hone)/)?"ios":(ua.match(/(?:webos|android)/)||platform.match(/mac|win|linux/)||["other"])[0]}};browser[browser.name]=true;browser[browser.name+parseInt(browser.version,10)]=true;browser.platform[browser.platform.name]=true;module.exports=browser},{}],3:[function(require,module,exports){var EventEmitter,GIF,browser,extend=function(child,parent){for(var key in parent){if(hasProp.call(parent,key))child[key]=parent[key]}function ctor(){this.constructor=child}ctor.prototype=parent.prototype;child.prototype=new ctor;child.__super__=parent.prototype;return child},hasProp={}.hasOwnProperty,indexOf=[].indexOf||function(item){for(var i=0,l=this.length;i<l;i++){if(i in this&&this[i]===item)return i}return-1},slice=[].slice;EventEmitter=require("events").EventEmitter;browser=require("./browser.coffee");GIF=function(superClass){var defaults,frameDefaults;extend(GIF,superClass);defaults={workerScript:"gif.worker.js",workers:2,repeat:0,background:"#fff",quality:10,width:null,height:null,transparent:null,debug:false,dither:false};frameDefaults={delay:500,copy:false};function GIF(options){var base,key,value;this.running=false;this.options={};this.frames=[];this.freeWorkers=[];this.activeWorkers=[];this.setOptions(options);for(key in defaults){value=defaults[key];if((base=this.options)[key]==null){base[key]=value}}}GIF.prototype.setOption=function(key,value){this.options[key]=value;if(this._canvas!=null&&(key==="width"||key==="height")){return this._canvas[key]=value}};GIF.prototype.setOptions=function(options){var key,results,value;results=[];for(key in options){if(!hasProp.call(options,key))continue;value=options[key];results.push(this.setOption(key,value))}return results};GIF.prototype.addFrame=function(image,options){var frame,key;if(options==null){options={}}frame={};frame.transparent=this.options.transparent;for(key in frameDefaults){frame[key]=options[key]||frameDefaults[key]}if(this.options.width==null){this.setOption("width",image.width)}if(this.options.height==null){this.setOption("height",image.height)}if(typeof ImageData!=="undefined"&&ImageData!==null&&image instanceof ImageData){frame.data=image.data}else if(typeof CanvasRenderingContext2D!=="undefined"&&CanvasRenderingContext2D!==null&&image instanceof CanvasRenderingContext2D||typeof WebGLRenderingContext!=="undefined"&&WebGLRenderingContext!==null&&image instanceof WebGLRenderingContext){if(options.copy){frame.data=this.getContextData(image)}else{frame.context=image}}else if(image.childNodes!=null){if(options.copy){frame.data=this.getImageData(image)}else{frame.image=image}}else{throw new Error("Invalid image")}return this.frames.push(frame)};GIF.prototype.render=function(){var i,j,numWorkers,ref;if(this.running){throw new Error("Already running")}if(this.options.width==null||this.options.height==null){throw new Error("Width and height must be set prior to rendering")}this.running=true;this.nextFrame=0;this.finishedFrames=0;this.imageParts=function(){var j,ref,results;results=[];for(i=j=0,ref=this.frames.length;0<=ref?j<ref:j>ref;i=0<=ref?++j:--j){results.push(null)}return results}.call(this);numWorkers=this.spawnWorkers();if(this.options.globalPalette===true){this.renderNextFrame()}else{for(i=j=0,ref=numWorkers;0<=ref?j<ref:j>ref;i=0<=ref?++j:--j){this.renderNextFrame()}}this.emit("start");return this.emit("progress",0)};GIF.prototype.abort=function(){var worker;while(true){worker=this.activeWorkers.shift();if(worker==null){break}this.log("killing active worker");worker.terminate()}this.running=false;return this.emit("abort")};GIF.prototype.spawnWorkers=function(){var j,numWorkers,ref,results;numWorkers=Math.min(this.options.workers,this.frames.length);(function(){results=[];for(var j=ref=this.freeWorkers.length;ref<=numWorkers?j<numWorkers:j>numWorkers;ref<=numWorkers?j++:j--){results.push(j)}return results}).apply(this).forEach(function(_this){return function(i){var worker;_this.log("spawning worker "+i);worker=new Worker(_this.options.workerScript);worker.onmessage=function(event){_this.activeWorkers.splice(_this.activeWorkers.indexOf(worker),1);_this.freeWorkers.push(worker);return _this.frameFinished(event.data)};return _this.freeWorkers.push(worker)}}(this));return numWorkers};GIF.prototype.frameFinished=function(frame){var i,j,ref;this.log("frame "+frame.index+" finished - "+this.activeWorkers.length+" active");this.finishedFrames++;this.emit("progress",this.finishedFrames/this.frames.length);this.imageParts[frame.index]=frame;if(this.options.globalPalette===true){this.options.globalPalette=frame.globalPalette;this.log("global palette analyzed");if(this.frames.length>2){for(i=j=1,ref=this.freeWorkers.length;1<=ref?j<ref:j>ref;i=1<=ref?++j:--j){this.renderNextFrame()}}}if(indexOf.call(this.imageParts,null)>=0){return this.renderNextFrame()}else{return this.finishRendering()}};GIF.prototype.finishRendering=function(){var data,frame,i,image,j,k,l,len,len1,len2,len3,offset,page,ref,ref1,ref2;len=0;ref=this.imageParts;for(j=0,len1=ref.length;j<len1;j++){frame=ref[j];len+=(frame.data.length-1)*frame.pageSize+frame.cursor}len+=frame.pageSize-frame.cursor;this.log("rendering finished - filesize "+Math.round(len/1e3)+"kb");data=new Uint8Array(len);offset=0;ref1=this.imageParts;for(k=0,len2=ref1.length;k<len2;k++){frame=ref1[k];ref2=frame.data;for(i=l=0,len3=ref2.length;l<len3;i=++l){page=ref2[i];data.set(page,offset);if(i===frame.data.length-1){offset+=frame.cursor}else{offset+=frame.pageSize}}}image=new Blob([data],{type:"image/gif"});return this.emit("finished",image,data)};GIF.prototype.renderNextFrame=function(){var frame,task,worker;if(this.freeWorkers.length===0){throw new Error("No free workers")}if(this.nextFrame>=this.frames.length){return}frame=this.frames[this.nextFrame++];worker=this.freeWorkers.shift();task=this.getTask(frame);this.log("starting frame "+(task.index+1)+" of "+this.frames.length);this.activeWorkers.push(worker);return worker.postMessage(task)};GIF.prototype.getContextData=function(ctx){return ctx.getImageData(0,0,this.options.width,this.options.height).data};GIF.prototype.getImageData=function(image){var ctx;if(this._canvas==null){this._canvas=document.createElement("canvas");this._canvas.width=this.options.width;this._canvas.height=this.options.height}ctx=this._canvas.getContext("2d");ctx.setFill=this.options.background;ctx.fillRect(0,0,this.options.width,this.options.height);ctx.drawImage(image,0,0);return this.getContextData(ctx)};GIF.prototype.getTask=function(frame){var index,task;index=this.frames.indexOf(frame);task={index:index,last:index===this.frames.length-1,delay:frame.delay,transparent:frame.transparent,width:this.options.width,height:this.options.height,quality:this.options.quality,dither:this.options.dither,globalPalette:this.options.globalPalette,repeat:this.options.repeat,canTransfer:browser.name==="chrome"};if(frame.data!=null){task.data=frame.data}else if(frame.context!=null){task.data=this.getContextData(frame.context)}else if(frame.image!=null){task.data=this.getImageData(frame.image)}else{throw new Error("Invalid frame")}return task};GIF.prototype.log=function(){var args;args=1<=arguments.length?slice.call(arguments,0):[];if(!this.options.debug){return}return console.log.apply(console,args)};return GIF}(EventEmitter);module.exports=GIF},{"./browser.coffee":2,events:1}]},{},[3])(3)});
+		</script>
+		<canvas width="350" height="212" id="myCanvas1"></canvas>
+		<canvas width="350" height="212" id="myCanvas2"></canvas>
+		<canvas width="350" height="212" id="myCanvas3"></canvas>
+		<canvas width="350" height="212" id="myCanvas4"></canvas>
+		<canvas width="350" height="212" id="myCanvas5"></canvas>
+		<canvas width="350" height="212" id="myCanvas6"></canvas>
 
 		<div>
 			<input type="text" id="title" placeholder="Title">
 			<input type="text" id="line1" placeholder="Line 1">
 			<input type="text" id="line2" placeholder="Line 2">
 			<input type="text" id="line3" placeholder="Line 3">
-			<input type="file" id="screenshot"><br />
+			<input type="text" id="delayValue" placeholder="Delay" value="2000">
+			<input type="file" id="screenshot">
+			<input type="button" id="buttonCreate" value="Create GIF" onclick="update();"><br />
+			<span id="canvasStatus">GIF Status: -</span>
 			<img width="350" height="212" id="finalResult" alt="banner" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4wQQEjQ35agTNQAAAAxJREFUCNdjOH78OAAErgJW23qXwQAAAABJRU5ErkJggg==">
 		</div>
 
@@ -38,75 +52,237 @@
 			var smartphone = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIIAAACqCAYAAABh/JemAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4QIUBBYYvIp0cgAAACZpVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVAgb24gYSBNYWOV5F9bAAAQXElEQVR42u1dW4wcxRU9Vd0zO7Pe9Sb22o7BjsBCikEixBYRWIlQFIwUIgLmocBHpEgWj49gAQIFB1B4JQRIIITgIGMwBgn8ChKylCALYjkIPhLw+iMQYcsyVnAsEsvZ9b7G3umuykd3zVT3VHdXj50Ipu6VVjvT01NTXXXr3HPvrQeDQUZGRrB8+XLcdtvteOqpX4MxBgB827ZtSxYuXHjOyMjeiycnJ5cC8kwh5BeazWY9CJp8cnLKazQarFarhQMDAwAkpGQAZPzHwBggJeL3SWlfZ+pK/FpCSiCqhl4eT5Sjvs8Yi1+r68nfip4nKjP9mbqevD/6QSkho7KlUJWI2yaMyxHqf/y5kNEFyRiTcQ0lEL2Oy5NSShGVKxKftR+0VVdvamrak1Kgv7+fMcYEgCAMgxNCyE9nzx7cf/75X31v9+7dh1544flDAEIAWLVqFXv99dfl6tWrsXHjRlOXt1q8JWvX/gTXXXcdtm/f7j366C8EY0yuX//cE0uWnH3trl27Fu3ZM+KFYQAACMMQjUYDQRBACJEoR73vbOh050utc5B4rf7rZajXSjFMn8WdlbiuOl8Imfhc/w3GGIQQkFKCc659z1xP/ZqprlnPqhRcCNGqS7pc03spJWZmZsAYg+/7kWZKCd/3wTmH5/no76/jggu+FqxYseKfe/fufePpp39zK4Dwpptu9jdseC64/vrrsXXr1nxFeOSRR7F//362adNGCYC98sqrd4yNjT4xMjKCnTt3zixYsMAfHh7mUkqcPHkSMzMzCMOwo7IdP2JoPFOjtTtZ5t5r+g3VKKoOprLzyk83uuqkbEU0X8t6Jl1B03W1eb50e6rvM8bgeR6q1So8z0MQBGg0GuLo0X8HK1deVl22bDmEEL986aVNDx4+fHhq9eob2bnnLpV79uzBli2bOxXhsccex913/xgAMHfu8OKXX375r+vXr//S8eNj0vd9duLEiVYFwzBMjIK8yuc9cFYnlvle1nuTYpp+x1bJbJ7TpmylZCbl6KYtdRRTEoYhpJSo1Wo4ceKEnDdvPrv11h8df/bZ564YGXnvHQDYsmUbbrjh+63veADw0EMP4ZNPPmHvv/8+Hn/8Vxddc82qDx944H4+NDRUaTabrNFooFarJR5WV4JuxWS7bRAjr3FMozqvYfMQqUgZTGUXKXTaHBU9Y9pMZCGN/uf7PiqVCqanp1GtVpmUwKZNL+Kmm268+aKLLt777rvv7ps1axY766yzsG/fR21EOH58CkNDs7Bo0aLFDz/8s3+sW/cM5s2bh8nJyYTNN1XcdrTaQL4NDBcpQJlyi1Akqwx9FNvWIU/pshTZtl2z2kX9D4IA9Xodn376L3nXXXeyt99+5zu7dr21EwAuv/y7eOONP0aIMHfuF/mbb74pt27dtu++++7lZ5xxRmV0dBSe53WlAFlEx55Mwer+siMnfV8Zu1wG4WyVME+pyqBuUd1930ej0cDw8Fz22muvzaxZc+u1fX31dZdcconYunWLAADv/vt/invuuZddeOHXb3nmmd/eMGfOnMro6Ciq1WoHCUozbNtGL2t3y/ACm4bO+g0TucyC+yKlK8thsohkmUFi8n6yvut5Hk6ePIkzzzzTO3ToUHXRokWLN2584fcrV16GgwcPgq9Zs4YxxsThw4efnZ6exrFjx1CpVDqQoMh+Z1XGZtRlkc68xtbZd54i5XVQ2nUrUoK052GC9zJ8JI9s25LHMq9938f4+DgOHjwYLl36lR8AWPjWW28CAPjw8Dy5bt3v7vjgg78hDEOZ97B5UGjbIaYy0zEIU3lZKFTEvG06Jwu5stAlz9W1qUuRG5tWrDImLOu51WvOOer1uvfiiy8G69dveBwA7rzzLvgAcN55597y5JNPnJw/f35frVaDEKLVObZIYGrUtL+b7vCydjoIgtwOLGOjbUxMWV9fv+Z5Xofi2ihbWQKeFezKus/3fQRBgMnJSXbkyOFvLVt2Yf+RI0dm2IMPPvzlatX/aMeOHdWo/l4mEnTjY3PO4PMqgqYErwg0m81cLTe9DoIA4+PjqNVqxqCKbRCniO2blDVPwbO8DsYYpqenMTg42IpQdusKl3FLi0QpihAC/f39OPvsJbj66lXn1ev1A/6KFRef9fzzG+qDg4OYnJws7XMX2UDPq2BivAmAYcgfRBP/KRXMYYxhfHwcCxYsAOe8EFnKRhS7dduyooTqj3OOqakpDA4OlhrVtlwhHYYvazYqlQqmpqawe/eff7h586tr/QMHDnxzYmKiQ9vL2iXTKIkIp0CtrwoWAN84bzH+MHIUFc5LKZrv+xgbG0OlUrGG+yySazJ56VGWpUB6kCoLOdTrmZmZFhp0ax66dRfz3Hhltqanp1Gv11Gv168AsNYfGxs9v6+vD0ePHjVWPC+JUzTaGGMIggDMCzEjQvzpw79HgYsS8QQhBGbPno2JiYlWgCtv1JsIWzpvkEXETGQrKyaSZZrU/b7vY2BgIKEwJqUwRT+L2sbGJKSf18Qfjh07JufMmbMUAHwh5EJFDnk8Um3Jlk0krt3YAmFTtn7DlnwqGRgYMAaDbCN2ReYozR/SmcGiJFSWEuc9l22G1iacbuNdpes4PT0t6vW6BwC8r6+PqSxi2ZBmmTg+Y9zantuEdm1iCulYiI0rmTXiu4lGFnkzee5wkbuah4g2nkQQBK3MJQDwSsVnqsFss30mf9jWo8grvyhal+cN5CnnqSTIbGITJkUsGpk2g8DEUUzurQ796T60Jae+HjMoE/K0abx0CNR2BJVh1bbEsdsQsK09LpvIMnGLPOTIIq+me00oZrrGOUOzGcVm+MTEpHXeoKiB81DiVEZpOtSdVWZaobNyI3n1ziKKefWyiRAW5T6KopdZwSnTvJA8Mq//Rq1Wx8cffwwpJfd1DSob0Tqd99h6AkWEr9uo5akkivQOyTKBWfmNohFelIW1JdtZSuh5HsKw4fH+/jozzRcsC882yaEs5EnfbwoY2aKIjY9ehguVRZEid870HGklsu2LvM/z2poxhjAMMTU1hXPOWQLf729T+Tw7WibTVmTnbDutCCHKpLOzGsOm/KIMqS0S2kQObTOLpgm1RRnULDIZDzrGoynmPJcZZ7HyPDtUhuCVST/bhorLoEWRS5aX8s7iHjZzBcqmy7NMYdZALUrMadP+GY8mouZDTZnJm6eLH+SZmaI6FWUky7hVtjGPPLKZNynGFvXyvIw8DpBnhpSJAABeFK2znaptQohTIWNFPnW3JLMbJS/yVmw8jDKcoBuzmjVjO+t59UgpAOabtHt0dLTDFcvL1dvyhm4ybWVyAamHs05MlbHJ3WZn88rNip7aKG+eopvM0/DwsGlCEPOFCFtfVHmAHTt2YHBwEL7v43TI6ZgY2u3vnUpgrJvfLZMW/n+3iZQSV111FcbGxtBoNOL2iT72w1AASDbW3LlzMXv27ETal+TzLfpSvmQuI86WRotGYXRHTsciFpLPhpj6UzOlglMTuacQpikEXAiZu4iFpLckI7YheVEKl6TXzQVUZJHERQWI0EEosii52mGExEWuEC03AOLIYlYcncQZdJBx0umzGQQh+d+ahvhdhAjU+eQ5tEyDTXybpPcQIQooQZkGlJpgStI7Ei3UjVSAy0iIHzjlLXRuR8BPx1o8ks8XP0hOaedJjkAK4J7HoC8/bHGEvOlNJL2JDDoi+Kr/i7bJIeld1xGA9PX3hATumIb2nkqxIkgpCAkcNgkxO4CvQoyEBm6hQno1Gdc5Aom7QMHTB2iQQrjFFTrS0KZdOkh6O46gD3qevkiI4Jb7GB21FB+K1M3mjSSff2WIFCIDEUjcFB6dIEYcwc14goYIafeRkMEV0gjt6EWAc85O+0kmJJ99EUImOUI66USmwRFOkDrXMk5DgxDBUc+hZRriae1EFB13I7l+/C0pg0tkMdnPPH1QNpkGNxSgPfDR5ggkbpqDBCLY3ETSu+jQIou228qT9BYqpPeE5mqzTUIEt00FN+1VSOIeV+AUTHLTLKSnHfAyW82T9GD8gKf2RyAFcM8s6BtudriPpBDuoEJiNbTKM9B0NVcVQipFYEYNIXFFEbQ4AombShBNTpFt95ECSm4Sxmh2GktyBIoluKMAyRCz7HQfKd/ghklInkijuY/RjFbaPscVNNDP1kxMXtX7nhCh9+MHJuGMQWZtuUbSm6igi+pvLmXydDRChN5HBT3x1NpeT23TT9zAPWXQuUIrjkBk0U2+kFjgkj7wicQNfpBQhHS/EyK4EUPo8BrUYkha2+AOKpiUgevBJIol9L7o+y9HfY0kWaQlb+7xBMYYr1SquPTSlT/njDGpf6gOAyVxwmtgnueFQ0ND3+am42FJ3EEGKaXs6+vjNHnVYUSI+5wxxrzEnEXyGFx0J6Nu5wCTelSRyKJbsQQpIYUQomMLXkIE93QD6pBw4giuo4SmCIQGzrmObf9BQnBASj0TRcrgjusYr2tQpiEKKJECuA0SZBqIH0ghRMh1m0Guo1v8QOt3ltimnxDBHX7Q5oRgADyedyNJb6NCFD+K3nMyCa4jROQ/cqC9ZTuJO+YhjiZLIUJfCPEOlzLaR0fNQyDT4I55kFKKZrOJ7du33c4Zg9A35iYz4Zbn0FoEqy90oMiiewqhpjDyFFRQ6zjmQrZ2XjUEF6il3MIFpQiEAq6jQqwI0d4pNIHVHQUwrXjipptIet5tNCECIYCLiKCUorWZFlkC172GdhxBEjdwyzQoZZBSen19fSevvHLVX3x1SDiFl91CgzZhlNzz+BgHGM1QclQhorRCtEKad9oMUgZXCKOU2jb9jJHbQN4DU/MRBJkHB2MJUXg54oa+ijWTErjlNejKkOAIFFF0M44QXwEti3dYCdqDnzEuJUT6JlIGN8xDy2NQpqGTRJC4gAqJA0DVBdp51U3CGCMC89NQQYjgFiowBiaE7DwSmMQNaW+8GU1g5Yy191AicQcN2oNeRvkG2nHVdfPAIKVknLwFch8BRtlHt5WBtfZa5FIms49kIpwyDmrws1aImfZZdM911Ac/j84HloQIjnIE5UF0nNdAiOAoIkSGQtLaR6e9hmh7vYSCECK4gwh6UKljWTwhghuIEO+oFr/nye31KLDkFiowppFFC/tB0pNK0B708cQUOq/BZWWI+59yDS7zBD3haDwJlsQlRIgVIQhCqS+EJXEJFaA8B8Y5Z1ItciGi6BoqQJFFxmm+IpmIZrN5nLcDDNQoDpLFMAgCf8uWzd/T4gikCS4pQVripBOJa+agY1c1FXc27b1H0ptKoMcRVJdzIolum4WW56ASDxRidgsR0orB06nn9goYkl6UZP/K5O7sehYqi1WS9B4i6ODApdQnKkhCBIc4QmpZPHECtzlC9N+XMrnhJpFF1xRD8xp0bSF+0NtooA92dfhniyx2+paECu7EEKTOESShgqNksWUaIo7AaPscB8mi7iGSr+ioIqj/QghFFmXHXAQyDe4oBeetEDM1iItmIb3aydfhgVZE9z5RTCcXE+5j2lsg09C7iKCvcdWnKBrPhiZE6F1EUIfBd7iPNoEHkl5FB8Mh4bSzmluuoyKKKpbwXxKSA+GxxVGmAAAAAElFTkSuQmCC";
 
 			var image1 = new Image;
-			image1.onload = update;
 			image1.src = backgroundimg;
 
 			var image2 = new Image;
-			image2.onload = update;
 			image2.src = playstore;
 
 			var image3 = new Image;
-			image3.onload = update;
 			image3.src = smartphone;
 
 			var title = document.getElementById("title");
 			var line1 = document.getElementById("line1");
 			var line2 = document.getElementById("line2");
 			var line3 = document.getElementById("line3");
-			var canvas = document.getElementById("myCanvas");
+			var canvas1 = document.getElementById("myCanvas1");
+			var canvas2 = document.getElementById("myCanvas2");
+			var canvas3 = document.getElementById("myCanvas3");
+			var canvas4 = document.getElementById("myCanvas4");
+			var canvas5 = document.getElementById("myCanvas5");
+			var canvas6 = document.getElementById("myCanvas6");
 
-			var nloaded = 0;
 			function update()
 				{
-				nloaded++;
-				if (nloaded < 3)
-					{
-					return;
-					}
+				document.getElementById("finalResult").src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4wQQEjQ35agTNQAAAAxJREFUCNdjOH78OAAErgJW23qXwQAAAABJRU5ErkJggg==";
+				document.getElementById("canvasStatus").innerHTML = "GIF Status: Drawing Frame 1...";
+				setTimeout(function(){drawFrame1();}, 1000);
+				}
 
-				var context = canvas.getContext("2d");
+			function drawFrame1()
+				{
+				var context = canvas1.getContext("2d");
 				context.filter = "brightness(108%)";
 
 				// DRAWING THE BACKGROUND
 				context.drawImage(image1, 0, 0, 350, 212);
 
-				// DRAWING THE BULLETS
-				var R = 4;
-				context.beginPath();
-				context.lineWidth = 3;
-				context.fillStyle ="white";
-				context.arc(28, 72, R, 0, 2 * Math.PI, false);
-				context.fill();
-				context.arc(28, 102, R, 0, 2 * Math.PI, false);
-				context.fill();
-				context.arc(28, 132, R, 0, 2 * Math.PI, false);
-				context.fill();
-
-				// SETTING THE FONT STYLE
-				context.font = "17px Arial";
-				context.fillStyle = "white";
-
-				// DRAWING THE TITLE
-				context.fillText(title.value, 20, 40);
-
-				// SETTING THE FONT STYLE
-				context.font = "13px Arial";
-
-				// DRAWING THE TEXT DESCRIPTION 1
-				context.fillText(line1.value, 40, 76);
-
-				// DRAWING THE TEXT DESCRIPTION 2
-				context.fillText(line2.value, 40, 106);
-
-				// DRAWING THE TEXT DESCRIPTION 3
-				context.fillText(line3.value, 40, 136);
-
-				// DRAWING THE PLAY STORE LOGO
-				context.drawImage(image2, 50, 160, 100, 35);
-
 				// DRAWING THE SMARTPHONE
 				context.drawImage(image3, 200, 50, 130, 170);
 
+				loadFile(context,canvas1,1);
+				}
+
+			function drawFrame2()
+				{
+				var context2 = canvas2.getContext("2d");
+				context2.filter = "brightness(108%)";
+
+				// DRAWING THE BACKGROUND
+				context2.drawImage(image1, 0, 0, 350, 212);
+
+				// SETTING THE FONT STYLE
+				context2.font = "17px Arial";
+				context2.fillStyle = "white";
+
+				// DRAWING THE TITLE
+				context2.fillText(title.value, 20, 40);
+
+				// DRAWING THE SMARTPHONE
+				context2.drawImage(image3, 200, 50, 130, 170);
+
+				loadFile(context2,canvas2,2);
+				}
+
+			function drawFrame3()
+				{
+				var context3 = canvas3.getContext("2d");
+				context3.filter = "brightness(108%)";
+
+				// DRAWING THE BACKGROUND
+				context3.drawImage(image1, 0, 0, 350, 212);
+
+				// DRAWING THE BULLETS
+				var R = 4;
+				context3.beginPath();
+				context3.lineWidth = 3;
+				context3.fillStyle ="white";
+				context3.arc(28, 72, R, 0, 2 * Math.PI, false);
+				context3.fill();
+
+				// SETTING THE FONT STYLE
+				context3.font = "17px Arial";
+				context3.fillStyle = "white";
+
+				// DRAWING THE TITLE
+				context3.fillText(title.value, 20, 40);
+
+				// SETTING THE FONT STYLE
+				context3.font = "13px Arial";
+
+				// DRAWING THE TEXT DESCRIPTION 1
+				context3.fillText(line1.value, 40, 76);
+
+				// DRAWING THE SMARTPHONE
+				context3.drawImage(image3, 200, 50, 130, 170);
+
+				loadFile(context3,canvas3,3);
+				}
+
+			function drawFrame4()
+				{
+				var context4 = canvas4.getContext("2d");
+				context4.filter = "brightness(108%)";
+
+				// DRAWING THE BACKGROUND
+				context4.drawImage(image1, 0, 0, 350, 212);
+
+				// DRAWING THE BULLETS
+				var R = 4;
+				context4.beginPath();
+				context4.lineWidth = 3;
+				context4.fillStyle ="white";
+				context4.arc(28, 72, R, 0, 2 * Math.PI, false);
+				context4.fill();
+				context4.arc(28, 102, R, 0, 2 * Math.PI, false);
+				context4.fill();
+
+				// SETTING THE FONT STYLE
+				context4.font = "17px Arial";
+				context4.fillStyle = "white";
+
+				// DRAWING THE TITLE
+				context4.fillText(title.value, 20, 40);
+
+				// SETTING THE FONT STYLE
+				context4.font = "13px Arial";
+
+				// DRAWING THE TEXT DESCRIPTION 1
+				context4.fillText(line1.value, 40, 76);
+
+				// DRAWING THE TEXT DESCRIPTION 2
+				context4.fillText(line2.value, 40, 106);
+
+				// DRAWING THE SMARTPHONE
+				context4.drawImage(image3, 200, 50, 130, 170);
+
+				loadFile(context4,canvas4,4);
+				}
+
+			function drawFrame5()
+				{
+				var context5 = canvas5.getContext("2d");
+				context5.filter = "brightness(108%)";
+
+				// DRAWING THE BACKGROUND
+				context5.drawImage(image1, 0, 0, 350, 212);
+
+				// DRAWING THE BULLETS
+				var R = 4;
+				context5.beginPath();
+				context5.lineWidth = 3;
+				context5.fillStyle ="white";
+				context5.arc(28, 72, R, 0, 2 * Math.PI, false);
+				context5.fill();
+				context5.arc(28, 102, R, 0, 2 * Math.PI, false);
+				context5.fill();
+				context5.arc(28, 132, R, 0, 2 * Math.PI, false);
+				context5.fill();
+
+				// SETTING THE FONT STYLE
+				context5.font = "17px Arial";
+				context5.fillStyle = "white";
+
+				// DRAWING THE TITLE
+				context5.fillText(title.value, 20, 40);
+
+				// SETTING THE FONT STYLE
+				context5.font = "13px Arial";
+
+				// DRAWING THE TEXT DESCRIPTION 1
+				context5.fillText(line1.value, 40, 76);
+
+				// DRAWING THE TEXT DESCRIPTION 2
+				context5.fillText(line2.value, 40, 106);
+
+				// DRAWING THE TEXT DESCRIPTION 3
+				context5.fillText(line3.value, 40, 136);
+
+				// DRAWING THE SMARTPHONE
+				context5.drawImage(image3, 200, 50, 130, 170);
+
+				loadFile(context5,canvas5,5);
+				}
+
+			function drawFrame6()
+				{
+				var context6 = canvas6.getContext("2d");
+				context6.filter = "brightness(108%)";
+
+				// DRAWING THE BACKGROUND
+				context6.drawImage(image1, 0, 0, 350, 212);
+
+				// DRAWING THE BULLETS
+				var R = 4;
+				context6.beginPath();
+				context6.lineWidth = 3;
+				context6.fillStyle ="white";
+				context6.arc(28, 72, R, 0, 2 * Math.PI, false);
+				context6.fill();
+				context6.arc(28, 102, R, 0, 2 * Math.PI, false);
+				context6.fill();
+				context6.arc(28, 132, R, 0, 2 * Math.PI, false);
+				context6.fill();
+
+				// SETTING THE FONT STYLE
+				context6.font = "17px Arial";
+				context6.fillStyle = "white";
+
+				// DRAWING THE TITLE
+				context6.fillText(title.value, 20, 40);
+
+				// SETTING THE FONT STYLE
+				context6.font = "13px Arial";
+
+				// DRAWING THE TEXT DESCRIPTION 1
+				context6.fillText(line1.value, 40, 76);
+
+				// DRAWING THE TEXT DESCRIPTION 2
+				context6.fillText(line2.value, 40, 106);
+
+				// DRAWING THE TEXT DESCRIPTION 3
+				context6.fillText(line3.value, 40, 136);
+
+				// DRAWING THE PLAY STORE LOGO
+				context6.drawImage(image2, 50, 160, 100, 35);
+
+				// DRAWING THE SMARTPHONE
+				context6.drawImage(image3, 200, 50, 130, 170);
+
+				loadFile(context6,canvas6,6);
+				}
+
+			function loadFile(ctx,canvasObject,counterCheck)
+				{
 				try
 					{
 					var filereader = new FileReader();
@@ -121,30 +297,50 @@
 							image4.src = filereader.result;
 							image4.onload = function()
 								{
-								// RESIZING AND DRAWING THE SCREENSHOT
 								var ratio = image4.width/image4.height;
-								var width = 119;
-								var height = 119/ratio;
-								var scale = width * 1 / image4.width;
-								var imagenResized = downScaleImage(image4, scale);
-								context.drawImage(imagenResized, 205, 76, width, height);
+								var imageResizedWidth = 119;
+								var imageResizedHeight = 119/ratio;
+								var scale = imageResizedWidth * 1 / image4.width;
+								var imageResized = downScaleImage(image4, scale);
+								ctx.drawImage(imageResized, 205, 76, imageResizedWidth, imageResizedHeight);
 
-								// EXPORTING THE PICTURE AS PNG
-								document.getElementById("finalResult").src = canvas.toDataURL("data/png");
-								};
+								if (counterCheck==1)
+									{
+									document.getElementById("canvasStatus").innerHTML = "GIF Status: Drawing Frame 2...";
+									setTimeout(function(){drawFrame2();}, 1000);
+									}
+								else if (counterCheck==2)
+									{
+									document.getElementById("canvasStatus").innerHTML = "GIF Status: Drawing Frame 3...";
+									setTimeout(function(){drawFrame3();}, 1000);
+									}
+								else if (counterCheck==3)
+									{
+									document.getElementById("canvasStatus").innerHTML = "GIF Status: Drawing Frame 4...";
+									setTimeout(function(){drawFrame4();}, 1000);
+									}
+								else if (counterCheck==4)
+									{
+									document.getElementById("canvasStatus").innerHTML = "GIF Status: Drawing Frame 5...";
+									setTimeout(function(){drawFrame5();}, 1000);
+									}
+								else if (counterCheck==5)
+									{
+									document.getElementById("canvasStatus").innerHTML = "GIF Status: Drawing Frame 6...";
+									setTimeout(function(){drawFrame6();}, 1000);
+									}
+								else if (counterCheck==6)
+									{
+									document.getElementById("canvasStatus").innerHTML = "GIF Status: Creating...";
+									setTimeout(function(){renderGIF();}, 1000);
+									}
+								}
 							};
 						filereader.readAsArrayBuffer(document.getElementById("screenshot").files[0]);
-						}
-						else
-						{
-						// EXPORTING THE PICTURE AS PNG
-						document.getElementById("finalResult").src = canvas.toDataURL("data/png");
 						}
 					}
 					catch(err)
 					{
-					// EXPORTING THE PICTURE AS PNG
-					document.getElementById("finalResult").src = canvas.toDataURL("data/png");
 					}
 				}
 
@@ -282,11 +478,26 @@
 				return resCV;
 				}
 
-			document.getElementById("title").addEventListener("input", function (evt){update()});
-			document.getElementById("line1").addEventListener("input", function (evt){update()});
-			document.getElementById("line2").addEventListener("input", function (evt){update()});
-			document.getElementById("line3").addEventListener("input", function (evt){update()});
-			document.getElementById("screenshot").addEventListener("change", function (evt){update()});
+			function renderGIF()
+				{
+				var delayValue = document.getElementById("delayValue").value;
+				var gif = new GIF({quality: 0, workerScript: "bannerPlayStore3.js"});
+
+				gif.addFrame(canvas1, {delay: delayValue});
+				gif.addFrame(canvas2, {delay: delayValue});
+				gif.addFrame(canvas3, {delay: delayValue});
+				gif.addFrame(canvas4, {delay: delayValue});
+				gif.addFrame(canvas5, {delay: delayValue});
+				gif.addFrame(canvas6, {delay: delayValue});
+
+				gif.on("finished", function(blob)
+					{
+					document.getElementById("finalResult").src = URL.createObjectURL(blob);
+					document.getElementById("canvasStatus").innerHTML = "GIF Status: Ready.";
+					});
+
+				gif.render();
+				}
 		</script>
 	</body>
 </html>
