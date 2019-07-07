@@ -12,3 +12,4 @@ Business Card, Radio Interview and Play Store & GitHub Banner Generator
 | https://lrusso.github.io/bannerGenerator/bannerPlayStore2.htm | Play Store Banner 2 | 
 | https://lrusso.github.io/bannerGenerator/bannerRadio.htm | Radio Interview Banner | 
 | https://lrusso.github.io/bannerGenerator/bannerSmartphone1.htm | App in Smartphone Banner 1 | 
+| https://lrusso.github.io/bannerGenerator/bannerSmartphone2.htm | App in Smartphone Banner 2 | 
