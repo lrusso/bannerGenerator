@@ -80,7 +80,6 @@
 					var extension = document.getElementById("screenshot1").files[0].name.split(".").pop().toLowerCase();
 					if (extension=="jpg" | extension=="jpeg" | extension=="png")
 						{
-						filereader.readAsDataURL(document.getElementById("screenshot1").files[0]);
 						filereader.onload = function()
 							{
 							// GETTING THE SCREENSHOT
@@ -103,7 +102,7 @@
 								drawTablet(context);
 								};
 							};
-						filereader.readAsArrayBuffer(document.getElementById("screenshot1").files[0]);
+						filereader.readAsDataURL(document.getElementById("screenshot1").files[0]);
 						}
 						else
 						{
@@ -129,7 +128,6 @@
 					var extension = document.getElementById("screenshot2").files[0].name.split(".").pop().toLowerCase();
 					if (extension=="jpg" | extension=="jpeg" | extension=="png")
 						{
-						filereader.readAsDataURL(document.getElementById("screenshot2").files[0]);
 						filereader.onload = function()
 							{
 							// GETTING THE SCREENSHOT
@@ -152,7 +150,7 @@
 								drawSmartphone(context);
 								};
 							};
-						filereader.readAsArrayBuffer(document.getElementById("screenshot2").files[0]);
+						filereader.readAsDataURL(document.getElementById("screenshot2").files[0]);
 						}
 						else
 						{
@@ -178,7 +176,6 @@
 					var extension = document.getElementById("screenshot3").files[0].name.split(".").pop().toLowerCase();
 					if (extension=="jpg" | extension=="jpeg" | extension=="png")
 						{
-						filereader.readAsDataURL(document.getElementById("screenshot3").files[0]);
 						filereader.onload = function()
 							{
 							// GETTING THE SCREENSHOT
@@ -202,7 +199,7 @@
 								document.getElementById("finalResult").src = canvas.toDataURL("data/png");
 								};
 							};
-						filereader.readAsArrayBuffer(document.getElementById("screenshot3").files[0]);
+						filereader.readAsDataURL(document.getElementById("screenshot3").files[0]);
 						}
 						else
 						{

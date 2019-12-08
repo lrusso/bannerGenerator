@@ -116,7 +116,6 @@
 					var extension = document.getElementById("screenshot").files[0].name.split(".").pop().toLowerCase();
 					if (extension=="jpg" | extension=="jpeg" | extension=="png")
 						{
-						filereader.readAsDataURL(document.getElementById("screenshot").files[0]);
 						filereader.onload = function()
 							{
 							// GETTING THE SCREENSHOT
@@ -144,7 +143,7 @@
 								document.getElementById("finalResult").src = canvas.toDataURL("data/png");
 								};
 							};
-						filereader.readAsArrayBuffer(document.getElementById("screenshot").files[0]);
+						filereader.readAsDataURL(document.getElementById("screenshot").files[0]);
 						}
 						else
 						{
