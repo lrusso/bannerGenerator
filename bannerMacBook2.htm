@@ -119,20 +119,33 @@
 								// RESIZING AND DRAWING THE SCREENSHOT
 								try
 									{
-									// 750x1334 - SCREENSHOT EXPECTED SIZE
-									var scale = 750 * 1 / image3.width;
-									var imagenResized = downScaleImage(image3, scale);
-									context.drawImage(imagenResized, 424, 145, 116, 205);
+									// RESIZING SCREENSHOT TO THE EXPECTED SIZE - 750x1334
+									var image33 = new Image;
+									image33.src = imageToDataUri(image3, 750, 1334);
+									image33.onload = function()
+										{
+										var scale = 256 * 1 / image33.width;
+										var imagenResized = downScaleImage(image33, scale);
+										context.drawImage(imagenResized, 1562, 568, 256, 454);
+
+										// EXPORTING THE PICTURE AS PNG
+										document.getElementById("finalResult").src = canvas.toDataURL("data/png");
+										}
+
 									}
 									catch(err)
 									{
-									// 750x1334 - SCREENSHOT EXPECTED SIZE
+									// RESIZING SCREENSHOT TO THE EXPECTED SIZE - 750x1334
+									var image33 = new Image;
+									image33.src = imageToDataUri(image3, 750, 1334);
+									image33.onload = function()
+										{
+										context.drawImage(image33, 1562, 568, 256, 454);
 
-									context.drawImage(image3, 1562, 568, 256, 454);
+										// EXPORTING THE PICTURE AS PNG
+										document.getElementById("finalResult").src = canvas.toDataURL("data/png");
+										}
 									}
-
-								// EXPORTING THE PICTURE AS PNG
-								document.getElementById("finalResult").src = canvas.toDataURL("data/png");
 								};
 							};
 						filereader.readAsDataURL(document.getElementById("screenshotsmartphone").files[0]);
@@ -148,6 +161,24 @@
 					// EXPORTING THE PICTURE AS PNG
 					document.getElementById("finalResult").src = canvas.toDataURL("data/png");
 					}
+				}
+
+
+			function imageToDataUri(img, width, height)
+				{
+				// create an off-screen canvas
+				var canvas = document.createElement('canvas');
+				var ctx = canvas.getContext('2d');
+
+				// set its dimension to target size
+				canvas.width = width;
+				canvas.height = height;
+
+				// draw source image into the off-screen canvas:
+				ctx.drawImage(img, 0, 0, width, height);
+
+				// encode image to data-uri with base64 version of compressed image
+				return canvas.toDataURL("data/png");
 				}
 
 			function downScaleImage(img, scale)
