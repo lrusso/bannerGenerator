@@ -119,12 +119,15 @@
 								// RESIZING AND DRAWING THE SCREENSHOT
 								try
 									{
-									var scale = 116 * 1 / image3.width;
-									var imagenResized = downScaleImage(image7, scale);
+									// 750x1334 - SMARTPHONE SCREENSHOT
+									var scale = 750 * 1 / image3.width;
+									var imagenResized = downScaleImage(image3, scale);
 									context.drawImage(imagenResized, 424, 145, 116, 205);
 									}
 									catch(err)
 									{
+									// 750x1334 - SMARTPHONE SCREENSHOT
+
 									context.drawImage(image3, 1562, 568, 256, 454);
 									}
 
