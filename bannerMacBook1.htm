@@ -58,24 +58,30 @@
 							image3.src = filereader.result;
 							image3.onload = function()
 								{
-								// RESIZING AND DRAWING THE SCREENSHOT
-								var ratio = image3.width/image3.height;
-								var width = 1430;
-								var height = 894;
-
-								try
+								// RESIZING SCREENSHOT TO THE EXPECTED SIZE - 1920x1200
+								var image33 = new Image;
+								image33.src = resizeImageToFit(image3, 1920, 1200);
+								image33.onload = function()
 									{
-									var scale = width * 1 / image3.width;
-									var imagenResized = downScaleImage(image3, scale);
-									context.drawImage(imagenResized, 236, 80, width, height);
-									}
-									catch(err)
-									{
-									context.drawImage(image3, 236, 80, width, height);
-									}
+									// RESIZING AND DRAWING THE SCREENSHOT
+									var width = 1430;
+									var height = 894;
 
-								// EXPORTING THE PICTURE AS PNG
-								document.getElementById("finalResult").src = canvas.toDataURL("data/png");
+									try
+										{
+										var scale = width * 1 / image33.width;
+										var imagenResized = downScaleImage(image33, scale);
+										context.drawImage(imagenResized, 236, 80, width, height);
+										}
+										catch(err)
+										{
+										// RESIZING SCREENSHOT TO THE EXPECTED SIZE - 1920x1200
+										context.drawImage(image33, 236, 80, width, height);
+										}
+
+									// EXPORTING THE PICTURE AS PNG
+									document.getElementById("finalResult").src = canvas.toDataURL("data/png");
+									}
 								};
 							};
 						filereader.readAsArrayBuffer(document.getElementById("screenshot").files[0]);
@@ -91,6 +97,23 @@
 					// EXPORTING THE PICTURE AS PNG
 					document.getElementById("finalResult").src = canvas.toDataURL("data/png");
 					}
+				}
+
+			function resizeImageToFit(img, width, height)
+				{
+				// CREATE AN OFF-SCREEN CANVAS
+				var canvas = document.createElement("canvas");
+				var ctx = canvas.getContext("2d");
+
+				// SETTING THE DIMENSIONS TO TARGET SIZE
+				canvas.width = width;
+				canvas.height = height;
+
+				// DRAWING SOURCE IMAGE INTO THE OFF-SCREEN CANVAS
+				ctx.drawImage(img, 0, 0, width, height);
+
+				// ENCODING THE RESULT AS A BASE64 IMAGE
+				return canvas.toDataURL("data/png");
 				}
 
 			function downScaleImage(img, scale)
