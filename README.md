@@ -9,7 +9,6 @@ Business Card, Radio Interview, MacBook and Play Store & GitHub Banner Generator
 | https://lrusso.github.io/bannerGenerator/bannerGitHub1.htm | GitHub Banner 1 | 
 | https://lrusso.github.io/bannerGenerator/bannerGitHub2.htm | GitHub Banner 2 | 
 | https://lrusso.github.io/bannerGenerator/bannerMacBook1.htm | MacBook Banner 1 | 
-| https://lrusso.github.io/bannerGenerator/bannerMacBook2.htm | MacBook Banner 2 | 
 | https://lrusso.github.io/bannerGenerator/bannerPlayStore1.htm | Play Store Banner 1 | 
 | https://lrusso.github.io/bannerGenerator/bannerPlayStore2.htm | Play Store Banner 2 | 
 | https://lrusso.github.io/bannerGenerator/bannerRadio.htm | Radio Interview Banner | 
