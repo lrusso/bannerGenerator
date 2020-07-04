@@ -151,7 +151,6 @@
 								{
 								// GETTING THE SCREENSHOT
 								var image4 = new Image;
-								image4.src = filereader.result;
 								image4.onload = function()
 									{
 									// GETTING THE IMAGE RATIO
@@ -181,6 +180,7 @@
 									// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
 									document.getElementById("finalResult").src = canvas.toDataURL("data/png");
 									};
+								image4.src = filereader.result;
 								};
 
 							// READING/LOADING THE FILE
