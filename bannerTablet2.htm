@@ -76,11 +76,11 @@
 							filereader.onload = function()
 								{
 								// LOADING THE IMAGE FILE
-								var image4 = new Image;
-								image4.onload = function()
+								var image2 = new Image;
+								image2.onload = function()
 									{
 									// SETTING THE IMAGE RATIO
-									var ratio = image4.width/image4.height;
+									var ratio = image2.width/image2.height;
 
 									// SETTING THE WIDTH AND X POSITION
 									var finalWidth;
@@ -98,12 +98,12 @@
 										}
 
 									// DRAWING THE RESIZED IMAGE
-									context.drawImage(image4, xFinal, 106, finalWidth, 800);
+									context.drawImage(image2, xFinal, 106, finalWidth, 800);
 
 									// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
 									document.getElementById("finalResult").src = canvas.toDataURL("data/png");
 									};
-								image4.src = filereader.result;
+								image2.src = filereader.result;
 								};
 
 							// READING/LOADING THE FILE
