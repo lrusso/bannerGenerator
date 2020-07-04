@@ -57,10 +57,8 @@
 
 				// LOADING THE BACKGROUND IMAGE
 				var image1 = new Image;
+				image1.onload = update; // CALLING THE UPDATE FUNCTION WHEN THE IMAGE IS LOADED
 				image1.src = backgroundimg;
-
-				// CALLING THE UPDATE FUNCTION WHEN THE IMAGE IS LOADED
-				image1.onload = update;
 
 				// GETTING ALL THE ELEMENTS IN THE WEB FORM
 				var title = document.getElementById("title");
@@ -167,9 +165,6 @@
 								{
 								// LOADING THE IMAGE FILE
 								var image2 = new Image;
-								image2.src = filereader.result;
-
-								// SETTING WHAT WILL HAPPEN WHEN THE IMAGE IS LOADED
 								image2.onload = function()
 									{
 									// RESIZING AND DRAWING THE SCREENSHOT
@@ -195,6 +190,7 @@
 									// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
 									document.getElementById("finalResult").src = canvas.toDataURL("data/png");
 									};
+								image2.src = filereader.result;
 								};
 
 							// READING/LOADING THE FILE
