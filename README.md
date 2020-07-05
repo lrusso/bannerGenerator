@@ -17,3 +17,4 @@ Business Card, Radio Interview, MacBook and Play Store & GitHub Banner Generator
 | https://lrusso.github.io/bannerGenerator/bannerSmartphone2.htm |
 | https://lrusso.github.io/bannerGenerator/bannerSmartphone3.htm |
 | https://lrusso.github.io/bannerGenerator/bannerSmartphone4.htm |
+| https://lrusso.github.io/bannerGenerator/bannerSmartphone5.htm |
