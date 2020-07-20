@@ -1,6 +1,6 @@
 # Banner Generator
 
-Business Card, Radio Interview, MacBook and Play Store & GitHub Banner Generator.
+Business Card, Radio Interview, MacBook and Play Store & GitHub, Android and iPhone Banner Generator.
 
 | BANNER GENERATORS | 
 | :------------ |
