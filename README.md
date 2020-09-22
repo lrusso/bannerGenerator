@@ -21,10 +21,8 @@ Business Card, Radio Interview, MacBook, Notebook, Play Store, GitHub, Android a
 | [bannerGenerator/bannerRadio.htm](https://lrusso.github.io/bannerGenerator/bannerRadio.htm) |
 | [bannerGenerator/bannerPhone_Android_Old_Landscape.htm](https://lrusso.github.io/bannerGenerator/bannerPhone_Android_Old_Landscape.htm) |
 | [bannerGenerator/bannerPhone_Android_Old_Portrait.htm](https://lrusso.github.io/bannerGenerator/bannerPhone_Android_Old_Portrait.htm) |
-| [bannerGenerator/bannerPhone_Android_S9_Big_Landscape.htm](https://lrusso.github.io/bannerGenerator/bannerPhone_Android_S9_Big_Landscape.htm) |
 | https://lrusso.github.io/bannerGenerator/bannerPhone_Android_S9_Portrait.htm |
 | https://lrusso.github.io/bannerGenerator/bannerPhone_Android_S9_Landscape.htm |
-| [bannerGenerator/bannerPhone_Android_S9_Small_Portrait.htm](https://lrusso.github.io/bannerGenerator/bannerPhone_Android_S9_Small_Portrait.htm) |
 | [bannerGenerator/bannerPhone_Android_S10_Small_Landscape.htm](https://lrusso.github.io/bannerGenerator/bannerPhone_Android_S10_Small_Landscape.htm) |
 | [bannerGenerator/bannerPhone_Android_S10_Small_Portrait.htm](https://lrusso.github.io/bannerGenerator/bannerPhone_Android_S10_Small_Portrait.htm) |
 | [bannerGenerator/bannerPhone_Android_S20_Small_Landscape.htm](https://lrusso.github.io/bannerGenerator/bannerPhone_Android_S20_Small_Landscape.htm) |
