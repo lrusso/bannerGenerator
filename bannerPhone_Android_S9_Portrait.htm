@@ -5,9 +5,9 @@
 		<title>Smartphone Banner Generator</title>
 		<style>
 			html{margin:0;padding:0}
-			body{margin:0;padding:0;background-color:#272727}
+			body{margin:0;padding:0;background-color:white}
 			canvas{display:none}
-			div{position:absolute;left:0;right:0;top:0;width:1440px;margin:0 auto;background-color:silver}
+			div{position:absolute;left:0;right:0;top:0;width:1440px;margin:0 auto;background-color:white}
 			input[type=file]{height:30px;font-family:Arial;font-size:13px;line-height:30px;vertical-align:top;margin:0;padding:0;box-sizing:border-box}
 			img{display:block;vertical-align:bottom;margin:0 auto}
 		</style>
@@ -58,6 +58,10 @@
 					// INCREASING THE BRIGHTNESS
 					context.filter = "brightness(108%)";
 
+					// DRAWING A WHITE BACKGROUND
+					context.fillStyle = "#FFFFFF";
+					context.fillRect(0, 0, 1440, 2560);
+
 					try
 						{
 						// CREATING THE FILEREADER
@@ -80,8 +84,8 @@
 										{
 										// GETTING THE IMAGE RATIO
 										var ratio = image2.width/image2.height;
-										var width = 422;
-										var height = 422/ratio;
+										var width = 960;
+										var height = 960/ratio;
 
 										// SETTING THE IMAGE SCALE
 										var scale = width * 1 / image2.width;
