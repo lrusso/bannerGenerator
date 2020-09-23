@@ -25,7 +25,7 @@ Business Card, Radio Interview, MacBook, Notebook, Play Store, GitHub, Android a
 | https://lrusso.github.io/bannerGenerator/bannerPhone_Android_S9_Landscape.htm |
 | https://lrusso.github.io/bannerGenerator/bannerPhone_Android_S10_Landscape.htm |
 | https://lrusso.github.io/bannerGenerator/bannerPhone_Android_S10_Portrait.htm |
-| https://lrusso.github.io/bannerGenerator/bannerPhone_Android_S20_Small_Landscape.htm |
+| https://lrusso.github.io/bannerGenerator/bannerPhone_Android_S20_Landscape.htm |
 | https://lrusso.github.io/bannerGenerator/bannerPhone_Android_S20_Portrait.htm |
 | https://lrusso.github.io/bannerGenerator/bannerPhone_iPhone_X_Landscape.htm |
 | https://lrusso.github.io/bannerGenerator/bannerPhone_iPhone_X_Portrait.htm |
