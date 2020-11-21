@@ -77,12 +77,12 @@
 							filereader.onload = function()
 								{
 								// LOADING THE IMAGE FILE
-								var image3 = new Image;
-								image3.onload = function()
+								var image2 = new Image;
+								image2.onload = function()
 									{
 									// RESIZING THE IMAGE FILE TO THE EXPECTED SIZE - 1920x1200
-									var image4 = new Image;
-									image4.onload = function()
+									var image3 = new Image;
+									image3.onload = function()
 										{
 										// SETTING THE IMAGE WIDTH AND HEIGHT
 										var width = 1430;
@@ -91,10 +91,10 @@
 										try
 											{
 											// SETTING THE IMAGE SCALE
-											var scale = width * 1 / image4.width;
+											var scale = width * 1 / image3.width;
 
 											// GETTING THE RESIZED IMAGE
-											var imagenResized = downScaleImage(image4, scale);
+											var imagenResized = downScaleImage(image3, scale);
 
 											// DRAWING THE RESIZED IMAGE
 											context.drawImage(imagenResized, 386, 230, width, height);
@@ -104,15 +104,15 @@
 											// IF THERE IS AN ERROR, IT MEANS THAT THE FILE IMAGE IS SMALLER THAN
 											// THE SIZE THAT IT SUPPOSED TO FILL. SO, BECAUSE OF THIS,
 											// IN THE FOLLOWING LINE THE IMAGE IS STRETCHED TO FILL.
-											context.drawImage(image4, 386, 230, width, height);
+											context.drawImage(image3, 386, 230, width, height);
 											}
 
 										// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
 										document.getElementById("finalResult").src = canvas.toDataURL("data/png");
 										}
-									image4.src = resizeImageToFit(image3, 1920, 1200);
+									image3.src = resizeImageToFit(image2, 1920, 1200);
 									};
-								image3.src = filereader.result;
+								image2.src = filereader.result;
 								};
 
 							// READING/LOADING THE FILE
