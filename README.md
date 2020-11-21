@@ -49,3 +49,4 @@ Image Mergers, Business Card, Radio Interview, MacBook, Notebook, Play Store, Gi
 | https://lrusso.github.io/bannerGenerator/bannerPhone_iPhone_X_Landscape2.htm |
 | https://lrusso.github.io/bannerGenerator/bannerPhone_iPhone_X_Portrait1.htm |
 | https://lrusso.github.io/bannerGenerator/bannerPhone_iPhone_X_Portrait2.htm |
+| https://lrusso.github.io/bannerGenerator/bannerResizer.htm |
