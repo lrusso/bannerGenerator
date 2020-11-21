@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Merger Vertical Banner Generator</title>
+		<style>
+			html{margin:0;padding:0}
+			body{margin:0;padding:0;background-color:white}
+			canvas{display:none;text-rendering:optimizeLegibility}
+			div{position:absolute;left:0;right:0;top:0;width:auto;margin:0 auto;background-color:white}
+			input[type=text]{height:30px;width:90px;font-family:Arial;font-size:13px;margin:0;padding:0;box-sizing:border-box}
+			input[type=file]{height:30px;font-family:Arial;font-size:13px;line-height:30px;vertical-align:top;margin:0;padding:0;box-sizing:border-box}
+			img{display:block;vertical-align:bottom;margin:0 auto}
+		</style>
+	</head>
+	<body>
+		<div>
+			<input type="file" id="screenshot1">
+			<input type="file" id="screenshot2">
+			<img width="2200" height="1393" id="finalResult" alt="banner" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH5AodAgAMo/D8kgAAAAtJREFUCNdj+A8EAAn7A/1jJsWPAAAAAElFTkSuQmCC">
+		</div>
+
+		<script>
+			var finalImage1 = null;
+			var finalImage2 = null;
+
+			window.addEventListener("load", function()
+				{
+				// CLEARING ALL THE INPUTTED VALUES (IF ANY)
+				document.getElementById("screenshot1").value = null;
+				document.getElementById("screenshot2").value = null;
+
+				// USING A VARIABLE IN ORDER TO KNOW WHEN ALL THE GRAPHICAL ELEMENTS ARE LOADED
+				var elementsLoadedCounter = 0;
+
+				function update()
+					{
+					// INCREASING THE ELEMENT LOADED COUNTER
+					elementsLoadedCounter++;
+
+					// CHECKING IF THE RIGHT AMOUNT OF ELEMENTS ARE LOADED
+					if (elementsLoadedCounter < 2)
+						{
+						// IF NOT, RETURNING WITHOUT EXECUTING ANYTHING ELSE
+						return;
+						}
+
+					try
+						{
+						// CREATING THE FILEREADER
+						var filereader = new FileReader();
+
+						// GETTING THE EXTENSION
+						var extension = document.getElementById("screenshot1").files[0].name.split(".").pop().toLowerCase();
+
+						// CHECKING THE EXTENSION IN ORDER TO KNOW IF THE FILE IS AN IMAGE
+						if (extension=="jpg" | extension=="jpeg" | extension=="png")
+							{
+							// SETTING WHAT WILL HAPPEN WHEN THE FILE IS LOADED
+							filereader.onload = function()
+								{
+								// LOADING THE IMAGE FILE
+								var image1 = new Image;
+								image1.onload = function()
+									{
+									// UPDATING THE FINAL IMAGE 1 VALUE
+									finalImage1 = image1;
+
+									// CHECKING IF ALL THE IMAGES ARE LOADED
+									if (finalImage1!=null && finalImage2!=null)
+										{
+										// MERGING THE IMAGES
+										mergeImages();
+										}
+									};
+								image1.src = filereader.result;
+								};
+
+							// READING/LOADING THE FILE
+							filereader.readAsDataURL(document.getElementById("screenshot1").files[0]);
+							}
+							else
+							{
+							// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
+							document.getElementById("finalResult").src = canvas.toDataURL("data/png");
+							}
+						}
+						catch(err)
+						{
+						// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
+						document.getElementById("finalResult").src = canvas.toDataURL("data/png");
+						}
+
+					try
+						{
+						// CREATING THE FILEREADER
+						var filereader2 = new FileReader();
+
+						// GETTING THE EXTENSION
+						var extension = document.getElementById("screenshot2").files[0].name.split(".").pop().toLowerCase();
+
+						// CHECKING THE EXTENSION IN ORDER TO KNOW IF THE FILE IS AN IMAGE
+						if (extension=="jpg" | extension=="jpeg" | extension=="png")
+							{
+							// SETTING WHAT WILL HAPPEN WHEN THE FILE IS LOADED
+							filereader2.onload = function()
+								{
+								// LOADING THE IMAGE FILE
+								var image2 = new Image;
+								image2.onload = function()
+									{
+									// UPDATING THE FINAL IMAGE 2 VALUE
+									finalImage2 = image2;
+
+									// CHECKING IF ALL THE IMAGES ARE LOADED
+									if (finalImage1!=null && finalImage2!=null)
+										{
+										// MERGING THE IMAGES
+										mergeImages();
+										}
+									};
+								image2.src = filereader2.result;
+								};
+
+							// READING/LOADING THE FILE
+							filereader2.readAsDataURL(document.getElementById("screenshot2").files[0]);
+							}
+							else
+							{
+							// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
+							document.getElementById("finalResult").src = canvas.toDataURL("data/png");
+							}
+						}
+						catch(err)
+						{
+						// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
+						document.getElementById("finalResult").src = canvas.toDataURL("data/png");
+						}
+					}
+
+				function mergeImages()
+					{
+					// UPDATING THE FINAL IMAGE WIDTH AND HEIGHT
+					document.getElementById("finalResult").style.width = finalImage1.width + "px";
+					document.getElementById("finalResult").style.height = (finalImage1.height + finalImage2.height) + "px";
+
+					// CREATING THE CANVAS
+					var finalCanvas = document.createElement("canvas");
+					finalCanvas.width = finalImage1.width;
+					finalCanvas.height = finalImage1.height + finalImage2.height;
+
+					// GETTING THE CONTEXT
+					var finalContext = finalCanvas.getContext("2d");
+
+					// DRAWING A WHITE BACKGROUND
+					finalContext.fillStyle = "#FFFFFF";
+					finalContext.fillRect(0, 0, finalImage1.width, finalImage1.height + finalImage2.height);
+
+					// DRAWING THE FIRST SCREENSHOT
+					finalContext.drawImage(finalImage1, 0, 0, finalImage1.width, finalImage1.height);
+
+					// DRAWING THE SECOND SCREENSHOT
+					finalContext.drawImage(finalImage2, 0, finalImage1.height, finalImage2.width, finalImage2.height);
+
+					// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
+					document.getElementById("finalResult").src = finalCanvas.toDataURL("data/png");
+					}
+
+				// SETTING WHAT WILL HAPPEN WHEN THE USER SELECTS A FILE
+				document.getElementById("screenshot1").addEventListener("change",function(e){update()});
+				document.getElementById("screenshot2").addEventListener("change",function(e){update()});
+				});
+		</script>
+	</body>
+</html>
