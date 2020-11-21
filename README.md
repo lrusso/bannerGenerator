@@ -15,6 +15,7 @@ Image Mergers, Business Card, Radio Interview, MacBook, Notebook, Play Store, Gi
 | https://lrusso.github.io/bannerGenerator/bannerMacBook4_AppPortrait.htm |
 | https://lrusso.github.io/bannerGenerator/bannerMacBook5_AppLandscape.htm |
 | https://lrusso.github.io/bannerGenerator/bannerMergerHorizontal.htm |
+| https://lrusso.github.io/bannerGenerator/bannerMergerVertical.htm |
 | https://lrusso.github.io/bannerGenerator/bannerNotebook1.htm |
 | https://lrusso.github.io/bannerGenerator/bannerNotebook2.htm |
 | https://lrusso.github.io/bannerGenerator/bannerNotebook3.htm |
