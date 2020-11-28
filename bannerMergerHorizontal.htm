@@ -160,7 +160,7 @@
 						else
 						{
 						// GETTING THE SECOND IMAGE SIZE
-						finalImage2Width = finalImage2.width * (finalImage1.height/finalImage2.height);
+						finalImage2Width = Math.ceil(finalImage2.width * (finalImage1.height/finalImage2.height));
 						finalImage2Height = finalImage1.height;
 
 						// UPDATING CANVAS SIZE
