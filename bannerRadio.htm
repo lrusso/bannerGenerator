@@ -4,13 +4,12 @@
 		<meta charset="UTF-8">
 		<title>Radio Banner Generator</title>
 		<style>
-			html{margin:0;padding:0}
-			body{margin:0;padding:0;background-color:#272727}
+			html,body{margin:0;padding:0;background-color:#272727}
 			canvas{display:none;text-rendering:optimizeLegibility}
-			div{position:absolute;left:0;right:0;top:0;width:1024px;margin:0 auto;background-color:silver}
+			div{position:inline-block;width:100%;background-color:silver}
 			input[type=text]{height:30px;width:90px;font-family:Arial;font-size:13px;margin:0;padding:0;box-sizing:border-box}
 			input[type=file]{height:30px;font-family:Arial;font-size:13px;line-height:30px;vertical-align:top;margin:0;padding:0;box-sizing:border-box}
-			img{display:block;vertical-align:bottom;margin:0 auto}
+			img{display:inline-block}
 		</style>
 	</head>
 	<body>
@@ -21,8 +20,9 @@
 			<input type="text" id="line2" placeholder="Line 2">
 			<input type="text" id="web" placeholder="Web">
 			<input type="file" id="screenshot">
-			<img width="1024" height="576" id="finalResult" alt="banner" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4wQQEjQ35agTNQAAAAxJREFUCNdjOH78OAAErgJW23qXwQAAAABJRU5ErkJggg==">
 		</div>
+
+		<img width="1024" height="576" id="finalResult" alt="banner" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4wQQEjQ35agTNQAAAAxJREFUCNdjOH78OAAErgJW23qXwQAAAABJRU5ErkJggg==">
 
 		<script>
 			window.addEventListener("load", function()

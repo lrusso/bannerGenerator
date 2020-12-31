@@ -4,21 +4,21 @@
 		<meta charset="UTF-8">
 		<title>Resizer Banner Generator</title>
 		<style>
-			html{margin:0;padding:0}
-			body{margin:0;padding:0;background-color:white}
+			html,body{margin:0;padding:0;background-color:#272727}
 			canvas{display:none;text-rendering:optimizeLegibility}
-			div{position:absolute;left:0;right:0;top:0;margin:0 auto;background-color:white}
+			div{position:inline-block;width:100%;background-color:silver}
 			input[type=text]{height:30px;width:90px;font-family:Arial;font-size:13px;margin:0;padding:0;box-sizing:border-box}
 			input[type=file]{height:30px;font-family:Arial;font-size:13px;line-height:30px;vertical-align:top;margin:0;padding:0;box-sizing:border-box}
-			img{display:block;vertical-align:top;}
+			img{display:inline-block}
 		</style>
 	</head>
 	<body>
 		<div>
 			<input type="file" id="screenshot">
 			<input type="text" id="imgSize" placeholder="Size" value="1024">
-			<img width="1900" height="1093" id="finalResult" alt="banner" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH5AodAgAMo/D8kgAAAAtJREFUCNdj+A8EAAn7A/1jJsWPAAAAAElFTkSuQmCC">
 		</div>
+
+		<img width="320" height="200" id="finalResult" alt="banner" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH5AodAgAMo/D8kgAAAAtJREFUCNdj+A8EAAn7A/1jJsWPAAAAAElFTkSuQmCC">
 
 		<script>
 			window.addEventListener("load", function()
