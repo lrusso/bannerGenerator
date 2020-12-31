@@ -1,6 +1,6 @@
 # Banner Generator
 
-Image Merger, Image Resizer, Business Card, Radio Interview, MacBook, Notebook, Play Store, GitHub, Android and iPhone Banner Generator.
+Image Merger, Image Resizer, Business Card, Radio Interview, MacBook, Notebook, Play Store, GitHub, App with Text, Android and iPhone Banner Generator.
 
 | BANNER GENERATORS | 
 | :------------ |
