@@ -4,13 +4,12 @@
 		<meta charset="UTF-8">
 		<title>Business Card Generator</title>
 		<style>
-			html{margin:0;padding:0}
-			body{margin:0;padding:0;background-color:#272727}
+			html,body{margin:0;padding:0;background-color:#272727}
 			canvas{display:none;text-rendering:optimizeLegibility}
-			div{position:absolute;left:0;right:0;top:0;margin:0 auto;width:1312px;background-color:silver}
+			div{position:inline-block;left:0;right:0;top:0;width:100%;background-color:silver}
 			input[type=text]{height:30px;width:130px;font-family:Arial;font-size:13px;margin:0;padding:0;box-sizing:border-box}
-			img{display:block;vertical-align:bottom;margin:0 auto}
-			span{display:block;margin:0 auto;width:500px;padding-top:10px;padding-bottom:10px;text-align:center;font-family:Arial;font-size:13px}
+			img{display:inline-block}
+			span{display:inline-block;width:1312px;background-color:silver;padding-top:10px;padding-bottom:10px;text-align:center;font-family:Arial;font-size:13px}
 		</style>
 	</head>
 	<body>
@@ -25,9 +24,10 @@
 			<input type="text" id="phone" placeholder="Phone">
 			<input type="text" id="web" placeholder="Web">
 			<input type="text" id="email" placeholder="Email">
-			<img width="1312" height="864" id="finalResult" alt="banner" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4wQQEjQ35agTNQAAAAxJREFUCNdjOH78OAAErgJW23qXwQAAAABJRU5ErkJggg==">
-			<span>Size: 3.5 x 2 inches&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8.89 x 5.08 cm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Quality: 300 dpi</span>
 		</div>
+
+		<img width="1312" height="864" id="finalResult" alt="banner" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4wQQEjQ35agTNQAAAAxJREFUCNdjOH78OAAErgJW23qXwQAAAABJRU5ErkJggg==">
+		<br /><span>Size: 3.5 x 2 inches&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8.89 x 5.08 cm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Quality: 300 dpi</span>
 
 		<script>
 			window.addEventListener("load", function()
