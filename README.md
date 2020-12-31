@@ -49,4 +49,5 @@ Image Merger, Image Resizer, Business Card, Radio Interview, MacBook, Notebook, 
 | https://lrusso.github.io/bannerGenerator/bannerPhone_iPhone_X_Landscape2.htm |
 | https://lrusso.github.io/bannerGenerator/bannerPhone_iPhone_X_Portrait1.htm |
 | https://lrusso.github.io/bannerGenerator/bannerPhone_iPhone_X_Portrait2.htm |
+| https://lrusso.github.io/bannerGenerator/bannerPhone_With_Text_Portrait.htm |
 | https://lrusso.github.io/bannerGenerator/bannerResizer.htm |
