@@ -13,7 +13,7 @@
 		</style>
 	</head>
 	<body>
-		<canvas width="750" height="1334" id="myCanvas"></canvas>
+		<canvas width="1334" height="750" id="myCanvas"></canvas>
 
 		<div>
 			<input type="text" id="title" placeholder="Title">
@@ -27,7 +27,7 @@
 			<input type="file" id="screenshot">
 		</div>
 
-		<img width="750" height="1334" id="finalResult" alt="banner" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4wQQEjQ35agTNQAAAAxJREFUCNdjOH78OAAErgJW23qXwQAAAABJRU5ErkJggg==">
+		<img width="1334" height="750" id="finalResult" alt="banner" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4wQQEjQ35agTNQAAAAxJREFUCNdjOH78OAAErgJW23qXwQAAAABJRU5ErkJggg==">
 
 		<script>
 			window.addEventListener("load", function()
@@ -53,7 +53,7 @@
 				titleColor.value = "#FFFFFF";
 				titleMarginTop.value = "70";
 				backColor.value = "#3A76B1";
-				imgSize.value = "700";
+				imgSize.value = "1200";
 				imgMarginTop.value = "125";
 				document.getElementById("screenshot").value = null;
 
@@ -64,7 +64,7 @@
 
 					// DRAWING A WHITE BACKGROUND
 					context.fillStyle = backColor.value;
-					context.fillRect(0, 0, 750, 1334);
+					context.fillRect(0, 0, 1334, 750);
 
 					// SETTING THE FONT STYLE
 					context.font = titleSize.value + "px " + titleFont.value;
@@ -72,7 +72,7 @@
 
 					// DRAWING THE TITLE
 					var centeredTitle = context.measureText(title.value).width;
-					centeredTitle = 750 / 2 - centeredTitle / 2;
+					centeredTitle = 1334 / 2 - centeredTitle / 2;
 					context.fillText(title.value, centeredTitle, titleMarginTop.value);
 
 					try
@@ -107,14 +107,14 @@
 										var imagenResized = downScaleImage(image3, scale);
 
 										// DRAWING THE RESIZED IMAGE
-										context.drawImage(imagenResized, 750 / 2 - width / 2, imgMarginTop.value, width, height);
+										context.drawImage(imagenResized, 1334 / 2 - width / 2, imgMarginTop.value, width, height);
 										}
 										catch(err)
 										{
 										// IF THERE IS AN ERROR, IT MEANS THAT THE FILE IMAGE IS SMALLER THAN
 										// THE SIZE THAT IT SUPPOSED TO FILL. SO, BECAUSE OF THIS,
 										// IN THE FOLLOWING LINE THE IMAGE IS STRETCHED TO FILL.
-										context.drawImage(image3, 750 / 2 - width / 2, imgMarginTop.value, width, height);
+										context.drawImage(image3, 1334 / 2 - width / 2, imgMarginTop.value, width, height);
 										}
 
 									// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
