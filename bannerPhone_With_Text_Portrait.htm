@@ -7,7 +7,7 @@
 			html,body{margin:0;padding:0;background-color:white}
 			canvas{display:none;text-rendering:optimizeLegibility}
 			div{display:inline-block;width:100%;background-color:silver}
-			input[type=text]{height:30px;width:90px;font-family:Arial;font-size:13px;margin:0;padding:0;box-sizing:border-box}
+			input[type=text]{height:30px;width:70px;font-family:Arial;font-size:13px;margin:0;padding:0;box-sizing:border-box}
 			input[type=file]{height:30px;font-family:Arial;font-size:13px;line-height:30px;vertical-align:top;margin:0;padding:0;box-sizing:border-box}
 			img{display:inline-block}
 		</style>
@@ -21,6 +21,7 @@
 			<input type="text" id="titleSize" placeholder="Title Size">
 			<input type="text" id="titleColor" placeholder="Title Color">
 			<input type="text" id="titleMarginTop" placeholder="Title Margin Top">
+			<input type="checkbox" id="shadowEnabled">
 			<input type="text" id="backColor" placeholder="Background Color">
 			<input type="text" id="imgSize" placeholder="Image size">
 			<input type="text" id="imgMarginTop" placeholder="Image Margin Top">
@@ -38,6 +39,7 @@
 				var titleSize = document.getElementById("titleSize");
 				var titleColor = document.getElementById("titleColor");
 				var titleMarginTop = document.getElementById("titleMarginTop");
+				var shadowEnabled = document.getElementById("shadowEnabled");
 				var backColor = document.getElementById("backColor");
 				var imgSize = document.getElementById("imgSize");
 				var imgMarginTop = document.getElementById("imgMarginTop");
@@ -52,6 +54,7 @@
 				titleSize.value = "27";
 				titleColor.value = "#FFFFFF";
 				titleMarginTop.value = "70";
+				shadowEnabled.checked = false;
 				backColor.value = "#3A76B1";
 				imgSize.value = "700";
 				imgMarginTop.value = "125";
@@ -68,11 +71,21 @@
 
 					// SETTING THE FONT STYLE
 					context.font = titleSize.value + "px " + titleFont.value;
-					context.fillStyle = titleColor.value;
 
-					// DRAWING THE TITLE
+					// GETTING THE CENTER X VALUE FOR THE TEXT
 					var centeredTitle = context.measureText(title.value).width;
 					centeredTitle = 750 / 2 - centeredTitle / 2;
+
+					// CHECKING IF A SHADOW TITLE MUST BE CREATED
+					if (shadowEnabled.checked==true)
+						{
+						// DRAWING THE SHADOW TITLE
+						context.fillStyle = "black";
+						context.fillText(title.value, centeredTitle + 2, titleMarginTop.value);
+						}
+
+					// DRAWING THE TITLE
+					context.fillStyle = titleColor.value;
 					context.fillText(title.value, centeredTitle, titleMarginTop.value);
 
 					try
@@ -282,6 +295,7 @@
 				document.getElementById("titleSize").addEventListener("input",function(e){update()});
 				document.getElementById("titleColor").addEventListener("input",function(e){update()});
 				document.getElementById("titleMarginTop").addEventListener("input",function(e){update()});
+				document.getElementById("shadowEnabled").addEventListener("click",function(e){update()});
 				document.getElementById("backColor").addEventListener("input",function(e){update()});
 				document.getElementById("imgSize").addEventListener("input",function(e){update()});
 				document.getElementById("imgMarginTop").addEventListener("input",function(e){update()});
