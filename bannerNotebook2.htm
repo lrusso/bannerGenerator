@@ -6,17 +6,17 @@
 		<style>
 			html,body{margin:0;padding:0;background-color:white}
 			canvas{display:none;text-rendering:optimizeLegibility}
-			div{position:absolute;left:0;right:0;top:0;width:2200px}
+			div{position:absolute;left:0;right:0;top:0;width:1900px}
 			input[type=file]{height:30px;font-family:Arial;font-size:13px;line-height:30px;vertical-align:top;margin:0;padding:0;box-sizing:border-box}
 			img{display:inline-block}
 		</style>
 	</head>
 	<body>
-		<canvas width="2200" height="1393" id="myCanvas"></canvas>
+		<canvas width="1900" height="1093" id="myCanvas"></canvas>
 
 		<div>
 			<input type="file" id="screenshot">
-			<img width="2200" height="1393" id="finalResult" alt="banner" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH5AodAgAMo/D8kgAAAAtJREFUCNdj+A8EAAn7A/1jJsWPAAAAAElFTkSuQmCC">
+			<img width="1900" height="1093" id="finalResult" alt="banner" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH5AodAgAMo/D8kgAAAAtJREFUCNdj+A8EAAn7A/1jJsWPAAAAAElFTkSuQmCC">
 		</div>
 
 		<script>
@@ -56,10 +56,10 @@
 
 					// DRAWING A WHITE BACKGROUND
 					context.fillStyle = "#FFFFFF";
-					context.fillRect(0, 0, 2200, 1393);
+					context.fillRect(0, 0, 1900, 1093);
 
 					// DRAWING THE NOTEBOOK
-					context.drawImage(image1, 150, 150, 1900, 1093);
+					context.drawImage(image1, 0, 0, 1900, 1093);
 
 					try
 						{
@@ -96,14 +96,14 @@
 											var imagenResized = downScaleImage(image3, scale);
 
 											// DRAWING THE RESIZED IMAGE
-											context.drawImage(imagenResized, 386, 230, width, height);
+											context.drawImage(imagenResized, 236, 80, width, height);
 											}
 											catch(err)
 											{
 											// IF THERE IS AN ERROR, IT MEANS THAT THE FILE IMAGE IS SMALLER THAN
 											// THE SIZE THAT IT SUPPOSED TO FILL. SO, BECAUSE OF THIS,
 											// IN THE FOLLOWING LINE THE IMAGE IS STRETCHED TO FILL.
-											context.drawImage(image3, 386, 230, width, height);
+											context.drawImage(image3, 236, 80, width, height);
 											}
 
 										// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
