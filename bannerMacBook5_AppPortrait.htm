@@ -7,6 +7,7 @@
 			html,body{margin:0;padding:0;background-color:white}
 			canvas{display:none;text-rendering:optimizeLegibility}
 			div{position:absolute;left:0;right:0;top:0;width:2200px}
+			input[type=text]{height:30px;width:90px;font-family:Arial;font-size:13px;margin:0;padding:0;box-sizing:border-box}
 			input[type=file]{height:30px;font-family:Arial;font-size:13px;line-height:30px;vertical-align:top;margin:0;padding:0;box-sizing:border-box}
 			img{display:inline-block}
 		</style>
@@ -15,7 +16,11 @@
 		<canvas width="2200" height="1393" id="myCanvas"></canvas>
 
 		<div>
-			<input type="file" id="screenshot">
+			<input type="file" id="screenshot1">
+			<input type="text" id="size" value="800" placeholder="Size">
+			<input type="text" id="offsetX" value="0" placeholder="offsetX">
+			<input type="text" id="offsetY" value="0" placeholder="offsetY">
+			<input type="file" id="screenshot2">
 			<img width="2200" height="1393" id="finalResult" alt="banner" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH5AodAgAMo/D8kgAAAAtJREFUCNdj+A8EAAn7A/1jJsWPAAAAAElFTkSuQmCC">
 		</div>
 
@@ -34,7 +39,11 @@
 				var canvas = document.getElementById("myCanvas");
 
 				// CLEARING ALL THE INPUTTED VALUES (IF ANY)
-				document.getElementById("screenshot").value = null;
+				document.getElementById("screenshot1").value = null;
+				document.getElementById("screenshot2").value = null;
+				document.getElementById("size").value = "800";
+				document.getElementById("offsetX").value = "0";
+				document.getElementById("offsetY").value = "0";
 
 				// USING A VARIABLE IN ORDER TO KNOW WHEN ALL THE GRAPHICAL ELEMENTS ARE LOADED
 				var elementsLoadedCounter = 0;
@@ -45,7 +54,7 @@
 					elementsLoadedCounter++;
 
 					// CHECKING IF THE RIGHT AMOUNT OF ELEMENTS ARE LOADED
-					if (elementsLoadedCounter < 1)
+					if (elementsLoadedCounter < 3)
 						{
 						// IF NOT, RETURNING WITHOUT EXECUTING ANYTHING ELSE
 						return;
@@ -67,7 +76,7 @@
 						var filereader = new FileReader();
 
 						// GETTING THE EXTENSION
-						var extension = document.getElementById("screenshot").files[0].name.split(".").pop().toLowerCase();
+						var extension = document.getElementById("screenshot1").files[0].name.split(".").pop().toLowerCase();
 
 						// CHECKING THE EXTENSION IN ORDER TO KNOW IF THE FILE IS AN IMAGE
 						if (extension=="jpg" | extension=="jpeg" | extension=="png")
@@ -115,7 +124,73 @@
 								};
 
 							// READING/LOADING THE FILE
-							filereader.readAsDataURL(document.getElementById("screenshot").files[0]);
+							filereader.readAsDataURL(document.getElementById("screenshot1").files[0]);
+							}
+							else
+							{
+							// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
+							document.getElementById("finalResult").src = canvas.toDataURL("data/png");
+							}
+						}
+						catch(err)
+						{
+						// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
+						document.getElementById("finalResult").src = canvas.toDataURL("data/png");
+						}
+
+					try
+						{
+						// CREATING THE FILEREADER
+						var filereader2 = new FileReader();
+
+						// GETTING THE EXTENSION
+						var extension = document.getElementById("screenshot2").files[0].name.split(".").pop().toLowerCase();
+
+						// CHECKING THE EXTENSION IN ORDER TO KNOW IF THE FILE IS AN IMAGE
+						if (extension=="jpg" | extension=="jpeg" | extension=="png")
+							{
+							// SETTING WHAT WILL HAPPEN WHEN THE FILE IS LOADED
+							filereader2.onload = function()
+								{
+								// LOADING THE IMAGE FILE
+								var image4 = new Image;
+								image4.onload = function()
+									{
+									// SETTING THE IMAGE SCALE
+									var scale = document.getElementById("size").value * 1 / image4.height;
+
+									// SETTING THE IMAGE WIDTH AND HEIGHT
+									var width = image4.width * scale;
+									var height = image4.height * scale;
+
+									// SETTING THE FINAL X AND Y VALUES
+									var finalX = 2200 - width - 110 + parseInt(document.getElementById("offsetX").value);
+									var finalY = 1093 - height + 179 + parseInt(document.getElementById("offsetY").value);
+
+									try
+										{
+										// GETTING THE RESIZED IMAGE
+										var imagenResized = downScaleImage(image4, scale);
+
+										// DRAWING THE RESIZED IMAGE
+										context.drawImage(imagenResized, finalX, finalY, width, height);
+										}
+										catch(err)
+										{
+										// IF THERE IS AN ERROR, IT MEANS THAT THE FILE IMAGE IS SMALLER THAN
+										// THE SIZE THAT IT SUPPOSED TO FILL. SO, BECAUSE OF THIS,
+										// IN THE FOLLOWING LINE THE IMAGE IS STRETCHED TO FILL.
+										context.drawImage(image4, finalX, finalY, width, height);
+										}
+
+									// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
+									document.getElementById("finalResult").src = canvas.toDataURL("data/png");
+									};
+								image4.src = filereader2.result;
+								};
+
+							// READING/LOADING THE FILE
+							filereader2.readAsDataURL(document.getElementById("screenshot2").files[0]);
 							}
 							else
 							{
@@ -282,7 +357,11 @@
 					}
 
 				// SETTING WHAT WILL HAPPEN WHEN THE USER SELECTS A FILE
-				document.getElementById("screenshot").addEventListener("change",function(e){update()});
+				document.getElementById("screenshot1").addEventListener("change",function(e){update()});
+				document.getElementById("screenshot2").addEventListener("change",function(e){update()});
+				document.getElementById("size").addEventListener("input",function(e){update()});
+				document.getElementById("offsetX").addEventListener("input",function(e){update()});
+				document.getElementById("offsetY").addEventListener("input",function(e){update()});
 				});
 		</script>
 	</body>
