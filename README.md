@@ -6,6 +6,7 @@ Image Merger, Image Resizer, Business Card, Radio Interview, MacBook, Notebook, 
 | :------------ |
 | https://lrusso.github.io/bannerGenerator/bannerApp.htm |
 | https://lrusso.github.io/bannerGenerator/bannerRadio.htm |
+| https://lrusso.github.io/bannerGenerator/bannerRecruiting.htm |
 | https://lrusso.github.io/bannerGenerator/bannerBusinessCard.htm |
 | https://lrusso.github.io/bannerGenerator/bannerGitHub1.htm |
 | https://lrusso.github.io/bannerGenerator/bannerGitHub2.htm |
