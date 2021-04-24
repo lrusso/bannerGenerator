@@ -7,12 +7,21 @@
 			html,body{margin:0;padding:0;background-color:white}
 			canvas{text-rendering:optimizeLegibility}
 			div{position:absolute;left:0;right:0;top:0;width:1900px}
+			input[type=text]{height:30px;width:40px;font-family:Arial;font-size:13px;margin:0;padding:0;box-sizing:border-box}
 			input[type=file]{height:30px;font-family:Arial;font-size:13px;line-height:30px;vertical-align:top;margin:0;padding:0;box-sizing:border-box}
 			.node{width:24px;height:24px;display:none;position:absolute;top:0;left:0;margin-top:20px;margin-left:-5px;border:1px solid red}
 		</style>
 	</head>
 	<body>
 		<div>
+			<input type="text" id="x1" placeholder="x1">
+			<input type="text" id="y1" placeholder="y1">
+			<input type="text" id="x2" placeholder="x2">
+			<input type="text" id="y2" placeholder="y2">
+			<input type="text" id="x3" placeholder="x3">
+			<input type="text" id="y3" placeholder="y3">
+			<input type="text" id="x4" placeholder="x4">
+			<input type="text" id="y4" placeholder="y4">
 			<input type="file" id="screenshot1">
 			<input type="file" id="screenshot2"><br />
 			<canvas width="500" height="500" id="canvasHandler"></canvas>
@@ -34,6 +43,61 @@
 				// CLEARING ALL THE INPUTTED VALUES (IF ANY)
 				document.getElementById("screenshot1").value = null;
 				document.getElementById("screenshot2").value = null;
+				document.getElementById("x1").value = "100";
+				document.getElementById("y1").value = "75";
+				document.getElementById("x2").value = "200";
+				document.getElementById("y2").value = "50";
+				document.getElementById("x3").value = "175";
+				document.getElementById("y3").value = "175";
+				document.getElementById("x4").value = "75";
+				document.getElementById("y4").value = "200";
+
+				// SETTING WHAT WILL HAPPEN WHEN THE USER CLICKS ON THE DOCUMENT
+				document.body.addEventListener("mousedown", function(event)
+					{
+					// CHECKING IF THE USER IS CLICKING ON A NODE
+					if (event.target.className == "node")
+						{
+						// SETTING THAT THE MOUSE MOVE MUST BE EXECUTED
+						mustExecuteMouseMove = true;
+
+						// SETTING THE NODE TARGET THAT MUST BE USED
+						mustExecuteMouseMoveTarget = event.target;
+						}
+						else
+						{
+						// CLEARING THE VALUES
+						mustExecuteMouseMove = false;
+						mustExecuteMouseMoveTarget = null;
+						}
+					});
+
+				// SETTING WHAT WILL HAPPEN WHEN THE USER IS MOVING THE MOUSE
+				document.body.addEventListener("mousemove", function(event)
+					{
+					// CHECKING IF THE MOUSE MOVE MUST BE EXECUTED AND THAT THERE IS A TARGET
+					if (mustExecuteMouseMove==true && mustExecuteMouseMoveTarget!=null)
+						{
+						// GETTING THE X AND Y VALUE
+						var x = event.pageX - 7;
+						var y = event.pageY - 40;
+
+						// MOVING THE TARGET
+						mustExecuteMouseMoveTarget.style.left = x + "px";
+						mustExecuteMouseMoveTarget.style.top = y + "px";
+
+						document.getElementById("x" + mustExecuteMouseMoveTarget.indexValue).value = x;
+						document.getElementById("y" + mustExecuteMouseMoveTarget.indexValue).value = y;
+						}
+					});
+
+				// SETTING WHAT WILL HAPPEN WHEN THE USER IS STOPS PRESSING THE MOUSE BUTTON
+				document.body.addEventListener("mouseup", function(event)
+					{
+					// CLEARING THE VALUES
+					mustExecuteMouseMove = false;
+					mustExecuteMouseMoveTarget = null;
+					});
 
 				function update()
 					{
@@ -98,21 +162,29 @@
 									controls[0].style.display = "block";
 									controls[0].style.left = "100px";
 									controls[0].style.top = "75px";
+									document.getElementById("x1").value = "100";
+									document.getElementById("y1").value = "75";
 
 									// SHOWING AND MOVING THE CONTROL 2
 									controls[1].style.display = "block";
 									controls[1].style.left = "200px";
 									controls[1].style.top = "50px";
+									document.getElementById("x2").value = "200";
+									document.getElementById("y2").value = "50";
 
 									// SHOWING AND MOVING THE CONTROL 3
 									controls[2].style.display = "block";
 									controls[2].style.left = "175px";
 									controls[2].style.top = "175px";
+									document.getElementById("x3").value = "175";
+									document.getElementById("y3").value = "175";
 
 									// SHOWING AND MOVING THE CONTROL 4
 									controls[3].style.display = "block";
 									controls[3].style.left = "75px";
 									controls[3].style.top = "200px";
+									document.getElementById("x4").value = "75";
+									document.getElementById("y4").value = "200";
 									};
 								image2.src = filereader2.result;
 								};
@@ -126,74 +198,20 @@
 						}
 					}
 
-				// SETTING AN INTERVAL TO DRAW THE IMAGE
-				setInterval(draw, 1000 / 24);
-
-				// GETTING THE CANVAS
-				canvas = document.getElementById("canvasHandler");
-
-				// GETTING THE CANVAS CONTEXT
-				context = canvas.getContext("2d");
-
-				// DRAWING THE NODES
-				for (var i = 0; i < 4; ++i)
+				function updateNodesLocation()
 					{
-					// CREATING A NODE
-					var control = document.createElement("div");
-
-					// SETTING THE NODE CLASSNAME
-					control.className = "node";
-
-					// ADDING THE NODE TO THE DOCUMENT
-					document.body.appendChild(control);
-
-					// ADDING THE NODE THE CONTROLS ARRAY
-					controls.push(control);
+					try
+						{
+						for (var i = 0; i<controls.length;i++)
+							{
+							controls[i].style.left = document.getElementById("x" + (i+1)).value + "px";
+							controls[i].style.top = document.getElementById("y" + (i+1)).value + "px";
+							}
+						}
+						catch(err)
+						{
+						}
 					}
-
-				// SETTING WHAT WILL HAPPEN WHEN THE USER CLICKS ON THE DOCUMENT
-				document.body.addEventListener("mousedown", function(event)
-					{
-					// CHECKING IF THE USER IS CLICKING ON A NODE
-					if (event.target.className == "node")
-						{
-						// SETTING THAT THE MOUSE MOVE MUST BE EXECUTED
-						mustExecuteMouseMove = true;
-
-						// SETTING THE NODE TARGET THAT MUST BE USED
-						mustExecuteMouseMoveTarget = event.target;
-						}
-						else
-						{
-						// CLEARING THE VALUES
-						mustExecuteMouseMove = false;
-						mustExecuteMouseMoveTarget = null;
-						}
-					});
-
-				// SETTING WHAT WILL HAPPEN WHEN THE USER IS MOVING THE MOUSE
-				document.body.addEventListener("mousemove", function(event)
-					{
-					// CHECKING IF THE MOUSE MOVE MUST BE EXECUTED AND THAT THERE IS A TARGET
-					if (mustExecuteMouseMove==true && mustExecuteMouseMoveTarget!=null)
-						{
-						// GETTING THE X AND Y VALUE
-						var x = event.pageX - 7;
-						var y = event.pageY - 40;
-
-						// MOVING THE TARGET
-						mustExecuteMouseMoveTarget.style.left = x + "px";
-						mustExecuteMouseMoveTarget.style.top = y + "px";
-						}
-					});
-
-				// SETTING WHAT WILL HAPPEN WHEN THE USER IS STOPS PRESSING THE MOUSE BUTTON
-				document.body.addEventListener("mouseup", function(event)
-					{
-					// CLEARING THE VALUES
-					mustExecuteMouseMove = false;
-					mustExecuteMouseMoveTarget = null;
-					});
 
 				function draw()
 					{
@@ -243,10 +261,10 @@
 					var subs = 7; // VERTICAL SUBDIVISIONS
 					var divs = 7; // HORIZONTAL SUBDIVISIONS
 
-					var p1 = new Point(parseInt(controls[0].style.left) + 6, parseInt(controls[0].style.top) + 6);
-					var p2 = new Point(parseInt(controls[1].style.left) + 6, parseInt(controls[1].style.top) + 6);
-					var p3 = new Point(parseInt(controls[2].style.left) + 6, parseInt(controls[2].style.top) + 6);
-					var p4 = new Point(parseInt(controls[3].style.left) + 6, parseInt(controls[3].style.top) + 6);
+					var p1 = new Point(parseInt(document.getElementById("x1").value) + 6, parseInt(document.getElementById("y1").value) + 6);
+					var p2 = new Point(parseInt(document.getElementById("x2").value) + 6, parseInt(document.getElementById("y2").value) + 6);
+					var p3 = new Point(parseInt(document.getElementById("x3").value) + 6, parseInt(document.getElementById("y3").value) + 6);
+					var p4 = new Point(parseInt(document.getElementById("x4").value) + 6, parseInt(document.getElementById("y4").value) + 6);
 
 					var dx1 = p4.x - p1.x;
 					var dy1 = p4.y - p1.y;
@@ -392,6 +410,44 @@
 
 					return Math.sqrt( xs + ys );
 					}
+
+				// SETTING AN INTERVAL TO DRAW THE IMAGE
+				setInterval(draw, 1000 / 24);
+
+				// GETTING THE CANVAS
+				canvas = document.getElementById("canvasHandler");
+
+				// GETTING THE CANVAS CONTEXT
+				context = canvas.getContext("2d");
+
+				// DRAWING THE NODES
+				for (var i = 0; i < 4; ++i)
+					{
+					// CREATING A NODE
+					var control = document.createElement("div");
+
+					// SETTING THE NODE CLASSNAME
+					control.className = "node";
+
+					// SETTING AN INDEX VALUE
+					control.indexValue = i + 1;
+
+					// ADDING THE NODE TO THE DOCUMENT
+					document.body.appendChild(control);
+
+					// ADDING THE NODE THE CONTROLS ARRAY
+					controls.push(control);
+					}
+
+				// SETTING WHAT WILL HAPPEN WHEN THE USER TYPES IN A INPUT BOX
+				document.getElementById("x1").addEventListener("input",function(e){updateNodesLocation()});
+				document.getElementById("y1").addEventListener("input",function(e){updateNodesLocation()});
+				document.getElementById("x2").addEventListener("input",function(e){updateNodesLocation()});
+				document.getElementById("y2").addEventListener("input",function(e){updateNodesLocation()});
+				document.getElementById("x3").addEventListener("input",function(e){updateNodesLocation()});
+				document.getElementById("y3").addEventListener("input",function(e){updateNodesLocation()});
+				document.getElementById("x4").addEventListener("input",function(e){updateNodesLocation()});
+				document.getElementById("y4").addEventListener("input",function(e){updateNodesLocation()});
 
 				// SETTING WHAT WILL HAPPEN WHEN THE USER SELECTS A FILE
 				document.getElementById("screenshot1").addEventListener("change",function(e){update()});
