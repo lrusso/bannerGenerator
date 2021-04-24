@@ -11,6 +11,8 @@ Image Merger, Image Resizer, Business Card, Radio Interview, Recruiting, MacBook
 | https://lrusso.github.io/bannerGenerator/bannerRecruiting3.htm |
 | https://lrusso.github.io/bannerGenerator/bannerRecruiting4.htm |
 | https://lrusso.github.io/bannerGenerator/bannerBusinessCard.htm |
+| https://lrusso.github.io/bannerGenerator/bannerDistorted1.htm |
+| https://lrusso.github.io/bannerGenerator/bannerDistorted2.htm |
 | https://lrusso.github.io/bannerGenerator/bannerGitHub1.htm |
 | https://lrusso.github.io/bannerGenerator/bannerGitHub2.htm |
 | https://lrusso.github.io/bannerGenerator/bannerMacBook1.htm |
