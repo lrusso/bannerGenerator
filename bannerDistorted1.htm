@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Distorted Image Generator</title>
+		<style>
+			html,body{margin:0;padding:0;background-color:white}
+			canvas{text-rendering:optimizeLegibility}
+			div{position:absolute;left:0;right:0;top:0;width:1900px}
+			input[type=file]{height:30px;font-family:Arial;font-size:13px;line-height:30px;vertical-align:top;margin:0;padding:0;box-sizing:border-box}
+			.node{width:24px;height:24px;display:none;position:absolute;top:0;left:0;margin-top:20px;margin-left:-5px;border:1px solid red}
+		</style>
+	</head>
+	<body>
+		<div>
+			<input type="file" id="screenshot1">
+			<input type="file" id="screenshot2"><br />
+			<canvas width="500" height="500" id="canvasHandler"></canvas>
+		</div>
+		<script>
+			// BASED ON https://stackoverflow.com/questions/4097688/draw-distorted-image-on-html5s-canvas
+
+			var controls = [];
+			var canvas;
+			var context;
+			var triangles = [];
+			var mustExecuteMouseMove = false;
+			var mustExecuteMouseMoveTarget = null;
+			var finalImage1 = null;
+			var finalImage2 = null;
+
+			window.addEventListener("load", function()
+				{
+				// CLEARING ALL THE INPUTTED VALUES (IF ANY)
+				document.getElementById("screenshot1").value = null;
+				document.getElementById("screenshot2").value = null;
+
+				function update()
+					{
+					try
+						{
+						// CREATING THE FILEREADER
+						var filereader = new FileReader();
+
+						// GETTING THE EXTENSION
+						var extension = document.getElementById("screenshot1").files[0].name.split(".").pop().toLowerCase();
+
+						// CHECKING THE EXTENSION IN ORDER TO KNOW IF THE FILE IS AN IMAGE
+						if (extension=="jpg" | extension=="jpeg" | extension=="png")
+							{
+							// SETTING WHAT WILL HAPPEN WHEN THE FILE IS LOADED
+							filereader.onload = function()
+								{
+								// LOADING THE IMAGE FILE
+								var image1 = new Image;
+								image1.onload = function()
+									{
+									// UPDATING THE FINAL IMAGE 1 VALUE
+									finalImage1 = image1;
+
+									// RESIZING THE CANVAS
+									canvas.width = finalImage1.width;
+									canvas.height= finalImage1.height;
+									};
+								image1.src = filereader.result;
+								};
+
+							// READING/LOADING THE FILE
+							filereader.readAsDataURL(document.getElementById("screenshot1").files[0]);
+							}
+						}
+						catch(err)
+						{
+						}
+
+					try
+						{
+						// CREATING THE FILEREADER
+						var filereader2 = new FileReader();
+
+						// GETTING THE EXTENSION
+						var extension = document.getElementById("screenshot2").files[0].name.split(".").pop().toLowerCase();
+
+						// CHECKING THE EXTENSION IN ORDER TO KNOW IF THE FILE IS AN IMAGE
+						if (extension=="jpg" | extension=="jpeg" | extension=="png")
+							{
+							// SETTING WHAT WILL HAPPEN WHEN THE FILE IS LOADED
+							filereader2.onload = function()
+								{
+								// LOADING THE IMAGE FILE
+								var image2 = new Image;
+								image2.onload = function()
+									{
+									// UPDATING THE FINAL IMAGE 2 VALUE
+									finalImage2 = image2;
+
+									// SHOWING AND MOVING THE CONTROL 1
+									controls[0].style.display = "block";
+									controls[0].style.left = "100px";
+									controls[0].style.top = "75px";
+
+									// SHOWING AND MOVING THE CONTROL 2
+									controls[1].style.display = "block";
+									controls[1].style.left = "200px";
+									controls[1].style.top = "50px";
+
+									// SHOWING AND MOVING THE CONTROL 3
+									controls[2].style.display = "block";
+									controls[2].style.left = "175px";
+									controls[2].style.top = "175px";
+
+									// SHOWING AND MOVING THE CONTROL 4
+									controls[3].style.display = "block";
+									controls[3].style.left = "75px";
+									controls[3].style.top = "200px";
+									};
+								image2.src = filereader2.result;
+								};
+
+							// READING/LOADING THE FILE
+							filereader2.readAsDataURL(document.getElementById("screenshot2").files[0]);
+							}
+						}
+						catch(err)
+						{
+						}
+					}
+
+				// SETTING AN INTERVAL TO DRAW THE IMAGE
+				setInterval(draw, 1000 / 24);
+
+				// GETTING THE CANVAS
+				canvas = document.getElementById("canvasHandler");
+
+				// GETTING THE CANVAS CONTEXT
+				context = canvas.getContext("2d");
+
+				// DRAWING THE NODES
+				for (var i = 0; i < 4; ++i)
+					{
+					// CREATING A NODE
+					var control = document.createElement("div");
+
+					// SETTING THE NODE CLASSNAME
+					control.className = "node";
+
+					// ADDING THE NODE TO THE DOCUMENT
+					document.body.appendChild(control);
+
+					// ADDING THE NODE THE CONTROLS ARRAY
+					controls.push(control);
+					}
+
+				// SETTING WHAT WILL HAPPEN WHEN THE USER CLICKS ON THE DOCUMENT
+				document.body.addEventListener("mousedown", function(event)
+					{
+					// CHECKING IF THE USER IS CLICKING ON A NODE
+					if (event.target.className == "node")
+						{
+						// SETTING THAT THE MOUSE MOVE MUST BE EXECUTED
+						mustExecuteMouseMove = true;
+
+						// SETTING THE NODE TARGET THAT MUST BE USED
+						mustExecuteMouseMoveTarget = event.target;
+						}
+						else
+						{
+						// CLEARING THE VALUES
+						mustExecuteMouseMove = false;
+						mustExecuteMouseMoveTarget = null;
+						}
+					});
+
+				// SETTING WHAT WILL HAPPEN WHEN THE USER IS MOVING THE MOUSE
+				document.body.addEventListener("mousemove", function(event)
+					{
+					// CHECKING IF THE MOUSE MOVE MUST BE EXECUTED AND THAT THERE IS A TARGET
+					if (mustExecuteMouseMove==true && mustExecuteMouseMoveTarget!=null)
+						{
+						// GETTING THE X AND Y VALUE
+						var x = event.pageX - 7;
+						var y = event.pageY - 40;
+
+						// MOVING THE TARGET
+						mustExecuteMouseMoveTarget.style.left = x + "px";
+						mustExecuteMouseMoveTarget.style.top = y + "px";
+						}
+					});
+
+				// SETTING WHAT WILL HAPPEN WHEN THE USER IS STOPS PRESSING THE MOUSE BUTTON
+				document.body.addEventListener("mouseup", function(event)
+					{
+					// CLEARING THE VALUES
+					mustExecuteMouseMove = false;
+					mustExecuteMouseMoveTarget = null;
+					});
+
+				function draw()
+					{
+					try
+						{
+						// CHECKING IF THE FIRST IMAGE WAS LOADED
+						if (finalImage1!=null)
+							{
+							// CLEARING THE IMAGE
+							context.clearRect(0,0,finalImage1.width, finalImage1.height);
+
+							// DRAWING THE FIRST IMAGE
+							context.drawImage(finalImage1, 0, 0, finalImage1.width, finalImage1.height);
+							}
+
+						// CHECKING IF THE SECOND IMAGE WAS LOADED
+						if (finalImage2!=null)
+							{
+							// CALCULATING THE IMAGE GEOMETRY
+							calculateGeometry();
+
+							// LOOPING EVERY TRIANGLE
+							for (triangle of triangles)
+								{
+								// DRAWING EVERY TRIANGLE
+								drawTriangle(context, finalImage2,
+											triangle.p0.x, triangle.p0.y,
+											triangle.p1.x, triangle.p1.y,
+											triangle.p2.x, triangle.p2.y,
+											triangle.t0.u, triangle.t0.v,
+											triangle.t1.u, triangle.t1.v,
+											triangle.t2.u, triangle.t2.v);
+								}
+							}
+						}
+						catch(err)
+						{
+						}
+					}
+
+				function calculateGeometry()
+					{
+					// CLEARING THE TRIANGLES
+					triangles = [];
+
+					// GENERATING THE SUBDIVISION
+					var subs = 7; // VERTICAL SUBDIVISIONS
+					var divs = 7; // HORIZONTAL SUBDIVISIONS
+
+					var p1 = new Point(parseInt(controls[0].style.left) + 6, parseInt(controls[0].style.top) + 6);
+					var p2 = new Point(parseInt(controls[1].style.left) + 6, parseInt(controls[1].style.top) + 6);
+					var p3 = new Point(parseInt(controls[2].style.left) + 6, parseInt(controls[2].style.top) + 6);
+					var p4 = new Point(parseInt(controls[3].style.left) + 6, parseInt(controls[3].style.top) + 6);
+
+					var dx1 = p4.x - p1.x;
+					var dy1 = p4.y - p1.y;
+					var dx2 = p3.x - p2.x;
+					var dy2 = p3.y - p2.y;
+
+					var imgW = finalImage2.naturalWidth;
+					var imgH = finalImage2.naturalHeight;
+
+					for (var sub = 0; sub < subs; ++sub)
+						{
+						var curRow = sub / subs;
+						var nextRow = (sub + 1) / subs;
+
+						var curRowX1 = p1.x + dx1 * curRow;
+						var curRowY1 = p1.y + dy1 * curRow;
+
+						var curRowX2 = p2.x + dx2 * curRow;
+						var curRowY2 = p2.y + dy2 * curRow;
+
+						var nextRowX1 = p1.x + dx1 * nextRow;
+						var nextRowY1 = p1.y + dy1 * nextRow;
+
+						var nextRowX2 = p2.x + dx2 * nextRow;
+						var nextRowY2 = p2.y + dy2 * nextRow;
+
+						for (var div = 0; div < divs; ++div)
+							{
+							var curCol = div / divs;
+							var nextCol = (div + 1) / divs;
+
+							var dCurX = curRowX2 - curRowX1;
+							var dCurY = curRowY2 - curRowY1;
+							var dNextX = nextRowX2 - nextRowX1;
+							var dNextY = nextRowY2 - nextRowY1;
+
+							var p1x = curRowX1 + dCurX * curCol;
+							var p1y = curRowY1 + dCurY * curCol;
+
+							var p2x = curRowX1 + (curRowX2 - curRowX1) * nextCol;
+							var p2y = curRowY1 + (curRowY2 - curRowY1) * nextCol;
+
+							var p3x = nextRowX1 + dNextX * nextCol;
+							var p3y = nextRowY1 + dNextY * nextCol;
+
+							var p4x = nextRowX1 + dNextX * curCol;
+							var p4y = nextRowY1 + dNextY * curCol;
+
+							var u1 = curCol * imgW;
+							var u2 = nextCol * imgW;
+							var v1 = curRow * imgH;
+							var v2 = nextRow * imgH;
+
+							var triangle1 = new Triangle(
+														new Point(p1x-1, p1y),
+														new Point(p3x+2, p3y+1),
+														new Point(p4x-1, p4y+1),
+														new TextCoord(u1, v1),
+														new TextCoord(u2, v2),
+														new TextCoord(u1, v2)
+														);
+
+							var triangle2 = new Triangle(
+														new Point(p1x-2, p1y),
+														new Point(p2x+1, p2y),
+														new Point(p3x+1, p3y+1),
+														new TextCoord(u1, v1),
+														new TextCoord(u2, v1),
+														new TextCoord(u2, v2)
+														);
+
+							triangles.push(triangle1);
+							triangles.push(triangle2);
+							}
+						}
+					}
+
+				// http://tulrich.com/geekstuff/canvas/jsgl.js
+				function drawTriangle(ctx, im, x0, y0, x1, y1, x2, y2, sx0, sy0, sx1, sy1, sx2, sy2)
+					{
+					ctx.save();
+
+					ctx.beginPath();
+					ctx.moveTo(x0, y0);
+					ctx.lineTo(x1, y1);
+					ctx.lineTo(x2, y2);
+					ctx.closePath();
+					ctx.clip();
+
+					var denom = sx0 * (sy2 - sy1) - sx1 * sy2 + sx2 * sy1 + (sx1 - sx2) * sy0;
+					if (denom == 0)
+						{
+						return;
+						}
+
+					var m11 = -(sy0 * (x2 - x1) - sy1 * x2 + sy2 * x1 + (sy1 - sy2) * x0) / denom;
+					var m12 = (sy1 * y2 + sy0 * (y1 - y2) - sy2 * y1 + (sy2 - sy1) * y0) / denom;
+					var m21 = (sx0 * (x2 - x1) - sx1 * x2 + sx2 * x1 + (sx1 - sx2) * x0) / denom;
+					var m22 = -(sx1 * y2 + sx0 * (y1 - y2) - sx2 * y1 + (sx2 - sx1) * y0) / denom;
+					var dx = (sx0 * (sy2 * x1 - sy1 * x2) + sy0 * (sx1 * x2 - sx2 * x1) + (sx2 * sy1 - sx1 * sy2) * x0) / denom;
+					var dy = (sx0 * (sy2 * y1 - sy1 * y2) + sy0 * (sx1 * y2 - sx2 * y1) + (sx2 * sy1 - sx1 * sy2) * y0) / denom;
+
+					ctx.transform(m11, m12, m21, m22, dx, dy);
+					ctx.drawImage(im, 0, 0);
+					ctx.restore();
+					}
+
+				function TextCoord(u,v)
+					{
+					this.u = u?u:0;
+					this.v = v?v:0;
+					}
+
+				function Triangle(p0, p1, p2, t0, t1, t2)
+					{
+					this.p0 = p0;
+					this.p1 = p1;
+					this.p2 = p2;
+
+					this.t0 = t0;
+					this.t1 = t1;
+					this.t2 = t2;
+					}
+
+				function Point(x,y)
+					{
+					this.x = x ? x : 0;
+					this.y = y ? y : 0;
+					}
+
+				var p = Point.prototype;
+
+				p.length = function(point)
+					{
+					point = point ? point : new Point();
+
+					var xs =0, ys =0;
+					xs = point.x - this.x;
+					xs = xs * xs;
+
+					ys = point.y - this.y;
+					ys = ys * ys;
+
+					return Math.sqrt( xs + ys );
+					}
+
+				// SETTING WHAT WILL HAPPEN WHEN THE USER SELECTS A FILE
+				document.getElementById("screenshot1").addEventListener("change",function(e){update()});
+				document.getElementById("screenshot2").addEventListener("change",function(e){update()});
+				});
+		</script>
+	</body>
+</html>
