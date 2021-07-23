@@ -31,6 +31,7 @@ Image Merger, Image Resizer, Image Distortion, Business Card, Radio Interview, R
 | https://lrusso.github.io/bannerGenerator/bannerNotebook4.htm |
 | https://lrusso.github.io/bannerGenerator/bannerNotebook5_AppPortrait.htm |
 | https://lrusso.github.io/bannerGenerator/bannerNotebook6_AppLandscape.htm |
+| https://lrusso.github.io/bannerGenerator/bannerPlayStore.htm |
 | https://lrusso.github.io/bannerGenerator/bannerPlayStore_Old_1.htm |
 | https://lrusso.github.io/bannerGenerator/bannerPlayStore_Old_2.htm |
 | https://lrusso.github.io/bannerGenerator/bannerPlayStore_S9_1.htm |
