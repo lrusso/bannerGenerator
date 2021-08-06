@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Gradient Canvas Banner Generator</title>
+		<style>
+			html,body{margin:0;padding:0;background-color:#272727}
+			canvas{display:none}
+			div{display:inline-block;width:100%;background-color:silver}
+			input[type=text]{height:30px;width:90px;font-family:Arial;font-size:13px;margin:0;padding:0;box-sizing:border-box}
+			img{display:inline-block}
+		</style>
+	</head>
+	<body>
+		<canvas width="1024" height="500" id="myCanvas"></canvas>
+
+		<div>
+			<input type="text" id="color1" placeholder="#000">
+			<input type="text" id="color2" placeholder="#000">
+			<input type="text" id="width" placeholder="640">
+			<input type="text" id="height" placeholder="480">
+		</div>
+
+		<img width="1024" height="500" id="finalResult" alt="banner" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4wQQEjQ35agTNQAAAAxJREFUCNdjOH78OAAErgJW23qXwQAAAABJRU5ErkJggg==">
+
+		<script>
+			window.addEventListener("load", function()
+				{
+				// GETTING ALL THE ELEMENTS IN THE WEB FORM
+				var color1 = document.getElementById("color1");
+				var color2 = document.getElementById("color2");
+				var width = document.getElementById("width");
+				var height = document.getElementById("height");
+				var canvas = document.getElementById("myCanvas");
+
+				// FOCUSING THE COLOR 1 FIELD
+				color1.focus();
+
+				// CLEARING ALL THE INPUTTED VALUES (IF ANY)
+				color1.value = "";
+				color2.value = "";
+				width.value = "";
+				height.value = "";
+
+				function update()
+					{
+					try
+						{
+						// RESIZING THE CANVAS
+						canvas.width = width.value;
+						canvas.height = height.value;
+						canvas.style.width = width.value + "px";
+						canvas.style.height = height.value + "px";
+
+						// GETTING THE CANVAS CONTEXT
+						var context = canvas.getContext("2d");
+
+						// SETTING THE GRADIENT
+						var gradient = context.createLinearGradient(0, 0, 0, parseFloat(height.value));
+						gradient.addColorStop(0, "rgba("+ hexToRgb(color1.value) + ", 1)");
+						gradient.addColorStop(1, "rgba("+ hexToRgb(color2.value) + ", 1)");
+						context.filter = "blur(1px)";
+						context.fillStyle = gradient;
+
+						// DRAWING THE GRADIENT
+						context.fillRect(0, 0, width.value, height.value);
+
+						// RESIZING THE FINAL RESULT IMAGE
+						document.getElementById("finalResult").style.width = width.value + "px";
+						document.getElementById("finalResult").style.height = height.value + "px";
+
+						// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
+						document.getElementById("finalResult").src = canvas.toDataURL("data/png");
+						}
+						catch(err)
+						{
+						}
+					}
+
+				function hexToRgb(hex)
+					{
+					var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+					return result ? parseInt(result[1], 16) + "," + parseInt(result[2], 16) + "," + parseInt(result[3], 16) : null;
+					}
+
+				// SETTING WHAT WILL HAPPEN WHEN THE USER TYPES IN A INPUT BOX
+				document.getElementById("color1").addEventListener("input",function(e){update()});
+				document.getElementById("color2").addEventListener("input",function(e){update()});
+				document.getElementById("width").addEventListener("input",function(e){update()});
+				document.getElementById("height").addEventListener("input",function(e){update()});
+				});
+		</script>
+	</body>
+</html>
