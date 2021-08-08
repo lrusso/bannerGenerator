@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Logo Frame Generator</title>
+		<style>
+			html,body{margin:0;padding:0;background-color:#272727}
+			canvas{display:none;text-rendering:optimizeLegibility}
+			div{display:inline-block;width:100%;background-color:silver}
+			input[type=text]{height:30px;width:130px;font-family:Arial;font-size:13px;margin:0;padding:0;box-sizing:border-box}
+			input[type=file]{height:30px;font-family:Arial;font-size:13px;line-height:30px;vertical-align:top;margin:0;padding:0;box-sizing:border-box}
+			img{display:inline-block;border:5px dashed blue;margin-top:2px;}
+		</style>
+	</head>
+	<body>
+		<canvas width="1024" height="500" id="myCanvas"></canvas>
+
+		<div>
+			<input type="text" id="width" placeholder="frame width">
+			<input type="text" id="height" placeholder="frame height">
+			<input type="text" id="imgSize" placeholder="image size">
+			<input type="file" id="screenshot">
+		</div>
+
+		<img width="1024" height="500" id="finalResult" alt="banner" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4wQQEjQ35agTNQAAAAxJREFUCNdjOH78OAAErgJW23qXwQAAAABJRU5ErkJggg==">
+
+		<script>
+			window.addEventListener("load", function()
+				{
+				// GETTING ALL THE ELEMENTS IN THE WEB FORM
+				var width = document.getElementById("width");
+				var height = document.getElementById("height");
+				var imgSize = document.getElementById("imgSize");
+				var canvas = document.getElementById("myCanvas");
+
+				// FOCUSING THE WIDTH FIELD
+				width.focus();
+
+				// CLEARING ALL THE INPUTTED VALUES (IF ANY)
+				width.value = "";
+				height.value = "";
+				imgSize.value = "";
+				document.getElementById("screenshot").value = null;
+
+				function update()
+					{
+					// GETTING THE CONTEXT
+					var context = canvas.getContext("2d");
+
+					// RESIZING THE CANVAS
+					try
+						{
+						canvas.width = width.value;
+						canvas.height = height.value;
+						canvas.style.width = width.value + "px";
+						canvas.style.height = height.value + "px";
+						}
+						catch(err)
+						{
+						}
+
+					// RESIZING THE FINAL RESULT IMAGE
+					try
+						{
+						document.getElementById("finalResult").style.width = width.value + "px";
+						document.getElementById("finalResult").style.height = height.value + "px";
+						}
+						catch(err)
+						{
+						}
+
+					try
+						{
+						// CREATING THE FILEREADER
+						var filereader = new FileReader();
+
+						// GETTING THE EXTENSION
+						var extension = document.getElementById("screenshot").files[0].name.split(".").pop().toLowerCase();
+
+						// CHECKING THE EXTENSION IN ORDER TO KNOW IF THE FILE IS AN IMAGE
+						if (extension=="jpg" | extension=="jpeg" | extension=="png")
+							{
+							// SETTING WHAT WILL HAPPEN WHEN THE FILE IS LOADED
+							filereader.onload = function()
+								{
+								// LOADING THE IMAGE FILE
+								var image3 = new Image;
+								image3.onload = function()
+									{
+									// GETTING THE IMAGE RATIO
+									var ratio = image3.width/image3.height;
+									var imageWidth = document.getElementById("imgSize").value;
+									var imageHeight = document.getElementById("imgSize").value/ratio;
+
+									try
+										{
+										// SETTING THE IMAGE SCALE
+										var scale = width * 1 / image3.width;
+
+										// GETTING THE RESIZED IMAGE
+										var imagenResized = downScaleImage(image3, scale);
+
+										// DRAWING THE RESIZED IMAGE
+										context.drawImage(imagenResized, (1024 * 0.70) - imageWidth / 2, 500/2-imageHeight/2, imageWidth, imageHeight);
+										}
+										catch(err)
+										{
+										// IF THERE IS AN ERROR, IT MEANS THAT THE FILE IMAGE IS SMALLER THAN
+										// THE SIZE THAT IT SUPPOSED TO FILL. SO, BECAUSE OF THIS,
+										// IN THE FOLLOWING LINE THE IMAGE IS STRETCHED TO FILL.
+										context.drawImage(image3, width.value / 2 - imageWidth / 2, height.value / 2 - imageHeight / 2, imageWidth, imageHeight);
+										}
+
+									// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
+									document.getElementById("finalResult").src = canvas.toDataURL("data/png");
+									};
+								image3.src = filereader.result;
+								};
+
+							// READING/LOADING THE FILE
+							filereader.readAsDataURL(document.getElementById("screenshot").files[0]);
+							}
+							else
+							{
+							// RESIZING THE FINAL RESULT IMAGE
+							document.getElementById("finalResult").style.width = width.value + "px";
+							document.getElementById("finalResult").style.height = height.value + "px";
+
+							// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
+							document.getElementById("finalResult").src = canvas.toDataURL("data/png");
+							}
+						}
+						catch(err)
+						{
+						// RESIZING THE FINAL RESULT IMAGE
+						document.getElementById("finalResult").style.width = width.value + "px";
+						document.getElementById("finalResult").style.height = height.value + "px";
+
+						// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
+						document.getElementById("finalResult").src = canvas.toDataURL("data/png");
+						}
+					}
+
+				function downScaleImage(img, scale)
+					{
+					var imgCV = document.createElement("canvas");
+					imgCV.width = img.width;
+					imgCV.height = img.height;
+					var imgCtx = imgCV.getContext("2d");
+					imgCtx.drawImage(img, 0, 0);
+					return downScaleCanvas(imgCV, scale);
+					}
+
+				function downScaleCanvas(cv, scale)
+					{
+					if (!(scale < 1) || !(scale > 0)) throw ("scale must be a positive number <1 ");
+					var sqScale = scale * scale;
+					var sw = cv.width;
+					var sh = cv.height;
+					var tw = Math.floor(sw * scale);
+					var th = Math.floor(sh * scale);
+					var sx = 0, sy = 0, sIndex = 0;
+					var tx = 0, ty = 0, yIndex = 0, tIndex = 0;
+					var tX = 0, tY = 0;
+					var w = 0, nw = 0, wx = 0, nwx = 0, wy = 0, nwy = 0;
+					var crossX = false;
+					var crossY = false;
+					var sBuffer = cv.getContext("2d").getImageData(0, 0, sw, sh).data;
+					var tBuffer = new Float32Array(4 * sw * sh);
+					var sR = 0, sG = 0,  sB = 0;
+					var sA = 0;
+
+					for (sy = 0; sy < sh; sy++)
+						{
+						ty = sy * scale;
+						tY = 0 | ty;
+						yIndex = 4 * tY * tw;
+						crossY = (tY != (0 | ty + scale));
+						if (crossY)
+							{
+							wy = (tY + 1 - ty);
+							nwy = (ty + scale - tY - 1);
+							}
+						for (sx = 0; sx < sw; sx++, sIndex += 4)
+							{
+							tx = sx * scale;
+							tX = 0 |  tx;
+							tIndex = yIndex + tX * 4;
+							crossX = (tX != (0 | tx + scale));
+							if (crossX)
+								{
+								wx = (tX + 1 - tx);
+								nwx = (tx + scale - tX - 1);
+								}
+							sR = sBuffer[sIndex];
+							sG = sBuffer[sIndex + 1];
+							sB = sBuffer[sIndex + 2];
+							sA = sBuffer[sIndex + 3];
+							if (!crossX && !crossY)
+								{
+								tBuffer[tIndex] += sR * sqScale;
+								tBuffer[tIndex + 1] += sG * sqScale;
+								tBuffer[tIndex + 2] += sB * sqScale;
+								tBuffer[tIndex + 3] += sA * sqScale;
+								}
+							else if (crossX && !crossY)
+								{
+								w = wx * scale;
+								tBuffer[tIndex] += sR * w;
+								tBuffer[tIndex + 1] += sG * w;
+								tBuffer[tIndex + 2] += sB * w;
+								tBuffer[tIndex + 3] += sA * w;
+								nw = nwx * scale
+								tBuffer[tIndex + 4] += sR * nw;
+								tBuffer[tIndex + 5] += sG * nw;
+								tBuffer[tIndex + 6] += sB * nw;
+								tBuffer[tIndex + 7] += sA * nw;
+								}
+							else if (crossY && !crossX)
+								{
+								w = wy * scale;
+								tBuffer[tIndex] += sR * w;
+								tBuffer[tIndex + 1] += sG * w;
+								tBuffer[tIndex + 2] += sB * w;
+								tBuffer[tIndex + 3] += sA * w;
+								nw = nwy * scale
+								tBuffer[tIndex + 4 * tw    ] += sR * nw;
+								tBuffer[tIndex + 4 * tw + 1] += sG * nw;
+								tBuffer[tIndex + 4 * tw + 2] += sB * nw;
+								tBuffer[tIndex + 4 * tw + 3] += sA * nw;
+								}
+							else
+								{
+								w = wx * wy;
+								tBuffer[tIndex] += sR * w;
+								tBuffer[tIndex + 1] += sG * w;
+								tBuffer[tIndex + 2] += sB * w;
+								tBuffer[tIndex + 3] += sA * w;
+								nw = nwx * wy;
+								tBuffer[tIndex + 4] += sR * nw;
+								tBuffer[tIndex + 5] += sG * nw;
+								tBuffer[tIndex + 6] += sB * nw;
+								tBuffer[tIndex + 7] += sA * nw;
+								nw = wx * nwy;
+								tBuffer[tIndex + 4 * tw] += sR * nw;
+								tBuffer[tIndex + 4 * tw + 1] += sG * nw;
+								tBuffer[tIndex + 4 * tw + 2] += sB * nw;
+								tBuffer[tIndex + 4 * tw + 3] += sA * nw;
+								nw = nwx * nwy;
+								tBuffer[tIndex + 4 * tw + 4] += sR * nw;
+								tBuffer[tIndex + 4 * tw + 5] += sG * nw;
+								tBuffer[tIndex + 4 * tw + 6] += sB * nw;
+								tBuffer[tIndex + 4 * tw + 7] += sA * nw;
+								}
+							}
+						}
+
+					var resCV = document.createElement("canvas");
+					resCV.width = tw;
+					resCV.height = th;
+					var resCtx = resCV.getContext("2d");
+					var imgRes = resCtx.getImageData(0, 0, tw, th);
+					var tByteBuffer = imgRes.data;
+
+					var pxIndex = 0;
+					for (sIndex = 0, tIndex = 0; pxIndex < tw * th; sIndex += 4, tIndex += 4, pxIndex++)
+						{
+						tByteBuffer[tIndex] = Math.ceil(tBuffer[sIndex]);
+						tByteBuffer[tIndex + 1] = Math.ceil(tBuffer[sIndex + 1]);
+						tByteBuffer[tIndex + 2] = Math.ceil(tBuffer[sIndex + 2]);
+						tByteBuffer[tIndex + 3] = Math.ceil(tBuffer[sIndex + 3]);
+						}
+
+					resCtx.putImageData(imgRes, 0, 0);
+					return resCV;
+					}
+
+				// SETTING WHAT WILL HAPPEN WHEN THE USER TYPES IN A INPUT BOX
+				document.getElementById("width").addEventListener("input",function(e){update()});
+				document.getElementById("height").addEventListener("input",function(e){update()});
+				document.getElementById("imgSize").addEventListener("input",function(e){update()});
+
+				// SETTING WHAT WILL HAPPEN WHEN THE USER SELECTS A FILE
+				document.getElementById("screenshot").addEventListener("change",function(e){update()});
+				});
+		</script>
+	</body>
+</html>
