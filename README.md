@@ -32,6 +32,10 @@ Image Merger, Image Resizer, Image Distortion, Business Card, Radio Interview, R
 | [bannerPhone_Android_Old_Portrait2.htm](https://lrusso.github.io/bannerGenerator/bannerPhone_Android_Old_Portrait2.htm) |
 | [bannerPhone_Android_Old_Landscape1.htm](https://lrusso.github.io/bannerGenerator/bannerPhone_Android_Old_Landscape1.htm) |
 | [bannerPhone_Android_Old_Landscape2.htm](https://lrusso.github.io/bannerGenerator/bannerPhone_Android_Old_Landscape2.htm) |
+| [bannerPhone_Android_S9_Portrait1.htm](https://lrusso.github.io/bannerGenerator/bannerPhone_Android_S9_Portrait1.htm) |
+| [bannerPhone_Android_S9_Portrait2.htm](https://lrusso.github.io/bannerGenerator/bannerPhone_Android_S9_Portrait2.htm) |
+| [bannerPhone_Android_S9_Landscape1.htm](https://lrusso.github.io/bannerGenerator/bannerPhone_Android_S9_Landscape1.htm) |
+| [bannerPhone_Android_S9_Landscape2.htm](https://lrusso.github.io/bannerGenerator/bannerPhone_Android_S9_Landscape2.htm) |
 | [bannerPhone_Android_S10_Portrait1.htm](https://lrusso.github.io/bannerGenerator/bannerPhone_Android_S10_Portrait1.htm) |
 | [bannerPhone_Android_S10_Portrait2.htm](https://lrusso.github.io/bannerGenerator/bannerPhone_Android_S10_Portrait2.htm) |
 | [bannerPhone_Android_S10_Landscape1.htm](https://lrusso.github.io/bannerGenerator/bannerPhone_Android_S10_Landscape1.htm) |
@@ -44,10 +48,6 @@ Image Merger, Image Resizer, Image Distortion, Business Card, Radio Interview, R
 | [bannerPhone_Android_S22_Portrait2.htm](https://lrusso.github.io/bannerGenerator/bannerPhone_Android_S22_Portrait2.htm) |
 | [bannerPhone_Android_S22_Landscape1.htm](https://lrusso.github.io/bannerGenerator/bannerPhone_Android_S22_Landscape1.htm) |
 | [bannerPhone_Android_S22_Landscape2.htm](https://lrusso.github.io/bannerGenerator/bannerPhone_Android_S22_Landscape2.htm) |
-| [bannerPhone_Android_S9_Landscape1.htm](https://lrusso.github.io/bannerGenerator/bannerPhone_Android_S9_Landscape1.htm) |
-| [bannerPhone_Android_S9_Landscape2.htm](https://lrusso.github.io/bannerGenerator/bannerPhone_Android_S9_Landscape2.htm) |
-| [bannerPhone_Android_S9_Portrait1.htm](https://lrusso.github.io/bannerGenerator/bannerPhone_Android_S9_Portrait1.htm) |
-| [bannerPhone_Android_S9_Portrait2.htm](https://lrusso.github.io/bannerGenerator/bannerPhone_Android_S9_Portrait2.htm) |
 | [bannerPhone_With_Text_Landscape.htm](https://lrusso.github.io/bannerGenerator/bannerPhone_With_Text_Landscape.htm) |
 | [bannerPhone_With_Text_Portrait.htm](https://lrusso.github.io/bannerGenerator/bannerPhone_With_Text_Portrait.htm) |
 | [bannerPhone_iPhone_13_Pro_Max_Portrait1.htm](https://lrusso.github.io/bannerGenerator/bannerPhone_iPhone_13_Pro_Max_Portrait1.htm) |
