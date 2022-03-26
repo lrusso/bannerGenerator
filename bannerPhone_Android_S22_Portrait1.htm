@@ -12,11 +12,11 @@
 		</style>
 	</head>
 	<body>
-		<canvas width="623" height="1100" id="myCanvas"></canvas>
+		<canvas width="623" height="1150" id="myCanvas"></canvas>
 
 		<div>
 			<input type="file" id="screenshot">
-			<img width="623" height="1100" id="finalResult" alt="banner" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH5AodAgAMo/D8kgAAAAtJREFUCNdj+A8EAAn7A/1jJsWPAAAAAElFTkSuQmCC">
+			<img width="623" height="1150" id="finalResult" alt="banner" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH5AodAgAMo/D8kgAAAAtJREFUCNdj+A8EAAn7A/1jJsWPAAAAAElFTkSuQmCC">
 		</div>
 
 		<script>
@@ -56,7 +56,7 @@
 
 					// DRAWING A WHITE BACKGROUND
 					context.fillStyle = "#FFFFFF";
-					context.fillRect(0, 0, 623, 1100);
+					context.fillRect(0, 0, 623, 1150);
 
 					try
 						{
@@ -90,18 +90,18 @@
 										var imagenResized = downScaleImage(image2, scale);
 
 										// DRAWING THE RESIZED IMAGE
-										context.drawImage(imagenResized, 79, 77, 461, 944);
+										context.drawImage(imagenResized, 79, 77, 461, 990);
 										}
 										catch(err)
 										{
 										// IF THERE IS AN ERROR, IT MEANS THAT THE FILE IMAGE IS SMALLER THAN
 										// THE SIZE THAT IT SUPPOSED TO FILL. SO, BECAUSE OF THIS,
 										// IN THE FOLLOWING LINE THE IMAGE IS STRETCHED TO FILL.
-										context.drawImage(image2, 79, 77, 461, 944);
+										context.drawImage(image2, 79, 77, 461, 990);
 										}
 
 									// DRAWING THE SMARTPHONE
-									context.drawImage(image1, 0, 0, 623, 1100);
+									context.drawImage(image1, 0, 0, 623, 1150);
 
 									// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
 									document.getElementById("finalResult").src = canvas.toDataURL("data/png");
