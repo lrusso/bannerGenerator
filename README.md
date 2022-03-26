@@ -56,6 +56,8 @@ Image Merger, Image Resizer, Image Distortion, Business Card, Radio Interview, R
 | [bannerPhone_iPhone_X_Landscape2.htm](https://lrusso.github.io/bannerGenerator/bannerPhone_iPhone_X_Landscape2.htm) |
 | [bannerPhone_iPhone_13_Pro_Max_Portrait1.htm](https://lrusso.github.io/bannerGenerator/bannerPhone_iPhone_13_Pro_Max_Portrait1.htm) |
 | [bannerPhone_iPhone_13_Pro_Max_Portrait2.htm](https://lrusso.github.io/bannerGenerator/bannerPhone_iPhone_13_Pro_Max_Portrait2.htm) |
+| [bannerPhone_iPhone_13_Pro_Max_Landscape1.htm](https://lrusso.github.io/bannerGenerator/bannerPhone_iPhone_13_Pro_Max_Landscape1.htm) |
+| [bannerPhone_iPhone_13_Pro_Max_Landscape2.htm](https://lrusso.github.io/bannerGenerator/bannerPhone_iPhone_13_Pro_Max_Landscape2.htm) |
 | [bannerPlayStore.htm](https://lrusso.github.io/bannerGenerator/bannerPlayStore.htm) |
 | [bannerPlayStore_Old_1.htm](https://lrusso.github.io/bannerGenerator/bannerPlayStore_Old_1.htm) |
 | [bannerPlayStore_Old_2.htm](https://lrusso.github.io/bannerGenerator/bannerPlayStore_Old_2.htm) |
