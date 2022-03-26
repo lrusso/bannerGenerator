@@ -64,6 +64,8 @@ Image Merger, Image Resizer, Image Distortion, Business Card, Radio Interview, R
 | https://lrusso.github.io/bannerGenerator/bannerPhone_Android_S22_Portrait2.htm |
 | https://lrusso.github.io/bannerGenerator/bannerPhone_Android_S22_Landscape1.htm |
 | https://lrusso.github.io/bannerGenerator/bannerPhone_Android_S22_Landscape2.htm |
+| https://lrusso.github.io/bannerGenerator/bannerPhone_iPhone_13_Pro_Max_Portrait1.htm |
+| https://lrusso.github.io/bannerGenerator/bannerPhone_iPhone_13_Pro_Max_Portrait2.htm |
 | https://lrusso.github.io/bannerGenerator/bannerPhone_iPhone_X_Portrait1.htm |
 | https://lrusso.github.io/bannerGenerator/bannerPhone_iPhone_X_Portrait2.htm |
 | https://lrusso.github.io/bannerGenerator/bannerPhone_iPhone_X_Landscape1.htm |
