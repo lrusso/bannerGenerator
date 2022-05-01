@@ -68,8 +68,10 @@
 
 									try
 										{
-										// GETTING THE IMAGE SIZE
-										var imageSize = document.getElementById("imgSize").value;
+										// GETTING THE IMAGE RATIO
+										var ratio = image2.width/image2.height;
+										var width = document.getElementById("imgSize").value;
+										var height = document.getElementById("imgSize").value/ratio;
 
 										// CREATING THE CANVAS
 										finalCanvas = document.createElement("canvas");
@@ -90,14 +92,14 @@
 										var imagenResized = downScaleImage(image2, scale);
 
 										// DRAWING THE RESIZED IMAGE
-										finalContext.drawImage(imagenResized, 300 / 2 - imageSize / 2, 300 / 2 - imageSize / 2, imageSize, imageSize);
+										finalContext.drawImage(imagenResized, 300 / 2 - width / 2, 300 / 2 - height / 2, width, height);
 										}
 										catch(err)
 										{
 										// IF THERE IS AN ERROR, IT MEANS THAT THE FILE IMAGE IS SMALLER THAN
 										// THE SIZE THAT IT SUPPOSED TO FILL. SO, BECAUSE OF THIS,
 										// IN THE FOLLOWING LINE THE IMAGE IS STRETCHED TO FILL.
-										finalContext.drawImage(image2, 300 / 2 - imageSize / 2, 300 / 2 - imageSize / 2, imageSize, imageSize);
+										finalContext.drawImage(image2, 300 / 2 - width / 2, 300 / 2 - height / 2, width, height);
 										}
 
 									// UPDATING THE FINAL IMAGE WIDTH AND HEIGHT
