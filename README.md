@@ -75,3 +75,4 @@ Image Merger, Image Resizer, Image Distortion, Business Card, Radio Interview, R
 | [bannerRecruiting3.htm](https://lrusso.github.io/bannerGenerator/bannerRecruiting3.htm) |
 | [bannerRecruiting4.htm](https://lrusso.github.io/bannerGenerator/bannerRecruiting4.htm) |
 | [bannerResizer.htm](https://lrusso.github.io/bannerGenerator/bannerResizer.htm) |
+| [bannerSharer.htm](https://lrusso.github.io/bannerGenerator/bannerSharer.htm) |
