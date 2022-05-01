@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
-		<title>Resizer Banner Generator</title>
+		<title>Sharer Generator</title>
 		<style>
 			html,body{margin:0;padding:0;background-color:#272727}
 			canvas{display:none;text-rendering:optimizeLegibility}
@@ -15,17 +15,20 @@
 	<body>
 		<div>
 			<input type="file" id="screenshot">
-			<input type="text" id="imgSize" placeholder="Size" value="1024">
+			<input type="text" id="imgSize" placeholder="Size" value="200">
 		</div>
 
-		<img width="320" height="200" id="finalResult" alt="banner" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH5AodAgAMo/D8kgAAAAtJREFUCNdj+A8EAAn7A/1jJsWPAAAAAElFTkSuQmCC">
+		<img width="300" height="300" id="finalResult" alt="banner" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH5AodAgAMo/D8kgAAAAtJREFUCNdj+A8EAAn7A/1jJsWPAAAAAElFTkSuQmCC">
 
 		<script>
 			window.addEventListener("load", function()
 				{
+				// GETTING ALL THE ELEMENTS IN THE WEB FORM
+				var canvas = document.getElementById("myCanvas");
+
 				// CLEARING ALL THE INPUTTED VALUES (IF ANY)
 				document.getElementById("screenshot").value = null;
-				document.getElementById("imgSize").value = "1024";
+				document.getElementById("imgSize").value = "200";
 
 				// USING A VARIABLE IN ORDER TO KNOW WHEN ALL THE GRAPHICAL ELEMENTS ARE LOADED
 				var elementsLoadedCounter = 0;
@@ -65,39 +68,41 @@
 
 									try
 										{
-										// GETTING THE IMAGE RATIO
-										var ratio = image2.width/image2.height;
-										var width = document.getElementById("imgSize").value;
-										var height = document.getElementById("imgSize").value/ratio;
+										// GETTING THE IMAGE SIZE
+										var imageSize = document.getElementById("imgSize").value;
 
 										// CREATING THE CANVAS
 										finalCanvas = document.createElement("canvas");
-										finalCanvas.width = width;
-										finalCanvas.height = height;
+										finalCanvas.width = 300;
+										finalCanvas.height = 300;
 
 										// GETTING THE CONTEXT
 										finalContext = finalCanvas.getContext("2d");
 
+										// DRAWING A WHITE BACKGROUND
+										finalContext.fillStyle = "#FFFFFF";
+										finalContext.fillRect(0, 0, 300, 300);
+
 										// SETTING THE IMAGE SCALE
-										var scale = width * 1 / image2.width;
+										var scale = imageSize * 1 / image2.width;
 
 										// GETTING THE RESIZED IMAGE
 										var imagenResized = downScaleImage(image2, scale);
 
 										// DRAWING THE RESIZED IMAGE
-										finalContext.drawImage(imagenResized, 0, 0, width, height);
+										finalContext.drawImage(imagenResized, 300 / 2 - imageSize / 2, 300 / 2 - imageSize / 2, imageSize, imageSize);
 										}
 										catch(err)
 										{
 										// IF THERE IS AN ERROR, IT MEANS THAT THE FILE IMAGE IS SMALLER THAN
 										// THE SIZE THAT IT SUPPOSED TO FILL. SO, BECAUSE OF THIS,
 										// IN THE FOLLOWING LINE THE IMAGE IS STRETCHED TO FILL.
-										finalContext.drawImage(image2, 0, 0, width, height);
+										finalContext.drawImage(image2, 300 / 2 - imageSize / 2, 300 / 2 - imageSize / 2, imageSize, imageSize);
 										}
 
 									// UPDATING THE FINAL IMAGE WIDTH AND HEIGHT
-									document.getElementById("finalResult").style.width = width + "px";
-									document.getElementById("finalResult").style.height = height + "px";
+									document.getElementById("finalResult").style.width = 300 + "px";
+									document.getElementById("finalResult").style.height = 300 + "px";
 
 									// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
 									document.getElementById("finalResult").src = finalCanvas.toDataURL("data/png");
