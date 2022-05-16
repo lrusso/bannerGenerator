@@ -5,7 +5,8 @@ Image Merger, Image Resizer, Image Distortion, Business Card, Radio Interview, R
 | BANNER GENERATORS | 
 | :------------ |
 | [bannerApp.htm](https://lrusso.github.io/bannerGenerator/bannerApp.htm) |
-| [bannerBusinessCard.htm](https://lrusso.github.io/bannerGenerator/bannerBusinessCard.htm) |
+| [bannerBusinessCardFormal.htm](https://lrusso.github.io/bannerGenerator/bannerBusinessCardFormal.htm) |
+| [bannerBusinessCardGoogle.htm](https://lrusso.github.io/bannerGenerator/bannerBusinessCardGoogle.htm) |
 | [bannerDistorted1.htm](https://lrusso.github.io/bannerGenerator/bannerDistorted1.htm) |
 | [bannerDistorted2.htm](https://lrusso.github.io/bannerGenerator/bannerDistorted2.htm) |
 | [bannerGitHub1.htm](https://lrusso.github.io/bannerGenerator/bannerGitHub1.htm) |
