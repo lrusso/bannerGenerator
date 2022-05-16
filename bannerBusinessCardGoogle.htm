@@ -19,7 +19,7 @@
 			<input type="text" id="search" placeholder="Search">
 			<input type="text" id="didYouMean" placeholder="Did you mean">
 			<input type="text" id="webTitle" placeholder="Web title">
-			<input type="text" id="webURL" placeholder="Web url">
+			<input type="text" id="webURL" placeholder="Web URL">
 			<input type="text" id="line1" placeholder="Line 1">
 			<input type="text" id="line2" placeholder="Line 2">
 		</div>
@@ -121,7 +121,7 @@
 					context.fillText(didYouMean.value, 200 + valueX1, 380);
 
 					// DRAWING THE UNDERLINE
-					context.fillRect(200 + valueX1, 385, valueX2, 5);
+					context.fillRect(200 + valueX1, 387, valueX2, 5);
 
 					// SETTING THE FONT STYLE
 					context.font = "48px Arial";
@@ -132,7 +132,7 @@
 
 					// DRAWING THE UNDERLINE
 					var valueX3 = context.measureText(webTitle.value).width;
-					context.fillRect(160, 495, valueX3, 5);
+					context.fillRect(160, 497, valueX3, 5);
 
 					// SETTING THE FONT STYLE
 					context.font = "44px Arial";
