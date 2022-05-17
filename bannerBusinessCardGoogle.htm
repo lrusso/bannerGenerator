@@ -37,11 +37,11 @@
 			// CHECKING THE USER LANGUAGE
 			if (userLanguage.substring(0,2)=="es")
 				{
-				STRING_DIDYOUMEAN = "Quisiste decir: ";
+				STRING_DIDYOUMEAN = "Quisiste decir:";
 				}
 				else
 				{
-				STRING_DIDYOUMEAN = "Did you mean: ";
+				STRING_DIDYOUMEAN = "Did you mean:";
 				}
 
 			window.addEventListener("load", function()
@@ -118,12 +118,12 @@
 					// DRAWING THE DID YOU MEAN VALUE
 					var valueX1 = context.measureText(STRING_DIDYOUMEAN).width;
 					var valueX2 = context.measureText(didYouMean.value).width;
-					var valueXPatch = 0;
-					if (valueX1<300){valueXPatch=10}
-					context.fillText(didYouMean.value, 200 + valueX1 + 15 + valueXPatch, 380);
+					var valueXPatch = 20;
+					if (valueX1<300){valueXPatch=30}
+					context.fillText(didYouMean.value, 200 + valueX1 + valueXPatch, 380);
 
 					// DRAWING THE UNDERLINE
-					context.fillRect(200 + valueX1 + 15 + valueXPatch, 387, valueX2, 5);
+					context.fillRect(200 + valueX1 + valueXPatch, 387, valueX2, 5);
 
 					// SETTING THE FONT STYLE
 					context.font = "48px Arial";
