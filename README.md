@@ -25,6 +25,8 @@ Image Merger, Image Resizer, Image Distortion, Business Card, Radio Interview, R
 | [bannerMergerHorizontal4.htm](https://lrusso.github.io/bannerGenerator/bannerMergerHorizontal4.htm) |
 | [bannerMergerVertical1.htm](https://lrusso.github.io/bannerGenerator/bannerMergerVertical1.htm) |
 | [bannerMergerVertical2.htm](https://lrusso.github.io/bannerGenerator/bannerMergerVertical2.htm) |
+| [bannerMergerVertical3.htm](https://lrusso.github.io/bannerGenerator/bannerMergerVertical3.htm) |
+| [bannerMergerVertical4.htm](https://lrusso.github.io/bannerGenerator/bannerMergerVertical4.htm) |
 | [bannerNotebook1.htm](https://lrusso.github.io/bannerGenerator/bannerNotebook1.htm) |
 | [bannerNotebook2.htm](https://lrusso.github.io/bannerGenerator/bannerNotebook2.htm) |
 | [bannerNotebook3.htm](https://lrusso.github.io/bannerGenerator/bannerNotebook3.htm) |
