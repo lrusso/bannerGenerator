@@ -21,6 +21,8 @@ Image Merger, Image Resizer, Image Distortion, Business Card, Radio Interview, R
 | [bannerMacBook6_AppLandscape.htm](https://lrusso.github.io/bannerGenerator/bannerMacBook6_AppLandscape.htm) |
 | [bannerMergerHorizontal1.htm](https://lrusso.github.io/bannerGenerator/bannerMergerHorizontal1.htm) |
 | [bannerMergerHorizontal2.htm](https://lrusso.github.io/bannerGenerator/bannerMergerHorizontal2.htm) |
+| [bannerMergerHorizontal3.htm](https://lrusso.github.io/bannerGenerator/bannerMergerHorizontal3.htm) |
+| [bannerMergerHorizontal4.htm](https://lrusso.github.io/bannerGenerator/bannerMergerHorizontal4.htm) |
 | [bannerMergerVertical1.htm](https://lrusso.github.io/bannerGenerator/bannerMergerVertical1.htm) |
 | [bannerMergerVertical2.htm](https://lrusso.github.io/bannerGenerator/bannerMergerVertical2.htm) |
 | [bannerNotebook1.htm](https://lrusso.github.io/bannerGenerator/bannerNotebook1.htm) |
