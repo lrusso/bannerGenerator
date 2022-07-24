@@ -83,6 +83,9 @@ Image Merger, Image Resizer, Image Distortion, Business Card, Radio Interview, R
 | [bannerSharer.htm](https://lrusso.github.io/bannerGenerator/bannerSharer.htm) |
 | [bannerVideo_03_Android1.htm](https://lrusso.github.io/bannerGenerator/bannerVideo_03_Android1.htm) |
 | [bannerVideo_03_Android2.htm](https://lrusso.github.io/bannerGenerator/bannerVideo_03_Android2.htm) |
+| [bannerVideo_03_BothStores1.htm](https://lrusso.github.io/bannerGenerator/bannerVideo_03_BothStores1.htm) |
+| [bannerVideo_03_BothStores2.htm](https://lrusso.github.io/bannerGenerator/bannerVideo_03_BothStores2.htm) |
 | [bannerVideo_03_GitHub1.htm](https://lrusso.github.io/bannerGenerator/bannerVideo_03_GitHub1.htm) |
+| [bannerVideo_03_GitHub2.htm](https://lrusso.github.io/bannerGenerator/bannerVideo_03_GitHub2.htm) |
 | [bannerVideo_03_iOS1.htm](https://lrusso.github.io/bannerGenerator/bannerVideo_03_iOS1.htm) |
 | [bannerVideo_03_iOS2.htm](https://lrusso.github.io/bannerGenerator/bannerVideo_03_iOS2.htm) |
