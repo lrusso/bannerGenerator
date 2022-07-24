@@ -7,7 +7,7 @@
 			html,body{margin:0;padding:0;background-color:#272727}
 			canvas{display:none;text-rendering:optimizeLegibility}
 			div{display:inline-block;width:100%;background-color:silver}
-			select{height:30px;width:90px;font-family:Arial;font-size:13px;margin:0;padding:0;background-color:white;border:1px solid silver;}
+			select{height:30px;width:120px;font-family:Arial;font-size:13px;margin:0;padding:0;background-color:white;border:1px solid silver;}
 			input[type=text]{height:30px;width:90px;font-family:Arial;font-size:13px;margin:0;padding:0;box-sizing:border-box}
 			input[type=file]{height:30px;font-family:Arial;font-size:13px;line-height:30px;vertical-align:top;margin:0;padding:0;box-sizing:border-box}
 			img{display:inline-block}
@@ -29,6 +29,7 @@
 			<input type="text" id="line1" placeholder="Line 1">
 			<input type="text" id="line2" placeholder="Line 2">
 			<input type="text" id="line3" placeholder="Line 3">
+			<select id="showLogo"><option selected value="YES">Show logo</option><option value="NO">Hide logo</option></select>
 			<select id="language"><option selected value="en">English</option><option value="es">Spanish</option></select>
 			<input type="text" id="imgSize" placeholder="Image size">
 			<input type="file" id="screenshot">
@@ -62,6 +63,7 @@
 				var line2 = document.getElementById("line2");
 				var line3 = document.getElementById("line3");
 				var imgSize = document.getElementById("imgSize");
+				var showLogo = document.getElementById("showLogo");
 				var language = document.getElementById("language");
 				var canvas = document.getElementById("myCanvas");
 
@@ -74,6 +76,7 @@
 				line2.value = "";
 				line3.value = "";
 				imgSize.value = "475";
+				showLogo.selectedIndex = 0;
 				language.selectedIndex = 0;
 				document.getElementById("screenshot").value = null;
 
@@ -147,8 +150,12 @@
 					// DRAWING THE TEXT DESCRIPTION 3
 					context.fillText(line3.value, 210, 717);
 
-					// DRAWING THE APP STORE LOGO
-					context.drawImage(image2, 250, 850, 325, 110);
+					// CHECKING IF THE LOGO MUST BE DISPLAYED
+					if (showLogo.value=="YES")
+						{
+						// DRAWING THE APP STORE LOGO
+						context.drawImage(image2, 250, 850, 325, 110);
+						}
 
 					try
 						{
@@ -367,6 +374,9 @@
 						image2.src = appstoreSpanish;
 						}
 					});
+
+				// SETTING WHAT WILL HAPPEN WHEN THE USER TOGGLES THE LOGO VISIBLITY
+				document.getElementById("showLogo").addEventListener("change",function(e){update();});
 
 				// SETTING WHAT WILL HAPPEN WHEN THE USER SELECTS A FILE
 				document.getElementById("screenshot").addEventListener("change",function(e){update()});
