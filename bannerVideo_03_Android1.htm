@@ -103,12 +103,30 @@
 					context.beginPath();
 					context.lineWidth = 3;
 					context.fillStyle ="white";
-					context.arc(150, 395, R, 0, 2 * Math.PI, false);
-					context.fill();
-					context.arc(150, 545, R, 0, 2 * Math.PI, false);
-					context.fill();
-					context.arc(150, 695, R, 0, 2 * Math.PI, false);
-					context.fill();
+
+					// CHECKING IF THERE IS A TEXT DESCRIPTION 1
+					if (line1.value!="")
+						{
+						// DRAWING THE BULLET 1
+						context.arc(150, 395, R, 0, 2 * Math.PI, false);
+						context.fill();
+						}
+
+					// CHECKING IF THERE IS A TEXT DESCRIPTION 2
+					if (line2.value!="")
+						{
+						// DRAWING THE BULLET 2
+						context.arc(150, 545, R, 0, 2 * Math.PI, false);
+						context.fill();
+						}
+
+					// CHECKING IF THERE IS A TEXT DESCRIPTION 3
+					if (line3.value!="")
+						{
+						// DRAWING THE BULLET 3
+						context.arc(150, 695, R, 0, 2 * Math.PI, false);
+						context.fill();
+						}
 
 					// SETTING THE FONT STYLE
 					context.font = "130px FredokaOne";
