@@ -114,7 +114,7 @@
 
 					// DRAWING A SEMI TRANSPARENT BACKGROUND FOR THE BULLETS
 					context.fillStyle = "rgba(0,0,0,0.4)";
-					context.roundRect(255, 290, 800, 660, 50).fill();
+					context.roundRect(270, 290, 800, 660, 50).fill();
 
 					// DRAWING THE BULLETS
 					var R = 20;
@@ -126,7 +126,7 @@
 					if (line1.value!="")
 						{
 						// DRAWING THE BULLET 1
-						context.arc(365, 408, R, 0, 2 * Math.PI, false);
+						context.arc(380, 408, R, 0, 2 * Math.PI, false);
 						context.fill();
 						}
 
@@ -134,7 +134,7 @@
 					if (line2.value!="")
 						{
 						// DRAWING THE BULLET 2
-						context.arc(365, 548, R, 0, 2 * Math.PI, false);
+						context.arc(380, 548, R, 0, 2 * Math.PI, false);
 						context.fill();
 						}
 
@@ -142,7 +142,7 @@
 					if (line3.value!="")
 						{
 						// DRAWING THE BULLET 3
-						context.arc(365, 688, R, 0, 2 * Math.PI, false);
+						context.arc(380, 688, R, 0, 2 * Math.PI, false);
 						context.fill();
 						}
 
@@ -150,7 +150,7 @@
 					if (line4.value!="")
 						{
 						// DRAWING THE BULLET 4
-						context.arc(365, 828, R, 0, 2 * Math.PI, false);
+						context.arc(380, 828, R, 0, 2 * Math.PI, false);
 						context.fill();
 						}
 
@@ -167,16 +167,16 @@
 					context.font = "62px MarsdenSemiBold";
 
 					// DRAWING THE TEXT DESCRIPTION 1
-					context.fillText(line1.value, 425, 430);
+					context.fillText(line1.value, 440, 430);
 
 					// DRAWING THE TEXT DESCRIPTION 2
-					context.fillText(line2.value, 425, 570);
+					context.fillText(line2.value, 440, 570);
 
 					// DRAWING THE TEXT DESCRIPTION 3
-					context.fillText(line3.value, 425, 710);
+					context.fillText(line3.value, 440, 710);
 
 					// DRAWING THE TEXT DESCRIPTION 4
-					context.fillText(line4.value, 425, 850);
+					context.fillText(line4.value, 440, 850);
 
 					try
 						{
