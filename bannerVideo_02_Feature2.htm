@@ -35,9 +35,13 @@
 		<div>
 			<input type="text" id="title" placeholder="Title">
 			<input type="text" id="line1" placeholder="Line 1">
+			<select id="line1bullet"><option selected value="YES">Show bullet 1</option><option value="NO">Hide bullet 1</option></select>
 			<input type="text" id="line2" placeholder="Line 2">
+			<select id="line2bullet"><option selected value="YES">Show bullet 2</option><option value="NO">Hide bullet 2</option></select>
 			<input type="text" id="line3" placeholder="Line 3">
+			<select id="line3bullet"><option selected value="YES">Show bullet 3</option><option value="NO">Hide bullet 3</option></select>
 			<input type="text" id="line4" placeholder="Line 4">
+			<select id="line4bullet"><option selected value="YES">Show bullet 4</option><option value="NO">Hide bullet 4</option></select>
 			<input type="text" id="imgSize" placeholder="Image size">
 			<input type="file" id="screenshot">
 		</div>
@@ -76,6 +80,10 @@
 				var line2 = document.getElementById("line2");
 				var line3 = document.getElementById("line3");
 				var line4 = document.getElementById("line4");
+				var line1bullet = document.getElementById("line1bullet");
+				var line2bullet = document.getElementById("line2bullet");
+				var line3bullet = document.getElementById("line3bullet");
+				var line4bullet = document.getElementById("line4bullet");
 				var imgSize = document.getElementById("imgSize");
 				var canvas = document.getElementById("myCanvas");
 
@@ -88,6 +96,10 @@
 				line2.value = "";
 				line3.value = "";
 				line4.value = "";
+				line1bullet.selectedIndex = 0;
+				line2bullet.selectedIndex = 0;
+				line3bullet.selectedIndex = 0;
+				line4bullet.selectedIndex = 0;
 				imgSize.value = "400";
 				document.getElementById("screenshot").value = null;
 
@@ -132,32 +144,32 @@
 						marginFor3Lines = 95;
 						}
 
-					// CHECKING IF THERE IS A TEXT DESCRIPTION 1
-					if (line1.value!="")
+					// CHECKING IF THERE IS A TEXT DESCRIPTION 1 AND IF THE BULLET MUST BE RENDERED
+					if (line1.value!="" && line1bullet.value=="YES")
 						{
 						// DRAWING THE BULLET 1
 						context.arc(950, 408 + marginFor3Lines * 0.3, R, 0, 2 * Math.PI, false);
 						context.fill();
 						}
 
-					// CHECKING IF THERE IS A TEXT DESCRIPTION 2
-					if (line2.value!="")
+					// CHECKING IF THERE IS A TEXT DESCRIPTION 2 AND IF THE BULLET MUST BE RENDERED
+					if (line2.value!="" && line2bullet.value=="YES")
 						{
 						// DRAWING THE BULLET 2
 						context.arc(950, 548 + marginFor3Lines * 0.7, R, 0, 2 * Math.PI, false);
 						context.fill();
 						}
 
-					// CHECKING IF THERE IS A TEXT DESCRIPTION 3
-					if (line3.value!="")
+					// CHECKING IF THERE IS A TEXT DESCRIPTION 3 AND IF THE BULLET MUST BE RENDERED
+					if (line3.value!="" && line3bullet.value=="YES")
 						{
 						// DRAWING THE BULLET 3
 						context.arc(950, 688 + marginFor3Lines * 1.1, R, 0, 2 * Math.PI, false);
 						context.fill();
 						}
 
-					// CHECKING IF THERE IS A TEXT DESCRIPTION 4
-					if (line4.value!="")
+					// CHECKING IF THERE IS A TEXT DESCRIPTION 4 AND IF THE BULLET MUST BE RENDERED
+					if (line4.value!="" && line4bullet.value=="YES")
 						{
 						// DRAWING THE BULLET 4
 						context.arc(950, 828, R, 0, 2 * Math.PI, false);
@@ -177,16 +189,16 @@
 					context.font = "62px MarsdenSemiBold";
 
 					// DRAWING THE TEXT DESCRIPTION 1
-					context.fillText(line1.value, 1010, 430 + marginFor3Lines * 0.3);
+					context.fillText(line1.value, line1bullet.value==="YES" ? 1010 : 927, 430 + marginFor3Lines * 0.3);
 
 					// DRAWING THE TEXT DESCRIPTION 2
-					context.fillText(line2.value, 1010, 570 + marginFor3Lines * 0.7);
+					context.fillText(line2.value, line2bullet.value==="YES" ? 1010 : 927, 570 + marginFor3Lines * 0.7);
 
 					// DRAWING THE TEXT DESCRIPTION 3
-					context.fillText(line3.value, 1010, 710 + marginFor3Lines * 1.1);
+					context.fillText(line3.value, line3bullet.value==="YES" ? 1010 : 927, 710 + marginFor3Lines * 1.1);
 
 					// DRAWING THE TEXT DESCRIPTION 4
-					context.fillText(line4.value, 1010, 850);
+					context.fillText(line4.value, line4bullet.value==="YES" ? 1010 : 927, 850);
 
 					try
 						{
@@ -393,6 +405,10 @@
 				document.getElementById("line3").addEventListener("input",function(e){update()});
 				document.getElementById("line4").addEventListener("input",function(e){update()});
 				document.getElementById("imgSize").addEventListener("input",function(e){update()});
+				document.getElementById("line1bullet").addEventListener("change",function(e){update();});
+				document.getElementById("line2bullet").addEventListener("change",function(e){update();});
+				document.getElementById("line3bullet").addEventListener("change",function(e){update();});
+				document.getElementById("line4bullet").addEventListener("change",function(e){update();});
 
 				// SETTING WHAT WILL HAPPEN WHEN THE USER SELECTS A FILE
 				document.getElementById("screenshot").addEventListener("change",function(e){update()});
