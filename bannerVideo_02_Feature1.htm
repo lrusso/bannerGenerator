@@ -122,11 +122,21 @@
 					context.lineWidth = 3;
 					context.fillStyle ="white";
 
+					// CREATING A VARIABLE FOR RENDERING ONLY 3 LINES
+					var marginFor3Lines = 0;
+
+					// CHECKING IF THE THERE IS NO VALUE FOR THE 4TH LINE
+					if (line4.value=="")
+						{
+						// SETTING THE MARGIN FOR THE FIRST 3 LINES
+						marginFor3Lines = 95;
+						}
+
 					// CHECKING IF THERE IS A TEXT DESCRIPTION 1
 					if (line1.value!="")
 						{
 						// DRAWING THE BULLET 1
-						context.arc(370, 408, R, 0, 2 * Math.PI, false);
+						context.arc(370, 408 + marginFor3Lines * 0.3, R, 0, 2 * Math.PI, false);
 						context.fill();
 						}
 
@@ -134,7 +144,7 @@
 					if (line2.value!="")
 						{
 						// DRAWING THE BULLET 2
-						context.arc(370, 548, R, 0, 2 * Math.PI, false);
+						context.arc(370, 548 + marginFor3Lines * 0.7, R, 0, 2 * Math.PI, false);
 						context.fill();
 						}
 
@@ -142,7 +152,7 @@
 					if (line3.value!="")
 						{
 						// DRAWING THE BULLET 3
-						context.arc(370, 688, R, 0, 2 * Math.PI, false);
+						context.arc(370, 688 + marginFor3Lines * 1.1, R, 0, 2 * Math.PI, false);
 						context.fill();
 						}
 
@@ -167,13 +177,13 @@
 					context.font = "62px MarsdenSemiBold";
 
 					// DRAWING THE TEXT DESCRIPTION 1
-					context.fillText(line1.value, 430, 430);
+					context.fillText(line1.value, 430, 430 + marginFor3Lines * 0.3);
 
 					// DRAWING THE TEXT DESCRIPTION 2
-					context.fillText(line2.value, 430, 570);
+					context.fillText(line2.value, 430, 570 + marginFor3Lines * 0.7);
 
 					// DRAWING THE TEXT DESCRIPTION 3
-					context.fillText(line3.value, 430, 710);
+					context.fillText(line3.value, 430, 710 + marginFor3Lines * 1.1);
 
 					// DRAWING THE TEXT DESCRIPTION 4
 					context.fillText(line4.value, 430, 850);
