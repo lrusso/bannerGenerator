@@ -44,6 +44,7 @@
 			<select id="line4bullet"><option selected value="YES">Show bullet 4</option><option value="NO">Hide bullet 4</option></select>
 			<input type="text" id="imgSize" placeholder="Image size">
 			<input type="file" id="screenshot">
+			<select id="shows4lines"><option selected value="YES">Show 4 lines</option><option value="NO">Show 3 lines</option></select>
 		</div>
 
 		<img width="1920" height="1080" id="finalResult" alt="banner" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4wQQEjQ35agTNQAAAAxJREFUCNdjOH78OAAErgJW23qXwQAAAABJRU5ErkJggg==">
@@ -84,6 +85,7 @@
 				var line2bullet = document.getElementById("line2bullet");
 				var line3bullet = document.getElementById("line3bullet");
 				var line4bullet = document.getElementById("line4bullet");
+				var shows4lines = document.getElementById("shows4lines");
 				var imgSize = document.getElementById("imgSize");
 				var canvas = document.getElementById("myCanvas");
 
@@ -100,6 +102,7 @@
 				line2bullet.selectedIndex = 0;
 				line3bullet.selectedIndex = 0;
 				line4bullet.selectedIndex = 0;
+				shows4lines.selectedIndex = 0;
 				imgSize.value = "400";
 				document.getElementById("screenshot").value = null;
 
@@ -137,8 +140,8 @@
 					// CREATING A VARIABLE FOR ADDING A MARGIN WHEN RENDERING ONLY 3 LINES
 					var marginFor3Lines = 0;
 
-					// CHECKING IF THERE IS NO VALUE FOR THE 4TH LINE
-					if (line4.value=="")
+					// CHECKING IF THE 4TH LINE MUST BE DISPLAYED
+					if (shows4lines.value=="NO")
 						{
 						// SETTING THE MARGIN FOR THE FIRST 3 LINES
 						marginFor3Lines = 95;
@@ -169,7 +172,7 @@
 						}
 
 					// CHECKING IF THERE IS A TEXT DESCRIPTION 4 AND IF THE BULLET MUST BE RENDERED
-					if (line4.value!="" && line4bullet.value=="YES")
+					if (line4.value!="" && line4bullet.value=="YES" && shows4lines.value=="YES")
 						{
 						// DRAWING THE BULLET 4
 						context.arc(950, 828, R, 0, 2 * Math.PI, false);
@@ -197,8 +200,12 @@
 					// DRAWING THE TEXT DESCRIPTION 3
 					context.fillText(line3.value, line3bullet.value==="YES" ? 1010 : 927, 710 + marginFor3Lines * 1.1);
 
-					// DRAWING THE TEXT DESCRIPTION 4
-					context.fillText(line4.value, line4bullet.value==="YES" ? 1010 : 927, 850);
+					// CHECKING IF THE 4TH LINE MUST BE DISPLAYED
+					if (shows4lines.value==="YES")
+						{
+						// DRAWING THE TEXT DESCRIPTION 4
+						context.fillText(line4.value, line4bullet.value==="YES" ? 1010 : 927, 850);
+						}
 
 					try
 						{
@@ -409,6 +416,7 @@
 				document.getElementById("line2bullet").addEventListener("change",function(e){update();});
 				document.getElementById("line3bullet").addEventListener("change",function(e){update();});
 				document.getElementById("line4bullet").addEventListener("change",function(e){update();});
+				document.getElementById("shows4lines").addEventListener("change",function(e){update();});
 
 				// SETTING WHAT WILL HAPPEN WHEN THE USER SELECTS A FILE
 				document.getElementById("screenshot").addEventListener("change",function(e){update()});
