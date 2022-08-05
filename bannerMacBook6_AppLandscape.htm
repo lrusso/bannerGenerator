@@ -128,8 +128,8 @@
 							}
 							else
 							{
-							// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
-							document.getElementById("finalResult").src = canvas.toDataURL("data/png");
+							// RENDERING THE SECONDARY IMAGE (IF ANY)
+							renderSecondaryImage(context);
 							}
 						}
 						catch(err)
