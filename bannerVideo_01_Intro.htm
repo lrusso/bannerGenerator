@@ -27,7 +27,10 @@
 		<div>
 			<input type="text" id="title" placeholder="Title">
 			<input type="text" id="line1" placeholder="line1">
+			<input type="text" id="appIconSize" placeholder="Icon size">
+			<input type="file" id="appIcon">
 			<input type="text" id="imgSize" placeholder="Image size">
+			<input type="text" id="imgOffsetY" placeholder="Image offsetY">
 			<input type="file" id="screenshot">
 		</div>
 
@@ -48,7 +51,9 @@
 				// GETTING ALL THE ELEMENTS IN THE WEB FORM
 				var title = document.getElementById("title");
 				var line1 = document.getElementById("line1");
+				var appIconSize = document.getElementById("appIconSize");
 				var imgSize = document.getElementById("imgSize");
+				var imgOffsetY = document.getElementById("imgOffsetY");
 				var canvas = document.getElementById("myCanvas");
 
 				// FOCUSING THE TITLE
@@ -57,7 +62,10 @@
 				// CLEARING ALL THE INPUTTED VALUES (IF ANY)
 				title.value = "";
 				line1.value = "";
-				imgSize.value = "512";
+				appIconSize.value = "512";
+				imgSize.value = "400";
+				imgOffsetY.value = "0";
+				document.getElementById("appIcon").value = null;
 				document.getElementById("screenshot").value = null;
 
 				// USING A VARIABLE IN ORDER TO KNOW WHEN ALL THE GRAPHICAL ELEMENTS ARE LOADED
@@ -121,7 +129,7 @@
 						var filereader = new FileReader();
 
 						// GETTING THE EXTENSION
-						var extension = document.getElementById("screenshot").files[0].name.split(".").pop().toLowerCase();
+						var extension = document.getElementById("appIcon").files[0].name.split(".").pop().toLowerCase();
 
 						// CHECKING THE EXTENSION IN ORDER TO KNOW IF THE FILE IS AN IMAGE
 						if (extension=="jpg" | extension=="jpeg" | extension=="png")
@@ -135,8 +143,8 @@
 									{
 									// GETTING THE IMAGE RATIO
 									var ratio = image3.width/image3.height;
-									var width = document.getElementById("imgSize").value;
-									var height = document.getElementById("imgSize").value/ratio;
+									var width = document.getElementById("appIconSize").value;
+									var height = document.getElementById("appIconSize").value/ratio;
 
 									try
 										{
@@ -147,14 +155,14 @@
 										var imagenResized = downScaleImage(image3, scale);
 
 										// DRAWING THE RESIZED IMAGE
-										context.drawImage(imagenResized, (1920 * 0.30) - width / 2, 1080/2 - height / 2 - 180, width, height);
+										context.drawImage(imagenResized, (1920 * 0.30) - width / 2, 1080 / 2 - height / 2 - 180, width, height);
 										}
 										catch(err)
 										{
 										// IF THERE IS AN ERROR, IT MEANS THAT THE FILE IMAGE IS SMALLER THAN
 										// THE SIZE THAT IT SUPPOSED TO FILL. SO, BECAUSE OF THIS,
 										// IN THE FOLLOWING LINE THE IMAGE IS STRETCHED TO FILL.
-										context.drawImage(image3, (1920 * 0.30) - width / 2, 1080/2 - height / 2 - 180, width, height);
+										context.drawImage(image3, (1920 * 0.30) - width / 2, 1080 / 2 - height / 2 - 180, width, height);
 										}
 
 									// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
@@ -164,12 +172,70 @@
 								};
 
 							// READING/LOADING THE FILE
-							filereader.readAsDataURL(document.getElementById("screenshot").files[0]);
+							filereader.readAsDataURL(document.getElementById("appIcon").files[0]);
 							}
 							else
 							{
 							// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
 							document.getElementById("finalResult").src = canvas.toDataURL("data/png");
+							}
+						}
+						catch(err)
+						{
+						// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
+						document.getElementById("finalResult").src = canvas.toDataURL("data/png");
+						}
+
+					try
+						{
+						// CREATING THE FILEREADER
+						var filereader2 = new FileReader();
+
+						// GETTING THE EXTENSION
+						var extension = document.getElementById("screenshot").files[0].name.split(".").pop().toLowerCase();
+
+						// CHECKING THE EXTENSION IN ORDER TO KNOW IF THE FILE IS AN IMAGE
+						if (extension=="jpg" | extension=="jpeg" | extension=="png")
+							{
+							// SETTING WHAT WILL HAPPEN WHEN THE FILE IS LOADED
+							filereader2.onload = function()
+								{
+								// LOADING THE IMAGE FILE
+								var image4 = new Image;
+								image4.onload = function()
+									{
+									// GETTING THE IMAGE RATIO
+									var ratio = image4.width/image4.height;
+									var width = document.getElementById("imgSize").value;
+									var height = document.getElementById("imgSize").value/ratio;
+
+									try
+										{
+										// SETTING THE IMAGE SCALE
+										var scale = width * 1 / image4.width;
+
+										// GETTING THE RESIZED IMAGE
+										var imagenResized = downScaleImage(image4, scale);
+
+										// DRAWING THE RESIZED IMAGE
+										context.drawImage(imagenResized, 1250 + 670 / 2 - width / 2, 1080 / 2 - height / 2 + parseInt(imgOffsetY.value), width, height);
+										}
+										catch(err)
+										{
+										// IF THERE IS AN ERROR, IT MEANS THAT THE FILE IMAGE IS SMALLER THAN
+										// THE SIZE THAT IT SUPPOSED TO FILL. SO, BECAUSE OF THIS,
+										// IN THE FOLLOWING LINE THE IMAGE IS STRETCHED TO FILL.
+										context.drawImage(image4, 1250 + 670 / 2 - width / 2, 1080 / 2 - height / 2 + parseInt(imgOffsetY.value), width, height);
+										}
+
+									// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
+									document.getElementById("finalResult").src = canvas.toDataURL("data/png");
+									};
+								image4.src = filereader2.result;
+								};
+
+							// READING/LOADING THE FILE
+							filereader2.readAsDataURL(document.getElementById("screenshot").files[0]);
 							}
 						}
 						catch(err)
@@ -316,9 +382,12 @@
 				// SETTING WHAT WILL HAPPEN WHEN THE USER TYPES IN A INPUT BOX
 				document.getElementById("title").addEventListener("input",function(e){update()});
 				document.getElementById("line1").addEventListener("input",function(e){update()});
+				document.getElementById("appIconSize").addEventListener("input",function(e){update()});
 				document.getElementById("imgSize").addEventListener("input",function(e){update()});
+				document.getElementById("imgOffsetY").addEventListener("input",function(e){update()});
 
 				// SETTING WHAT WILL HAPPEN WHEN THE USER SELECTS A FILE
+				document.getElementById("appIcon").addEventListener("change",function(e){update()});
 				document.getElementById("screenshot").addEventListener("change",function(e){update()});
 				});
 		</script>
