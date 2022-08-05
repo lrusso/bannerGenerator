@@ -81,9 +81,13 @@
 					// DRAWING THE BACKGROUND
 					context.drawImage(image1, 0, 0, 1920, 1080);
 
-					// DRAWING A SEMI TRANSPARENT BACKGROUND FOR THE TITLE
-					context.fillStyle = "rgba(30,53,61,0.75)";
-					context.fillRect(0, 730, 1250, 150);
+					// CHECKING IF THERE IS A TITLE VALUE
+					if (title.value!="")
+						{
+						// DRAWING A SEMI TRANSPARENT BACKGROUND FOR THE TITLE
+						context.fillStyle = "rgba(30,53,61,0.75)";
+						context.fillRect(0, 730, 1250, 150);
+						}
 
 					// SETTING THE FONT STYLE
 					context.font = "105px GraficalBold";
@@ -94,9 +98,13 @@
 					valueX1 = 1250 / 2 - valueX1 / 2;
 					context.fillText(title.value, valueX1, 837);
 
-					// DRAWING A SEMI TRANSPARENT BACKGROUND FOR THE TEXT DESCRIPTION 1
-					context.fillStyle = "rgba(236,246,244,0.95)";
-					context.fillRect(0, 880, 1250, 100);
+					// CHECKING IF THERE IS A LINE 1 VALUE
+					if (line1.value!="")
+						{
+						// DRAWING A SEMI TRANSPARENT BACKGROUND FOR THE TEXT DESCRIPTION 1
+						context.fillStyle = "rgba(236,246,244,0.95)";
+						context.fillRect(0, 880, 1250, 100);
+						}
 
 					// SETTING THE FONT STYLE
 					context.font = "62px Arial";
