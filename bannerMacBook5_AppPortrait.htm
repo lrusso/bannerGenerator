@@ -115,8 +115,8 @@
 											context.drawImage(image3, 386, 230, width, height);
 											}
 
-										// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
-										document.getElementById("finalResult").src = canvas.toDataURL("data/png");
+										// RENDERING THE SECONDARY IMAGE (IF ANY)
+										renderSecondaryImage(context);
 										}
 									image3.src = resizeImageToFit(image2, 1920, 1200);
 									};
@@ -128,16 +128,19 @@
 							}
 							else
 							{
-							// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
-							document.getElementById("finalResult").src = canvas.toDataURL("data/png");
+							// RENDERING THE SECONDARY IMAGE (IF ANY)
+							renderSecondaryImage(context);
 							}
 						}
 						catch(err)
 						{
-						// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
-						document.getElementById("finalResult").src = canvas.toDataURL("data/png");
+						// RENDERING THE SECONDARY IMAGE (IF ANY)
+						renderSecondaryImage(context);
 						}
+					}
 
+				function renderSecondaryImage(context)
+					{
 					try
 						{
 						// CREATING THE FILEREADER
