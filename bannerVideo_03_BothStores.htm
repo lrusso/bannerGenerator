@@ -34,6 +34,7 @@
 			<input type="text" id="imgSize" placeholder="Image size">
 			<input type="text" id="imgOffsetY" placeholder="Image offsetY">
 			<input type="file" id="screenshot">
+			<input type="file" id="background">
 		</div>
 
 		<img width="1920" height="1080" id="finalResult" alt="banner" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4wQQEjQ35agTNQAAAAxJREFUCNdjOH78OAAErgJW23qXwQAAAABJRU5ErkJggg==">
@@ -91,6 +92,7 @@
 				showLogo.selectedIndex = 0;
 				language.selectedIndex = 0;
 				document.getElementById("screenshot").value = null;
+				document.getElementById("background").value = null;
 
 				// USING A VARIABLE IN ORDER TO KNOW WHEN ALL THE GRAPHICAL ELEMENTS ARE LOADED
 				var elementsLoadedCounter = 0;
@@ -113,6 +115,70 @@
 					// DRAWING THE BACKGROUND
 					context.drawImage(image1, 0, 0, 1920, 1080);
 
+					// CHECKING IF A BACKGROUND IMAGE WAS SELECTED
+					if (document.getElementById("background").value!=null)
+						{
+						try
+							{
+							// CREATING THE FILEREADER
+							var filereader = new FileReader();
+
+							// GETTING THE EXTENSION
+							var extension = document.getElementById("background").files[0].name.split(".").pop().toLowerCase();
+
+							// CHECKING THE EXTENSION IN ORDER TO KNOW IF THE FILE IS AN IMAGE
+							if (extension=="jpg" | extension=="jpeg" | extension=="png")
+								{
+								// SETTING WHAT WILL HAPPEN WHEN THE FILE IS LOADED
+								filereader.onload = function()
+									{
+									// LOADING THE IMAGE FILE
+									var image3 = new Image;
+									image3.onload = function()
+										{
+										// GETTING THE IMAGE RATIO
+										var width = image3.width;
+										var height = image3.height;
+
+										try
+											{
+											// DRAWING THE IMAGE
+											context.drawImage(image3, 1920 / 2 - width / 2, 1080 / 2 - height / 2, width, height);
+											}
+											catch(err)
+											{
+											}
+
+										// RENDERING THE SECONDARY RESOURCES
+										renderSecondaryResources(context);
+										};
+									image3.src = filereader.result;
+									};
+
+								// READING/LOADING THE FILE
+								filereader.readAsDataURL(document.getElementById("background").files[0]);
+								}
+								else
+								{
+								// RENDERING THE SECONDARY RESOURCES
+								renderSecondaryResources(context);
+								}
+							}
+							catch(err)
+							{
+							// RENDERING THE SECONDARY RESOURCES
+							renderSecondaryResources(context);
+							}
+						}
+						else
+						{
+						// RENDERING THE SECONDARY RESOURCES
+						renderSecondaryResources(context);
+						}
+					}
+
+				function renderSecondaryResources(context)
+					{
 					// DRAWING THE BULLETS
 					var R = 20;
 					context.beginPath();
@@ -175,7 +241,7 @@
 					try
 						{
 						// CREATING THE FILEREADER
-						var filereader = new FileReader();
+						var filereader2 = new FileReader();
 
 						// GETTING THE EXTENSION
 						var extension = document.getElementById("screenshot").files[0].name.split(".").pop().toLowerCase();
@@ -184,24 +250,24 @@
 						if (extension=="jpg" | extension=="jpeg" | extension=="png")
 							{
 							// SETTING WHAT WILL HAPPEN WHEN THE FILE IS LOADED
-							filereader.onload = function()
+							filereader2.onload = function()
 								{
 								// LOADING THE IMAGE FILE
-								var image3 = new Image;
-								image3.onload = function()
+								var image4 = new Image;
+								image4.onload = function()
 									{
 									// GETTING THE IMAGE RATIO
-									var ratio = image3.width/image3.height;
+									var ratio = image4.width/image4.height;
 									var width = document.getElementById("imgSize").value;
 									var height = document.getElementById("imgSize").value/ratio;
 
 									try
 										{
 										// SETTING THE IMAGE SCALE
-										var scale = width * 1 / image3.width;
+										var scale = width * 1 / image4.width;
 
 										// GETTING THE RESIZED IMAGE
-										var imagenResized = downScaleImage(image3, scale);
+										var imagenResized = downScaleImage(image4, scale);
 
 										// DRAWING THE RESIZED IMAGE
 										context.drawImage(imagenResized, (1920 * 0.75) - width / 2, 1080 / 2 - height / 2 + parseInt(imgOffsetY.value), width, height);
@@ -211,17 +277,17 @@
 										// IF THERE IS AN ERROR, IT MEANS THAT THE FILE IMAGE IS SMALLER THAN
 										// THE SIZE THAT IT SUPPOSED TO FILL. SO, BECAUSE OF THIS,
 										// IN THE FOLLOWING LINE THE IMAGE IS STRETCHED TO FILL.
-										context.drawImage(image3, (1920 * 0.75) - width / 2, 1080 / 2 - height / 2 + parseInt(imgOffsetY.value), width, height);
+										context.drawImage(image4, (1920 * 0.75) - width / 2, 1080 / 2 - height / 2 + parseInt(imgOffsetY.value), width, height);
 										}
 
 									// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
 									document.getElementById("finalResult").src = canvas.toDataURL("data/png");
 									};
-								image3.src = filereader.result;
+								image4.src = filereader2.result;
 								};
 
 							// READING/LOADING THE FILE
-							filereader.readAsDataURL(document.getElementById("screenshot").files[0]);
+							filereader2.readAsDataURL(document.getElementById("screenshot").files[0]);
 							}
 							else
 							{
@@ -398,6 +464,7 @@
 
 				// SETTING WHAT WILL HAPPEN WHEN THE USER SELECTS A FILE
 				document.getElementById("screenshot").addEventListener("change",function(e){update()});
+				document.getElementById("background").addEventListener("change",function(e){update()});
 				});
 		</script>
 	</body>
