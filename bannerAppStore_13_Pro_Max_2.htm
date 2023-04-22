@@ -162,18 +162,18 @@
 										var imagenResized = downScaleImage(image4, scale);
 
 										// DRAWING THE RESIZED IMAGE
-										context.drawImage(imagenResized, 198, 57, width, height);
+										context.drawImage(imagenResized, 198, 47, width, height);
 										}
 										catch(err)
 										{
 										// IF THERE IS AN ERROR, IT MEANS THAT THE FILE IMAGE IS SMALLER THAN
 										// THE SIZE THAT IT SUPPOSED TO FILL. SO, BECAUSE OF THIS,
 										// IN THE FOLLOWING LINE THE IMAGE IS STRETCHED TO FILL.
-										context.drawImage(image4, 198, 57, width, height);
+										context.drawImage(image4, 198, 47, width, height);
 										}
 
 									// DRAWING THE SMARTPHONE
-									context.drawImage(image3, 190, 50, 140, 296);
+									context.drawImage(image3, 190, 40, 140, 296);
 
 									// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
 									document.getElementById("finalResult").src = canvas.toDataURL("data/png");
