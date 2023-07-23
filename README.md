@@ -56,8 +56,10 @@ Image Merger, Image Resizer, Image Distortion, Business Card, Radio Interview, R
 | [bannerPhone_Android_S20_Landscape2.htm](https://lrusso.github.io/bannerGenerator/bannerPhone_Android_S20_Landscape2.htm) |
 | [bannerPhone_Android_S22_Portrait1.htm](https://lrusso.github.io/bannerGenerator/bannerPhone_Android_S22_Portrait1.htm) |
 | [bannerPhone_Android_S22_Portrait2.htm](https://lrusso.github.io/bannerGenerator/bannerPhone_Android_S22_Portrait2.htm) |
+| [bannerPhone_Android_S22_Portrait3.htm](https://lrusso.github.io/bannerGenerator/bannerPhone_Android_S22_Portrait3.htm) |
 | [bannerPhone_Android_S22_Landscape1.htm](https://lrusso.github.io/bannerGenerator/bannerPhone_Android_S22_Landscape1.htm) |
 | [bannerPhone_Android_S22_Landscape2.htm](https://lrusso.github.io/bannerGenerator/bannerPhone_Android_S22_Landscape2.htm) |
+| [bannerPhone_Android_S22_Landscape3.htm](https://lrusso.github.io/bannerGenerator/bannerPhone_Android_S22_Landscape3.htm) |
 | [bannerPhone_With_Text_Portrait.htm](https://lrusso.github.io/bannerGenerator/bannerPhone_With_Text_Portrait.htm) |
 | [bannerPhone_With_Text_Landscape.htm](https://lrusso.github.io/bannerGenerator/bannerPhone_With_Text_Landscape.htm) |
 | [bannerPhone_iPhone_X_Portrait1.htm](https://lrusso.github.io/bannerGenerator/bannerPhone_iPhone_X_Portrait1.htm) |
