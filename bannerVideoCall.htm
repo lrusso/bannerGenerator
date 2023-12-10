@@ -34,6 +34,7 @@
 			<input type="text" id="line3" placeholder="Profession Line 1">
 			<input type="text" id="line4" placeholder="Profession Line 2">
 			<input type="text" id="textColor" placeholder="Text color">
+			<input type="text" id="textPadding" placeholder="Text padding">
 			<select id="textShadow"><option selected value="yes">Shadow text</option><option value="no">No shadow text</option></select>
 			<br>
 			<input type="file" id="appIcon">
@@ -45,8 +46,6 @@
 		<img width="1920" height="1080" id="finalResult" alt="banner" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4wQQEjQ35agTNQAAAAxJREFUCNdjOH78OAAErgJW23qXwQAAAABJRU5ErkJggg==">
 
 		<script>
-			var textPadding = 50;
-
 			window.addEventListener("load", function()
 				{
 				// GETTING ALL THE ELEMENTS IN THE WEB FORM
@@ -57,6 +56,7 @@
 				var line3 = document.getElementById("line3");
 				var line4 = document.getElementById("line4");
 				var textColor = document.getElementById("textColor");
+				var textPadding = document.getElementById("textPadding");
 				var textShadow = document.getElementById("textShadow");
 				var imgSize = document.getElementById("imgSize");
 				var padding1 = document.getElementById("padding1");
@@ -74,6 +74,7 @@
 				line3.value = "MOBILE & WEB";
 				line4.value = "DEVELOPER";
 				textColor.value = "#FFFFFF";
+				textPadding.value = "50";
 				textShadow.value = "yes"
 				imgSize.value = "450";
 				padding1.value = "30";
@@ -103,8 +104,8 @@
 
 					// GETTING THE FIRST NAME LOCATION
 					var valueX1 = context.measureText(line1.value).width;
-					valueX1 = canvas.width - valueX1 - textPadding;
-					var valueY1 = 75 + textPadding;
+					valueX1 = canvas.width - valueX1 - textPadding.value;
+					var valueY1 = 75 + parseInt(textPadding.value);
 
 					// CHECKING IF A TEXT SHADOW MUST BE RENDERED
 					if (textShadow.value == "yes")
@@ -128,8 +129,8 @@
 
 					// GETTING THE LAST NAME LOCATION
 					var valueX2 = context.measureText(line2.value).width;
-					valueX2 = canvas.width - valueX2 - textPadding;
-					var valueY2 = 170 + textPadding;
+					valueX2 = canvas.width - valueX2 - textPadding.value;
+					var valueY2 = 170 + parseInt(textPadding.value);
 
 					// CHECKING IF A TEXT SHADOW MUST BE RENDERED
 					if (textShadow.value == "yes")
@@ -153,8 +154,8 @@
 
 					// GETTING THE PROFESSION LINE 1 LOCATION
 					var valueX3 = context.measureText(line3.value).width;
-					valueX3 = canvas.width - valueX3 - textPadding;
-					var valueY3 = 265 + textPadding;
+					valueX3 = canvas.width - valueX3 - textPadding.value;
+					var valueY3 = 265 + parseInt(textPadding.value);
 
 					// CHECKING IF A TEXT SHADOW MUST BE RENDERED
 					if (textShadow.value == "yes")
@@ -175,8 +176,8 @@
 
 					// GETTING THE PROFESSION LINE 2 LOCATION
 					var valueX4 = context.measureText(line4.value).width;
-					valueX4 = canvas.width - valueX4 - textPadding;
-					var valueY4 = 325 + textPadding;
+					valueX4 = canvas.width - valueX4 - textPadding.value;
+					var valueY4 = 325 + parseInt(textPadding.value);
 
 					// CHECKING IF A TEXT SHADOW MUST BE RENDERED
 					if (textShadow.value == "yes")
@@ -463,6 +464,7 @@
 				document.getElementById("line2").addEventListener("input",function(e){update()});
 				document.getElementById("line3").addEventListener("input",function(e){update()});
 				document.getElementById("line4").addEventListener("input",function(e){update()});
+				document.getElementById("textPadding").addEventListener("input",function(e){update()});
 				document.getElementById("textShadow").addEventListener("change",function(e){update()});
 				document.getElementById("textColor").addEventListener("input",function(e){update()});
 				document.getElementById("imgSize").addEventListener("input",function(e){update()});
