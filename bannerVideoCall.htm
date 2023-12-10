@@ -33,13 +33,13 @@
 			<input type="text" id="line2" placeholder="Last name">
 			<input type="text" id="line3" placeholder="Profession Line 1">
 			<input type="text" id="line4" placeholder="Profession Line 2">
-			<input type="text" id="textColor" placeholder="Text color">
 			<input type="text" id="textPadding" placeholder="Text padding">
+			<input type="text" id="textColor" placeholder="Text color">
 			<select id="textShadow"><option selected value="yes">Shadow text</option><option value="no">No shadow text</option></select>
 			<br>
 			<input type="file" id="appIcon">
 			<input type="text" id="imgSize" placeholder="Image size">
-			<input type="text" id="padding1" placeholder="Image padding">
+			<input type="text" id="imgPadding" placeholder="Image padding">
 			<select id="imageShadow"><option selected value="yes">Shadow image</option><option value="no">No shadow image</option></select>
 		</div>
 
@@ -55,11 +55,11 @@
 				var line2 = document.getElementById("line2");
 				var line3 = document.getElementById("line3");
 				var line4 = document.getElementById("line4");
-				var textColor = document.getElementById("textColor");
 				var textPadding = document.getElementById("textPadding");
+				var textColor = document.getElementById("textColor");
 				var textShadow = document.getElementById("textShadow");
 				var imgSize = document.getElementById("imgSize");
-				var padding1 = document.getElementById("padding1");
+				var imgPadding = document.getElementById("imgPadding");
 				var imageShadow = document.getElementById("imageShadow");
 				var canvas = document.getElementById("myCanvas");
 
@@ -73,11 +73,11 @@
 				line2.value = "RUSSO";
 				line3.value = "MOBILE & WEB";
 				line4.value = "DEVELOPER";
-				textColor.value = "#FFFFFF";
 				textPadding.value = "50";
+				textColor.value = "#FFFFFF";
 				textShadow.value = "yes"
 				imgSize.value = "450";
-				padding1.value = "30";
+				imgPadding.value = "30";
 				imageShadow.value = "yes"
 				document.getElementById("appIcon").value = null;
 
@@ -240,7 +240,7 @@
 												}
 
 											// DRAWING THE RESIZED IMAGE
-											context.drawImage(imagenResized, padding1.value, padding1.value, width, height);
+											context.drawImage(imagenResized, imgPadding.value, imgPadding.value, width, height);
 
 											// DISABLING THE SHADOW EFFECT
 											context.shadowOffsetX = 0;
@@ -260,7 +260,7 @@
 											// IF THERE IS AN ERROR, IT MEANS THAT THE FILE IMAGE IS SMALLER THAN
 											// THE SIZE THAT IT SUPPOSED TO FILL. SO, BECAUSE OF THIS,
 											// IN THE FOLLOWING LINE THE IMAGE IS STRETCHED TO FILL.
-											context.drawImage(image1, padding1.value, padding1.value, width, height);
+											context.drawImage(image1, imgPadding.value, imgPadding.value, width, height);
 
 											// DISABLING THE SHADOW EFFECT
 											context.shadowOffsetX = 0;
@@ -465,10 +465,10 @@
 				document.getElementById("line3").addEventListener("input",function(e){update()});
 				document.getElementById("line4").addEventListener("input",function(e){update()});
 				document.getElementById("textPadding").addEventListener("input",function(e){update()});
-				document.getElementById("textShadow").addEventListener("change",function(e){update()});
 				document.getElementById("textColor").addEventListener("input",function(e){update()});
+				document.getElementById("textShadow").addEventListener("change",function(e){update()});
 				document.getElementById("imgSize").addEventListener("input",function(e){update()});
-				document.getElementById("padding1").addEventListener("input",function(e){update()});
+				document.getElementById("imgPadding").addEventListener("input",function(e){update()});
 				document.getElementById("imageShadow").addEventListener("change",function(e){update()});
 
 				// SETTING WHAT WILL HAPPEN WHEN THE USER SELECTS A FILE
