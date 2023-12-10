@@ -25,7 +25,10 @@
 		<canvas width="1920" height="1080" id="myCanvas"></canvas>
 
 		<div>
-			<input type="text" id="gradientColor" placeholder="Gradient color"><br>
+			<input type="text" id="gradientColor" placeholder="Gradient color">
+			<br>
+			<select id="mirrorEffect"><option selected value="yes">Mirror effect</option><option value="no">No mirror effect</option></select>
+			<br>
 			<input type="text" id="line1" placeholder="First name">
 			<input type="text" id="line2" placeholder="Last name">
 			<input type="text" id="line3" placeholder="Profession Line 1">
@@ -48,6 +51,7 @@
 				{
 				// GETTING ALL THE ELEMENTS IN THE WEB FORM
 				var gradientColor = document.getElementById("gradientColor");
+				var mirrorEffect = document.getElementById("mirrorEffect");
 				var line1 = document.getElementById("line1");
 				var line2 = document.getElementById("line2");
 				var line3 = document.getElementById("line3");
@@ -64,6 +68,7 @@
 
 				// CLEARING ALL THE INPUTTED VALUES (IF ANY)
 				gradientColor.value = "#3A76B1";
+				mirrorEffect.value = "no";
 				line1.value = "LEONARDO";
 				line2.value = "RUSSO";
 				line3.value = "MOBILE & WEB";
@@ -261,6 +266,17 @@
 											context.shadowOffsetY = 0;
 											}
 
+										// CHECKING IF THE MIRROR EFFECT MUST BE APPLIED
+										if (mirrorEffect.value == "yes")
+											{
+											// APPLYING THE MIRROR EFFECT
+											context.save();
+											context.translate(canvas.width, 0);
+											context.scale(-1, 1);
+											context.drawImage(canvas, 0, 0);
+											context.restore();
+											}
+
 										// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
 										document.getElementById("finalResult").src = canvas.toDataURL("data/png");
 										};
@@ -273,12 +289,34 @@
 							}
 							catch(err)
 							{
+							// CHECKING IF THE MIRROR EFFECT MUST BE APPLIED
+							if (mirrorEffect.value == "yes")
+								{
+								// APPLYING THE MIRROR EFFECT
+								context.save();
+								context.translate(canvas.width, 0);
+								context.scale(-1, 1);
+								context.drawImage(canvas, 0, 0);
+								context.restore();
+								}
+
 							// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
 							document.getElementById("finalResult").src = canvas.toDataURL("data/png");
 							}
 						}
 						else
 						{
+						// CHECKING IF THE MIRROR EFFECT MUST BE APPLIED
+						if (mirrorEffect.value == "yes")
+							{
+							// APPLYING THE MIRROR EFFECT
+							context.save();
+							context.translate(canvas.width, 0);
+							context.scale(-1, 1);
+							context.drawImage(canvas, 0, 0);
+							context.restore();
+							}
+
 						// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
 						document.getElementById("finalResult").src = canvas.toDataURL("data/png");
 						}
@@ -420,6 +458,7 @@
 
 				// SETTING WHAT WILL HAPPEN WHEN THE USER TYPES IN A INPUT BOX
 				document.getElementById("gradientColor").addEventListener("input",function(e){update()});
+				document.getElementById("mirrorEffect").addEventListener("change",function(e){update()});
 				document.getElementById("line1").addEventListener("input",function(e){update()});
 				document.getElementById("line2").addEventListener("input",function(e){update()});
 				document.getElementById("line3").addEventListener("input",function(e){update()});
