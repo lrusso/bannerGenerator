@@ -1,6 +1,6 @@
 # Banner Generator
 
-Image Merger, Image Resizer, Image Distortion, Business Card, Radio Interview, Recruiting, Sharer OG Image, MacBook, Notebook, Play Store, GitHub, App with Text, Slides for Videos, Android and iPhone Banner Generator.
+Image Merger, Image Resizer, Image Distortion, Business Card, Radio Interview, Recruiting, Sharer OG Image, MacBook, Notebook, Play Store, GitHub, App with Text, Slides for Videos, Wallpapers for Video Calls, Android and iPhone Banner Generator.
 
 | BANNER GENERATORS | 
 | :------------ |
