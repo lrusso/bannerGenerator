@@ -43,6 +43,8 @@
 			<input type="text" id="imgSize" placeholder="Image size">
 			<input type="text" id="imgPadding" placeholder="Image padding">
 			<select id="imageShadow"><option selected value="yes">Shadow image</option><option value="no">No shadow image</option></select>
+			<input type="text" id="canvasWidth" placeholder="Canvas width">
+			<input type="text" id="canvasHeight" placeholder="Canvas height">
 		</div>
 
 		<img width="1920" height="1080" id="finalResult" alt="banner" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4wQQEjQ35agTNQAAAAxJREFUCNdjOH78OAAErgJW23qXwQAAAABJRU5ErkJggg==">
@@ -65,6 +67,8 @@
 				var imgSize = document.getElementById("imgSize");
 				var imgPadding = document.getElementById("imgPadding");
 				var imageShadow = document.getElementById("imageShadow");
+				var canvasWidth = document.getElementById("canvasWidth");
+				var canvasHeight = document.getElementById("canvasHeight");
 				var canvas = document.getElementById("myCanvas");
 
 				// FOCUSING THE FIRST NAME
@@ -85,11 +89,20 @@
 				imgSize.value = "400";
 				imgPadding.value = "70";
 				imageShadow.value = "yes"
+				canvasWidth.value = "1920";
+				canvasHeight.value = "1080";
 				document.getElementById("appIcon").value = null;
 
 				function update()
 					{
 					var lastY = 0;
+
+					canvas.width = canvasWidth.value;
+					canvas.height = canvasHeight.value;
+					canvas.style.width = canvasWidth.value + "px";
+					canvas.style.height = canvasHeight.value + "px";
+					document.getElementById("finalResult").style.width = canvasWidth.value + "px";
+					document.getElementById("finalResult").style.height = canvasHeight.value + "px";
 
 					// GETTING THE CONTEXT
 					var context = canvas.getContext("2d");
@@ -99,9 +112,9 @@
 					var y = canvas.height / 2;
 					var innerRadius = 100;
 					var outerRadius = canvas.width / 1.25;
-					var radius = 1920;
+					var radius = canvasWidth.value;
 					var gradient = context.createRadialGradient(x, y, innerRadius, x, y, outerRadius);
-					gradient.addColorStop(0, gradientColor.value);
+					try{gradient.addColorStop(0, gradientColor.value);}catch(e){return}
 					gradient.addColorStop(1, "#000000");
 					context.arc(x, y, radius, 0, 2 * Math.PI);
 					context.fillStyle = gradient;
@@ -483,6 +496,8 @@
 				document.getElementById("imgSize").addEventListener("input",function(e){update()});
 				document.getElementById("imgPadding").addEventListener("input",function(e){update()});
 				document.getElementById("imageShadow").addEventListener("change",function(e){update()});
+				document.getElementById("canvasWidth").addEventListener("change",function(e){update()});
+				document.getElementById("canvasHeight").addEventListener("change",function(e){update()});
 
 				// SETTING WHAT WILL HAPPEN WHEN THE USER SELECTS A FILE
 				document.getElementById("appIcon").addEventListener("change",function(e){update()});
