@@ -97,6 +97,7 @@
 					{
 					var lastY = 0;
 
+					// RESIZING THE CANVAS AND IMAGE TO THE SELECTED SIZE
 					canvas.width = canvasWidth.value;
 					canvas.height = canvasHeight.value;
 					canvas.style.width = canvasWidth.value + "px";
@@ -132,8 +133,8 @@
 					if (textShadow.value == "yes")
 						{
 						// ENABLING THE SHADOW EFFECT
-						context.shadowOffsetX = 5;
-						context.shadowOffsetY = 5;
+						context.shadowOffsetX = Math.floor(canvasWidth.value * 5 / 1920);
+						context.shadowOffsetY = Math.floor(canvasWidth.value * 5 / 1920);
 						context.shadowColor = "black";
 						}
 
@@ -157,8 +158,8 @@
 					if (textShadow.value == "yes")
 						{
 						// ENABLING THE SHADOW EFFECT
-						context.shadowOffsetX = 5;
-						context.shadowOffsetY = 5;
+						context.shadowOffsetX = Math.floor(canvasWidth.value * 5 / 1920);
+						context.shadowOffsetY = Math.floor(canvasWidth.value * 5 / 1920);
 						context.shadowColor = "black";
 						}
 
@@ -182,8 +183,8 @@
 					if (textShadow.value == "yes")
 						{
 						// ENABLING THE SHADOW EFFECT
-						context.shadowOffsetX = 5;
-						context.shadowOffsetY = 5;
+						context.shadowOffsetX = Math.floor(canvasWidth.value * 5 / 1920);
+						context.shadowOffsetY = Math.floor(canvasWidth.value * 5 / 1920);
 						context.shadowColor = "black";
 						}
 
@@ -207,8 +208,8 @@
 					if (textShadow.value == "yes")
 						{
 						// ENABLING THE SHADOW EFFECT
-						context.shadowOffsetX = 5;
-						context.shadowOffsetY = 5;
+						context.shadowOffsetX = Math.floor(canvasWidth.value * 5 / 1920);
+						context.shadowOffsetY = Math.floor(canvasWidth.value * 5 / 1920);
 						context.shadowColor = "black";
 						}
 
@@ -258,8 +259,8 @@
 											if (imageShadow.value == "yes")
 												{
 												// DRAWING THE IMAGE SHADOW
-												context.shadowOffsetX = 5;
-												context.shadowOffsetY = 5;
+												context.shadowOffsetX = Math.floor(canvasWidth.value * 5 / 1920);
+												context.shadowOffsetY = Math.floor(canvasWidth.value * 5 / 1920);
 												context.shadowColor = "black";
 												}
 
@@ -276,8 +277,8 @@
 											if (imageShadow.value == "yes")
 												{
 												// DRAWING THE IMAGE SHADOW
-												context.shadowOffsetX = 5;
-												context.shadowOffsetY = 5;
+												context.shadowOffsetX = Math.floor(canvasWidth.value * 5 / 1920);
+												context.shadowOffsetY = Math.floor(canvasWidth.value * 5 / 1920);
 												context.shadowColor = "black";
 												}
 
