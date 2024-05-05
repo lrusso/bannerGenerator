@@ -1,7 +1,7 @@
 # Banner Generator
 
-Image Merger, Image Resizer, Image Distortion, Business Card, Radio Interview, Recruiting, Sharer OG Image, MacBook, Notebook, Play Store, App Store, GitHub, App with Text, Slides for Videos, Wallpapers for Video Calls, Android and iPhone Banner Generator.
-
+Image Merger, Image Resizer, Image Distortion, Business Card, Radio Interview, Recruiting, Sharer OG Image, MacBook, Notebook, Play Store, App Store, GitHub, App with Text, Slides for Videos, Wallpapers for Video Calls, LinkedIn Background Generator, LinkedIn Photo Profile Generator, Android and iPhone Banner Generator.
+ 
 | BANNER GENERATORS | 
 | :------------ |
 | [bannerApp.htm](https://lrusso.github.io/bannerGenerator/bannerApp.htm) |
