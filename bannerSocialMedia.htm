@@ -137,13 +137,17 @@
 									context.fillStyle = "white";
 									context.fillText(line1.value, canvas.width - line1width - 40, canvas.height - 87);
 
-									// DRAWING SEPARATOR SHADOW
-									context.fillStyle = "#404040";
-									context.fillRect(canvas.width - line1width - 40 + 2,  canvas.height - 66, line1width - 4, 2);
+									// CHECKING IF THERE IS A LINE 1
+									if (line1.value != "")
+										{
+										// DRAWING UNDERLINE SHADOW
+										context.fillStyle = "#404040";
+										context.fillRect(canvas.width - line1width - 40 + 2,  canvas.height - 66, line1width - 4, 2);
 
-									// DRAWING SEPARATOR
-									context.fillStyle = "white";
-									context.fillRect(canvas.width - line1width - 40 + 2,  canvas.height - 68, line1width - 4, 2);
+										// DRAWING UNDERLINE
+										context.fillStyle = "white";
+										context.fillRect(canvas.width - line1width - 40 + 2,  canvas.height - 68, line1width - 4, 2);
+										}
 
 									// SETTING THE FONT STYLE
 									context.font = "25px NunitoSansLight";
