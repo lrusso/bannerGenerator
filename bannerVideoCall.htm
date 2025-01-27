@@ -28,6 +28,7 @@
 			<select id="mirrorEffect"><option selected value="yes">Mirror effect</option><option value="no">No mirror effect</option></select>
 			<br>
 			<input type="text" id="gradientColor" placeholder="Gradient color" maxlength="7">
+			<input type="text" id="gradientRadius" placeholder="Gradient radius">
 			<br>
 			<input type="text" id="line1" placeholder="First name">
 			<input type="text" id="line2" placeholder="Last name">
@@ -54,6 +55,7 @@
 				{
 				// GETTING ALL THE ELEMENTS IN THE WEB FORM
 				var gradientColor = document.getElementById("gradientColor");
+				var gradientRadius = document.getElementById("gradientRadius");
 				var mirrorEffect = document.getElementById("mirrorEffect");
 				var line1 = document.getElementById("line1");
 				var line2 = document.getElementById("line2");
@@ -76,6 +78,7 @@
 
 				// CLEARING ALL THE INPUTTED VALUES (IF ANY)
 				gradientColor.value = "#3A76B1";
+				gradientRadius.value = "1.25";
 				mirrorEffect.value = "no";
 				line1.value = "";
 				line2.value = "";
@@ -109,17 +112,23 @@
 					var context = canvas.getContext("2d");
 
 					// DRAWING THE BACKGROUND
-					var x = canvas.width / 2;
-					var y = canvas.height / 2;
-					var innerRadius = 100;
-					var outerRadius = canvas.width / 1.25;
-					var radius = canvasWidth.value;
-					var gradient = context.createRadialGradient(x, y, innerRadius, x, y, outerRadius);
-					try{gradient.addColorStop(0, gradientColor.value);}catch(e){return}
-					gradient.addColorStop(1, "#000000");
-					context.arc(x, y, radius, 0, 2 * Math.PI);
-					context.fillStyle = gradient;
-					context.fill();
+					try
+						{
+						var x = canvas.width / 2;
+						var y = canvas.height / 2;
+						var innerRadius = 100;
+						var outerRadius = canvas.width / gradientRadius.value;
+						var radius = canvasWidth.value;
+						var gradient = context.createRadialGradient(x, y, innerRadius, x, y, outerRadius);
+						try{gradient.addColorStop(0, gradientColor.value);}catch(e){return}
+						gradient.addColorStop(1, "#000000");
+						context.arc(x, y, radius, 0, 2 * Math.PI);
+						context.fillStyle = gradient;
+						context.fill();
+						}
+						catch(err)
+						{
+						}
 
 					// SETTING THE FONT STYLE
 					context.font = parseInt(fontSize1.value) + "px GraficalBold";
@@ -484,6 +493,7 @@
 
 				// SETTING WHAT WILL HAPPEN WHEN THE USER TYPES IN A INPUT BOX
 				document.getElementById("gradientColor").addEventListener("input",function(e){update()});
+				document.getElementById("gradientRadius").addEventListener("input",function(e){update()});
 				document.getElementById("mirrorEffect").addEventListener("change",function(e){update()});
 				document.getElementById("line1").addEventListener("input",function(e){update()});
 				document.getElementById("line2").addEventListener("input",function(e){update()});
