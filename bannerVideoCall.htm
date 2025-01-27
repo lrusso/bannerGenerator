@@ -36,6 +36,9 @@
 			<select id="textShadow"><option selected value="yes">Shadow text</option><option value="no">No shadow text</option></select>
 			<br>
 			<input type="file" id="appIcon">
+			<input type="text" id="imgBrightness" placeholder="Image brightness" value="100">
+			<input type="text" id="imgContrast" placeholder="Image contrast" value="100">
+			<input type="text" id="imgSaturate" placeholder="Image saturate" value="100">
 			<input type="text" id="imgSize" placeholder="Image size">
 			<input type="text" id="imgPadding" placeholder="Image padding">
 			<select id="imageShadow"><option selected value="yes">Shadow image</option><option value="no">No shadow image</option></select>
@@ -66,6 +69,9 @@
 				var textPadding = document.getElementById("textPadding");
 				var textColor = document.getElementById("textColor");
 				var textShadow = document.getElementById("textShadow");
+				var imgBrightness = document.getElementById("imgBrightness");
+				var imgContrast = document.getElementById("imgContrast");
+				var imgSaturate = document.getElementById("imgSaturate");
 				var imgSize = document.getElementById("imgSize");
 				var imgPadding = document.getElementById("imgPadding");
 				var imageShadow = document.getElementById("imageShadow");
@@ -89,6 +95,9 @@
 				textPadding.value = "70";
 				textColor.value = "#FFFFFF";
 				textShadow.value = "yes"
+				imgBrightness.value = "100";
+				imgContrast.value = "100";
+				imgSaturate.value = "100";
 				imgSize.value = "400";
 				imgPadding.value = "70";
 				imageShadow.value = "yes"
@@ -272,6 +281,9 @@
 												context.shadowOffsetY = Math.floor(canvasWidth.value * 5 / 1920);
 												context.shadowColor = "black";
 												}
+
+											// APPLYING FILTERS
+											context.filter = "brightness(" + imgBrightness.value + "%) contrast(" + imgContrast.value + "%) saturate(" + imgSaturate.value + "%)";
 
 											// DRAWING THE RESIZED IMAGE
 											context.drawImage(imagenResized, imgPadding.value, imgPadding.value, width, height);
@@ -504,7 +516,11 @@
 				document.getElementById("textPadding").addEventListener("input",function(e){update()});
 				document.getElementById("textColor").addEventListener("input",function(e){update()});
 				document.getElementById("textShadow").addEventListener("change",function(e){update()});
+				document.getElementById("imgBrightness").addEventListener("input",function(e){update()});
+				document.getElementById("imgContrast").addEventListener("input",function(e){update()});
+				document.getElementById("imgSaturate").addEventListener("input",function(e){update()});
 				document.getElementById("imgSize").addEventListener("input",function(e){update()});
+				document.getElementById("imgPadding").addEventListener("input",function(e){update()});
 				document.getElementById("imgPadding").addEventListener("input",function(e){update()});
 				document.getElementById("imageShadow").addEventListener("change",function(e){update()});
 				document.getElementById("canvasWidth").addEventListener("input",function(e){update()});
