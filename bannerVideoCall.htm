@@ -282,7 +282,7 @@
 												context.shadowColor = "black";
 												}
 
-											// APPLYING FILTERS
+											// APPLYING IMAGE FILTERS
 											context.filter = "brightness(" + imgBrightness.value + "%) contrast(" + imgContrast.value + "%) saturate(" + imgSaturate.value + "%)";
 
 											// DRAWING THE RESIZED IMAGE
@@ -520,7 +520,6 @@
 				document.getElementById("imgContrast").addEventListener("input",function(e){update()});
 				document.getElementById("imgSaturate").addEventListener("input",function(e){update()});
 				document.getElementById("imgSize").addEventListener("input",function(e){update()});
-				document.getElementById("imgPadding").addEventListener("input",function(e){update()});
 				document.getElementById("imgPadding").addEventListener("input",function(e){update()});
 				document.getElementById("imageShadow").addEventListener("change",function(e){update()});
 				document.getElementById("canvasWidth").addEventListener("input",function(e){update()});
