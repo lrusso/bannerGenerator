@@ -97,17 +97,17 @@
 								filereader.onload = function()
 									{
 									// LOADING THE IMAGE FILE
-									var image3 = new Image;
-									image3.onload = function()
+									var image2 = new Image;
+									image2.onload = function()
 										{
 										// GETTING THE IMAGE RATIO
-										var width = image3.width;
-										var height = image3.height;
+										var width = image2.width;
+										var height = image2.height;
 
 										try
 											{
 											// DRAWING THE IMAGE
-											context.drawImage(image3, 1920 / 2 - width / 2, 1080 / 2 - height / 2, width, height);
+											context.drawImage(image2, 1920 / 2 - width / 2, 1080 / 2 - height / 2, width, height);
 											}
 											catch(err)
 											{
@@ -116,7 +116,7 @@
 										// RENDERING THE SECONDARY RESOURCES
 										renderSecondaryResources(context);
 										};
-									image3.src = filereader.result;
+									image2.src = filereader.result;
 									};
 
 								// READING/LOADING THE FILE
@@ -158,17 +158,17 @@
 							filereader2.onload = function()
 								{
 								// LOADING THE IMAGE FILE
-								var image4 = new Image;
-								image4.onload = function()
+								var image3 = new Image;
+								image3.onload = function()
 									{
 									// GETTING THE IMAGE RATIO
-									var width = image4.width;
-									var height = image4.height;
+									var width = image3.width;
+									var height = image3.height;
 
 									try
 										{
 										// DRAWING THE IMAGE
-										context.drawImage(image4, 1920 / 2 - width / 2, 1080 / 2 - height / 2, width, height);
+										context.drawImage(image3, 1920 / 2 - width / 2, 1080 / 2 - height / 2, width, height);
 										}
 										catch(err)
 										{
@@ -177,7 +177,7 @@
 									// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
 									document.getElementById("finalResult").src = canvas.toDataURL("image/png");
 									};
-								image4.src = filereader2.result;
+								image3.src = filereader2.result;
 								};
 
 							// READING/LOADING THE FILE
