@@ -58,7 +58,7 @@
 						{
 						var filereader = new FileReader();
 						var extension = document.getElementById("screenshot").files[0].name.split(".").pop().toLowerCase();
-						if (extension=="jpg" | extension=="jpeg" | extension=="png")
+						if (extension=="jpg" | extension=="jpeg" | extension=="png" | extension=="webp" | extension=="avif")
 							{
 							// SETTING WHAT WILL HAPPEN WHEN THE FILE IS LOADED
 							filereader.onload = function()

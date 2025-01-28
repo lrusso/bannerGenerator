@@ -249,7 +249,7 @@
 						var extension = document.getElementById("screenshot").files[0].name.split(".").pop().toLowerCase();
 
 						// CHECKING THE EXTENSION IN ORDER TO KNOW IF THE FILE IS AN IMAGE
-						if (extension=="jpg" | extension=="jpeg" | extension=="png")
+						if (extension=="jpg" | extension=="jpeg" | extension=="png" | extension=="webp" | extension=="avif")
 							{
 							// SETTING WHAT WILL HAPPEN WHEN THE FILE IS LOADED
 							filereader.onload = function()
