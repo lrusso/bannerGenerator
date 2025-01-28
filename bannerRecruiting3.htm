@@ -111,21 +111,21 @@
 							filereader.onload = function()
 								{
 								// LOADING THE IMAGE FILE
-								var image3 = new Image;
-								image3.onload = function()
+								var image2 = new Image;
+								image2.onload = function()
 									{
 									// GETTING THE IMAGE RATIO
-									var ratio = image3.width/image3.height;
+									var ratio = image2.width/image2.height;
 									var width = document.getElementById("imgSize").value;
 									var height = document.getElementById("imgSize").value/ratio;
 
 									try
 										{
 										// SETTING THE IMAGE SCALE
-										var scale = width * 1 / image3.width;
+										var scale = width * 1 / image2.width;
 
 										// GETTING THE RESIZED IMAGE
-										var imageResized = downScaleImage(image3, scale);
+										var imageResized = downScaleImage(image2, scale);
 
 										// DRAWING THE RESIZED IMAGE
 										context.drawImage(imageResized, 370 / 2 - width / 2, 150/2-height/2, width, height);
@@ -135,13 +135,13 @@
 										// IF THERE IS AN ERROR, IT MEANS THAT THE FILE IMAGE IS SMALLER THAN
 										// THE SIZE THAT IT SUPPOSED TO FILL. SO, BECAUSE OF THIS,
 										// IN THE FOLLOWING LINE THE IMAGE IS STRETCHED TO FILL.
-										context.drawImage(image3, 370 / 2 - width / 2, 150/2-height/2, width, height);
+										context.drawImage(image2, 370 / 2 - width / 2, 150/2-height/2, width, height);
 										}
 
 									// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
 									document.getElementById("finalResult").src = canvas.toDataURL("image/png");
 									};
-								image3.src = filereader.result;
+								image2.src = filereader.result;
 								};
 
 							// READING/LOADING THE FILE

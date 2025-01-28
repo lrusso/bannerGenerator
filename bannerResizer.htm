@@ -57,8 +57,8 @@
 							filereader.onload = function()
 								{
 								// LOADING THE IMAGE FILE
-								var image2 = new Image;
-								image2.onload = function()
+								var image1 = new Image;
+								image1.onload = function()
 									{
 									var finalCanvas;
 									var finalContext;
@@ -66,7 +66,7 @@
 									try
 										{
 										// GETTING THE IMAGE RATIO
-										var ratio = image2.width/image2.height;
+										var ratio = image1.width/image1.height;
 										var width = document.getElementById("imgSize").value;
 										var height = document.getElementById("imgSize").value/ratio;
 
@@ -79,10 +79,10 @@
 										finalContext = finalCanvas.getContext("2d");
 
 										// SETTING THE IMAGE SCALE
-										var scale = width * 1 / image2.width;
+										var scale = width * 1 / image1.width;
 
 										// GETTING THE RESIZED IMAGE
-										var imageResized = downScaleImage(image2, scale);
+										var imageResized = downScaleImage(image1, scale);
 
 										// DRAWING THE RESIZED IMAGE
 										finalContext.drawImage(imageResized, 0, 0, width, height);
@@ -92,7 +92,7 @@
 										// IF THERE IS AN ERROR, IT MEANS THAT THE FILE IMAGE IS SMALLER THAN
 										// THE SIZE THAT IT SUPPOSED TO FILL. SO, BECAUSE OF THIS,
 										// IN THE FOLLOWING LINE THE IMAGE IS STRETCHED TO FILL.
-										finalContext.drawImage(image2, 0, 0, width, height);
+										finalContext.drawImage(image1, 0, 0, width, height);
 										}
 
 									// UPDATING THE FINAL IMAGE WIDTH AND HEIGHT
@@ -102,7 +102,7 @@
 									// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
 									document.getElementById("finalResult").src = finalCanvas.toDataURL("image/png");
 									};
-								image2.src = filereader.result;
+								image1.src = filereader.result;
 								};
 
 							// READING/LOADING THE FILE
