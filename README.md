@@ -12,8 +12,7 @@ Image Merger, Image Resizer, Image Distortion, Business Card, Radio Interview, R
 | [bannerAppStore_X_2.htm](https://lrusso.github.io/bannerGenerator/bannerAppStore_X_2.htm) |
 | [bannerBusinessCardFormal.htm](https://lrusso.github.io/bannerGenerator/bannerBusinessCardFormal.htm) |
 | [bannerBusinessCardGoogle.htm](https://lrusso.github.io/bannerGenerator/bannerBusinessCardGoogle.htm) |
-| [bannerDistorted1.htm](https://lrusso.github.io/bannerGenerator/bannerDistorted1.htm) |
-| [bannerDistorted2.htm](https://lrusso.github.io/bannerGenerator/bannerDistorted2.htm) |
+| [bannerDistorted.htm](https://lrusso.github.io/bannerGenerator/bannerDistorted.htm) |
 | [bannerFilters.htm](https://lrusso.github.io/bannerGenerator/bannerFilters.htm) |
 | [bannerFormats.htm](https://lrusso.github.io/bannerGenerator/bannerFormats.htm) |
 | [bannerGitHub1.htm](https://lrusso.github.io/bannerGenerator/bannerGitHub1.htm) |
