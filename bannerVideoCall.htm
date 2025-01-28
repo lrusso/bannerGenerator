@@ -95,9 +95,9 @@
 				textPadding.value = "70";
 				textColor.value = "#FFFFFF";
 				textShadow.value = "yes"
-				imgBrightness.value = "100";
-				imgContrast.value = "100";
-				imgSaturate.value = "100";
+				imgBrightness.value = "1.0";
+				imgContrast.value = "1.0";
+				imgSaturate.value = "1.0";
 				imgSize.value = "400";
 				imgPadding.value = "70";
 				imageShadow.value = "yes"
@@ -283,7 +283,7 @@
 												}
 
 											// APPLYING IMAGE FILTERS
-											context.filter = "brightness(" + imgBrightness.value + "%) contrast(" + imgContrast.value + "%) saturate(" + imgSaturate.value + "%)";
+											context.filter = "brightness(" + (imgBrightness.value * 100) + "%) contrast(" + (imgContrast.value * 100) + "%) saturate(" + (imgSaturate.value * 100) + "%)";
 
 											// DRAWING THE RESIZED IMAGE
 											context.drawImage(imageResized, imgPadding.value, imgPadding.value, width, height);
