@@ -31,9 +31,9 @@
 			<input type="text" id="line3" placeholder="Line 3">
 			<select id="showLogo"><option selected value="YES">Show logo</option><option value="NO">Hide logo</option></select>
 			<select id="language"><option selected value="en">English</option><option value="es">Spanish</option></select>
+			<input type="file" id="screenshot">
 			<input type="text" id="imgSize" placeholder="Image size">
 			<input type="text" id="imgOffsetY" placeholder="Image offsetY">
-			<input type="file" id="screenshot">
 			<input type="file" id="background">
 		</div>
 
@@ -133,17 +133,17 @@
 								filereader.onload = function()
 									{
 									// LOADING THE IMAGE FILE
-									var image3 = new Image;
-									image3.onload = function()
+									var image4 = new Image;
+									image4.onload = function()
 										{
 										// GETTING THE IMAGE RATIO
-										var width = image3.width;
-										var height = image3.height;
+										var width = image4.width;
+										var height = image4.height;
 
 										try
 											{
 											// DRAWING THE IMAGE
-											context.drawImage(image3, 1920 / 2 - width / 2, 1080 / 2 - height / 2, width, height);
+											context.drawImage(image4, 1920 / 2 - width / 2, 1080 / 2 - height / 2, width, height);
 											}
 											catch(err)
 											{
@@ -152,7 +152,7 @@
 										// RENDERING THE SECONDARY RESOURCES
 										renderSecondaryResources(context);
 										};
-									image3.src = filereader.result;
+									image4.src = filereader.result;
 									};
 
 								// READING/LOADING THE FILE
@@ -253,21 +253,21 @@
 							filereader2.onload = function()
 								{
 								// LOADING THE IMAGE FILE
-								var image4 = new Image;
-								image4.onload = function()
+								var image5 = new Image;
+								image5.onload = function()
 									{
 									// GETTING THE IMAGE RATIO
-									var ratio = image4.width/image4.height;
+									var ratio = image5.width/image5.height;
 									var width = document.getElementById("imgSize").value;
 									var height = document.getElementById("imgSize").value/ratio;
 
 									try
 										{
 										// SETTING THE IMAGE SCALE
-										var scale = width * 1 / image4.width;
+										var scale = width * 1 / image5.width;
 
 										// GETTING THE RESIZED IMAGE
-										var imageResized = downScaleImage(image4, scale);
+										var imageResized = downScaleImage(image5, scale);
 
 										// DRAWING THE RESIZED IMAGE
 										context.drawImage(imageResized, (1920 * 0.75) - width / 2, 1080 / 2 - height / 2 + parseInt(imgOffsetY.value), width, height);
@@ -277,13 +277,13 @@
 										// IF THERE IS AN ERROR, IT MEANS THAT THE FILE IMAGE IS SMALLER THAN
 										// THE SIZE THAT IT SUPPOSED TO FILL. SO, BECAUSE OF THIS,
 										// IN THE FOLLOWING LINE THE IMAGE IS STRETCHED TO FILL.
-										context.drawImage(image4, (1920 * 0.75) - width / 2, 1080 / 2 - height / 2 + parseInt(imgOffsetY.value), width, height);
+										context.drawImage(image5, (1920 * 0.75) - width / 2, 1080 / 2 - height / 2 + parseInt(imgOffsetY.value), width, height);
 										}
 
 									// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
 									document.getElementById("finalResult").src = canvas.toDataURL("image/png");
 									};
-								image4.src = filereader2.result;
+								image5.src = filereader2.result;
 								};
 
 							// READING/LOADING THE FILE
