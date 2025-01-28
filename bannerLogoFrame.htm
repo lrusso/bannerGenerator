@@ -37,9 +37,9 @@
 				width.focus();
 
 				// CLEARING ALL THE INPUTTED VALUES (IF ANY)
-				width.value = "";
-				height.value = "";
-				imgSize.value = "";
+				width.value = "512";
+				height.value = "512";
+				imgSize.value = "400";
 				document.getElementById("screenshot").value = null;
 
 				function update()
@@ -84,21 +84,21 @@
 							filereader.onload = function()
 								{
 								// LOADING THE IMAGE FILE
-								var image3 = new Image;
-								image3.onload = function()
+								var image1 = new Image;
+								image1.onload = function()
 									{
 									// GETTING THE IMAGE RATIO
-									var ratio = image3.width/image3.height;
+									var ratio = image1.width/image1.height;
 									var imageWidth = document.getElementById("imgSize").value;
 									var imageHeight = document.getElementById("imgSize").value/ratio;
 
 									try
 										{
 										// SETTING THE IMAGE SCALE
-										var scale = width * 1 / image3.width;
+										var scale = width * 1 / image1.width;
 
 										// GETTING THE RESIZED IMAGE
-										var imagenResized = downScaleImage(image3, scale);
+										var imagenResized = downScaleImage(image1, scale);
 
 										// DRAWING THE RESIZED IMAGE
 										context.drawImage(imagenResized, (1024 * 0.70) - imageWidth / 2, 500/2-imageHeight/2, imageWidth, imageHeight);
@@ -108,13 +108,13 @@
 										// IF THERE IS AN ERROR, IT MEANS THAT THE FILE IMAGE IS SMALLER THAN
 										// THE SIZE THAT IT SUPPOSED TO FILL. SO, BECAUSE OF THIS,
 										// IN THE FOLLOWING LINE THE IMAGE IS STRETCHED TO FILL.
-										context.drawImage(image3, width.value / 2 - imageWidth / 2, height.value / 2 - imageHeight / 2, imageWidth, imageHeight);
+										context.drawImage(image1, width.value / 2 - imageWidth / 2, height.value / 2 - imageHeight / 2, imageWidth, imageHeight);
 										}
 
 									// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
 									document.getElementById("finalResult").src = canvas.toDataURL("image/png");
 									};
-								image3.src = filereader.result;
+								image1.src = filereader.result;
 								};
 
 							// READING/LOADING THE FILE
