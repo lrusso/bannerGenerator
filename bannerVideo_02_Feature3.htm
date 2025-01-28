@@ -188,10 +188,10 @@
 										var scale = width * 1 / image4.width;
 
 										// GETTING THE RESIZED IMAGE
-										var imagenResized = downScaleImage(image4, scale);
+										var imageResized = downScaleImage(image4, scale);
 
 										// DRAWING THE RESIZED IMAGE
-										context.drawImage(imagenResized, 1920 / 2 - width / 2, 1080 / 2 - height / 2 + parseInt(imgOffsetY.value), width, height);
+										context.drawImage(imageResized, 1920 / 2 - width / 2, 1080 / 2 - height / 2 + parseInt(imgOffsetY.value), width, height);
 										}
 										catch(err)
 										{

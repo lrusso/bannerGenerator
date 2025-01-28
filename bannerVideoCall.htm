@@ -271,7 +271,7 @@
 											var scale = width * 1 / image1.width;
 
 											// GETTING THE RESIZED IMAGE
-											var imagenResized = downScaleImage(image1, scale);
+											var imageResized = downScaleImage(image1, scale);
 
 											// CHECKING IF AN IMAGE SHADOW MUST BE RENDERED
 											if (imageShadow.value == "yes")
@@ -286,7 +286,7 @@
 											context.filter = "brightness(" + imgBrightness.value + "%) contrast(" + imgContrast.value + "%) saturate(" + imgSaturate.value + "%)";
 
 											// DRAWING THE RESIZED IMAGE
-											context.drawImage(imagenResized, imgPadding.value, imgPadding.value, width, height);
+											context.drawImage(imageResized, imgPadding.value, imgPadding.value, width, height);
 
 											// DISABLING THE SHADOW EFFECT
 											context.shadowOffsetX = 0;
