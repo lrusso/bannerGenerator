@@ -15,9 +15,9 @@
 	<body>
 		<div>
 			<input type="file" id="screenshot">
-			<input type="text" id="imgBrightness" placeholder="Image brightness" value="100">
-			<input type="text" id="imgContrast" placeholder="Image contrast" value="100">
-			<input type="text" id="imgSaturate" placeholder="Image saturate" value="100">
+			<input type="text" id="imgBrightness" placeholder="Image brightness" value="1">
+			<input type="text" id="imgContrast" placeholder="Image contrast" value="1">
+			<input type="text" id="imgSaturate" placeholder="Image saturate" value="1">
 		</div>
 
 		<img width="320" height="200" id="finalResult" alt="banner" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH5AodAgAMo/D8kgAAAAtJREFUCNdj+A8EAAn7A/1jJsWPAAAAAElFTkSuQmCC">
@@ -27,9 +27,9 @@
 				{
 				// CLEARING ALL THE INPUTTED VALUES (IF ANY)
 				document.getElementById("screenshot").value = null;
-				document.getElementById("imgBrightness").value = "100";
-				document.getElementById("imgContrast").value = "100";
-				document.getElementById("imgSaturate").value = "100";
+				document.getElementById("imgBrightness").value = "1.0";
+				document.getElementById("imgContrast").value = "1.0";
+				document.getElementById("imgSaturate").value = "1.0";
 
 				// USING A VARIABLE IN ORDER TO KNOW WHEN ALL THE GRAPHICAL ELEMENTS ARE LOADED
 				var elementsLoadedCounter = 0;
@@ -78,7 +78,7 @@
 										context = finalCanvas.getContext("2d");
 
 										// APPLYING IMAGE FILTERS
-										context.filter = "brightness(" + imgBrightness.value + "%) contrast(" + imgContrast.value + "%) saturate(" + imgSaturate.value + "%)";
+										context.filter = "brightness(" + (imgBrightness.value * 100) + "%) contrast(" + (imgContrast.value * 100) + "%) saturate(" + (imgSaturate.value * 100) + "%)";
 
 										// DRAWING THE IMAGE
 										context.drawImage(image1, 0, 0, image1.width, image1.height);
