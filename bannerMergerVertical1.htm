@@ -81,13 +81,13 @@
 							else
 							{
 							// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
-							document.getElementById("finalResult").src = canvas.toDataURL("data/png");
+							document.getElementById("finalResult").src = canvas.toDataURL("image/png");
 							}
 						}
 						catch(err)
 						{
 						// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
-						document.getElementById("finalResult").src = canvas.toDataURL("data/png");
+						document.getElementById("finalResult").src = canvas.toDataURL("image/png");
 						}
 
 					try
@@ -127,13 +127,13 @@
 							else
 							{
 							// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
-							document.getElementById("finalResult").src = canvas.toDataURL("data/png");
+							document.getElementById("finalResult").src = canvas.toDataURL("image/png");
 							}
 						}
 						catch(err)
 						{
 						// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
-						document.getElementById("finalResult").src = canvas.toDataURL("data/png");
+						document.getElementById("finalResult").src = canvas.toDataURL("image/png");
 						}
 					}
 
@@ -209,7 +209,7 @@
 						}
 
 					// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
-					document.getElementById("finalResult").src = finalCanvas.toDataURL("data/png");
+					document.getElementById("finalResult").src = finalCanvas.toDataURL("image/png");
 					}
 
 				function downScaleImage(img, scale)

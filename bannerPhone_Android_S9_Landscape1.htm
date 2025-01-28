@@ -104,7 +104,7 @@
 									context.drawImage(image1, 0, 0, 2560, 1440);
 
 									// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
-									document.getElementById("finalResult").src = canvas.toDataURL("data/png");
+									document.getElementById("finalResult").src = canvas.toDataURL("image/png");
 									};
 								image2.src = filereader.result;
 								};
@@ -115,13 +115,13 @@
 							else
 							{
 							// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
-							document.getElementById("finalResult").src = canvas.toDataURL("data/png");
+							document.getElementById("finalResult").src = canvas.toDataURL("image/png");
 							}
 						}
 						catch(err)
 						{
 						// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
-						document.getElementById("finalResult").src = canvas.toDataURL("data/png");
+						document.getElementById("finalResult").src = canvas.toDataURL("image/png");
 						}
 					}
 

@@ -112,7 +112,7 @@
 										}
 
 									// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
-									document.getElementById("finalResult").src = canvas.toDataURL("data/png");
+									document.getElementById("finalResult").src = canvas.toDataURL("image/png");
 									};
 								image3.src = filereader.result;
 								};
@@ -127,7 +127,7 @@
 							document.getElementById("finalResult").style.height = height.value + "px";
 
 							// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
-							document.getElementById("finalResult").src = canvas.toDataURL("data/png");
+							document.getElementById("finalResult").src = canvas.toDataURL("image/png");
 							}
 						}
 						catch(err)
@@ -137,7 +137,7 @@
 						document.getElementById("finalResult").style.height = height.value + "px";
 
 						// EXPORTING THE PICTURE AS A PNG IMAGE IN BASE64 FORMAT
-						document.getElementById("finalResult").src = canvas.toDataURL("data/png");
+						document.getElementById("finalResult").src = canvas.toDataURL("image/png");
 						}
 					}
 
